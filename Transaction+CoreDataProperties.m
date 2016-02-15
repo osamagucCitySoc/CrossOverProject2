@@ -14,8 +14,9 @@
 @implementation Transaction (CoreDataProperties)
 
 @dynamic amount;
-@dynamic recurring;
 @dynamic month;
+@dynamic recurring;
 @dynamic tag;
+@dynamic day;
 
 @end

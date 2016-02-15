@@ -16,9 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Transaction (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSNumber *amount;
+@property (nullable, nonatomic, retain) NSString *month;
 @property (nullable, nonatomic, retain) NSNumber *recurring;
-@property (nullable, nonatomic, retain) NSNumber *month;
 @property (nullable, nonatomic, retain) NSString *tag;
+@property (nullable, nonatomic, retain) NSNumber *day;
 
 @end
 

@@ -22,6 +22,10 @@
 		E8D60D661C722FA10014ED1F /* XMLParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D601C722FA10014ED1F /* XMLParserDelegate.m */; };
 		E8D60D681C722FB70014ED1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D60D671C722FB70014ED1F /* Foundation.framework */; };
 		E8D60D6B1C7234E40014ED1F /* CurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D6A1C7234E40014ED1F /* CurrencyViewController.m */; };
+		E8D60D801C7248920014ED1F /* Tags+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D791C7248920014ED1F /* Tags+CoreDataProperties.m */; };
+		E8D60D811C7248920014ED1F /* Tags.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D7B1C7248920014ED1F /* Tags.m */; };
+		E8D60D821C7248920014ED1F /* Transaction+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D7D1C7248920014ED1F /* Transaction+CoreDataProperties.m */; };
+		E8D60D831C7248920014ED1F /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D7F1C7248920014ED1F /* Transaction.m */; };
 		E8EB25FF1C720F1D0015C634 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB25FE1C720F1D0015C634 /* main.m */; };
 		E8EB26021C720F1D0015C634 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26011C720F1D0015C634 /* AppDelegate.m */; };
 		E8EB26051C720F1D0015C634 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26041C720F1D0015C634 /* ViewController.m */; };
@@ -29,10 +33,6 @@
 		E8EB260B1C720F1D0015C634 /* CrossOverProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26091C720F1D0015C634 /* CrossOverProject.xcdatamodeld */; };
 		E8EB260D1C720F1D0015C634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8EB260C1C720F1D0015C634 /* Assets.xcassets */; };
 		E8EB26101C720F1D0015C634 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EB260E1C720F1D0015C634 /* LaunchScreen.storyboard */; };
-		E8EB262C1C7210FA0015C634 /* Transaction+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26251C7210FA0015C634 /* Transaction+CoreDataProperties.m */; };
-		E8EB262D1C7210FA0015C634 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26271C7210FA0015C634 /* Transaction.m */; };
-		E8EB262E1C7210FA0015C634 /* Tags+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26291C7210FA0015C634 /* Tags+CoreDataProperties.m */; };
-		E8EB262F1C7210FA0015C634 /* Tags.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB262B1C7210FA0015C634 /* Tags.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +67,14 @@
 		E8D60D671C722FB70014ED1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E8D60D691C7234E40014ED1F /* CurrencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyViewController.h; sourceTree = "<group>"; };
 		E8D60D6A1C7234E40014ED1F /* CurrencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyViewController.m; sourceTree = "<group>"; };
+		E8D60D781C7248920014ED1F /* Tags+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tags+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E8D60D791C7248920014ED1F /* Tags+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tags+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E8D60D7A1C7248920014ED1F /* Tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tags.h; sourceTree = "<group>"; };
+		E8D60D7B1C7248920014ED1F /* Tags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tags.m; sourceTree = "<group>"; };
+		E8D60D7C1C7248920014ED1F /* Transaction+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Transaction+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E8D60D7D1C7248920014ED1F /* Transaction+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Transaction+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E8D60D7E1C7248920014ED1F /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		E8D60D7F1C7248920014ED1F /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
 		E8EB25FA1C720F1C0015C634 /* CrossOverProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrossOverProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EB25FE1C720F1D0015C634 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8EB26001C720F1D0015C634 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -78,14 +86,6 @@
 		E8EB260C1C720F1D0015C634 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8EB260F1C720F1D0015C634 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8EB26111C720F1D0015C634 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E8EB26241C7210FA0015C634 /* Transaction+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Transaction+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E8EB26251C7210FA0015C634 /* Transaction+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Transaction+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E8EB26261C7210FA0015C634 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
-		E8EB26271C7210FA0015C634 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
-		E8EB26281C7210FA0015C634 /* Tags+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tags+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E8EB26291C7210FA0015C634 /* Tags+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tags+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E8EB262A1C7210FA0015C634 /* Tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tags.h; sourceTree = "<group>"; };
-		E8EB262B1C7210FA0015C634 /* Tags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tags.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,14 +242,14 @@
 		E8EB26231C72106C0015C634 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				E8EB26241C7210FA0015C634 /* Transaction+CoreDataProperties.h */,
-				E8EB26251C7210FA0015C634 /* Transaction+CoreDataProperties.m */,
-				E8EB26261C7210FA0015C634 /* Transaction.h */,
-				E8EB26271C7210FA0015C634 /* Transaction.m */,
-				E8EB26281C7210FA0015C634 /* Tags+CoreDataProperties.h */,
-				E8EB26291C7210FA0015C634 /* Tags+CoreDataProperties.m */,
-				E8EB262A1C7210FA0015C634 /* Tags.h */,
-				E8EB262B1C7210FA0015C634 /* Tags.m */,
+				E8D60D781C7248920014ED1F /* Tags+CoreDataProperties.h */,
+				E8D60D791C7248920014ED1F /* Tags+CoreDataProperties.m */,
+				E8D60D7A1C7248920014ED1F /* Tags.h */,
+				E8D60D7B1C7248920014ED1F /* Tags.m */,
+				E8D60D7C1C7248920014ED1F /* Transaction+CoreDataProperties.h */,
+				E8D60D7D1C7248920014ED1F /* Transaction+CoreDataProperties.m */,
+				E8D60D7E1C7248920014ED1F /* Transaction.h */,
+				E8D60D7F1C7248920014ED1F /* Transaction.m */,
 			);
 			name = CoreData;
 			path = ..;
@@ -376,26 +376,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8D60D831C7248920014ED1F /* Transaction.m in Sources */,
 				E8D60D4C1C722F590014ED1F /* BarChartView.m in Sources */,
-				E8EB262F1C7210FA0015C634 /* Tags.m in Sources */,
-				E8EB262D1C7210FA0015C634 /* Transaction.m in Sources */,
 				E8EB26051C720F1D0015C634 /* ViewController.m in Sources */,
 				E8EB26021C720F1D0015C634 /* AppDelegate.m in Sources */,
 				E8D60D3F1C7217940014ED1F /* BankAccountAmountViewController.m in Sources */,
+				E8D60D821C7248920014ED1F /* Transaction+CoreDataProperties.m in Sources */,
 				E8EB260B1C720F1D0015C634 /* CrossOverProject.xcdatamodeld in Sources */,
+				E8D60D811C7248920014ED1F /* Tags.m in Sources */,
 				E8EB25FF1C720F1D0015C634 /* main.m in Sources */,
 				E8D60D641C722FA10014ED1F /* XMLElement.m in Sources */,
 				E8D60D4F1C722F590014ED1F /* PlotChartView.m in Sources */,
 				E8D60D6B1C7234E40014ED1F /* CurrencyViewController.m in Sources */,
 				E8D60D611C722FA10014ED1F /* CMPopTipView.m in Sources */,
 				E8D60D661C722FA10014ED1F /* XMLParserDelegate.m in Sources */,
-				E8EB262C1C7210FA0015C634 /* Transaction+CoreDataProperties.m in Sources */,
 				E8D60D621C722FA10014ED1F /* UIColor+i7HexColor.m in Sources */,
 				E8D60D4E1C722F590014ED1F /* BarView.m in Sources */,
 				E8D60D651C722FA10014ED1F /* XMLParser.m in Sources */,
-				E8EB262E1C7210FA0015C634 /* Tags+CoreDataProperties.m in Sources */,
 				E8D60D4D1C722F590014ED1F /* BarLabel.m in Sources */,
 				E8D60D3B1C7217040014ED1F /* Constants.m in Sources */,
+				E8D60D801C7248920014ED1F /* Tags+CoreDataProperties.m in Sources */,
 				E8D60D631C722FA10014ED1F /* UIViewSizeShortcuts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
