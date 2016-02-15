@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import <MagicalRecord/MagicalRecord.h>
 #import "Constants.h"
+#import "ManageTransactionsViewController.h"
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -20,6 +21,21 @@
     __weak IBOutlet UILabel *currentBankAccountAmountLabel;
     __weak IBOutlet UITableView *tableVieww;
     NSArray* optionsDataSource;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue identifier]isEqualToString:@"expensesSeg"])
+    {
+        ManageTransactionsViewController* dst = (ManageTransactionsViewController*)[segue destinationViewController];
+        [dst setTransactionType:@"Expenses"];
+        
+    }else if([[segue identifier]isEqualToString:@"incomeSeg"])
+    {
+        ManageTransactionsViewController* dst = (ManageTransactionsViewController*)[segue destinationViewController];
+        [dst setTransactionType:@"Incomes"];
+        
+    }
 }
 
 - (void)viewDidLoad {
@@ -57,7 +73,7 @@
     
     // Those are the list of different options that the user can play with.
     NSDictionary* manageOptions = [[NSDictionary alloc]initWithObjects:@[@"Manage your wallet",@[@"Manage your account amount",@"Manage your currency symbol",@"Manage your expenses",@"Manage your income"]] forKeys:@[@"title",@"options"]];
-     NSDictionary* reportOptions = [[NSDictionary alloc]initWithObjects:@[@"Analyse your wallet",@[@"Balance per month",@"Expenses by end of each month"]] forKeys:@[@"title",@"options"]];
+     NSDictionary* reportOptions = [[NSDictionary alloc]initWithObjects:@[@"Analyse your wallet",@[@"Balance per month",@"Expenses per month",@"Income per month"]] forKeys:@[@"title",@"options"]];
     optionsDataSource = [[NSArray alloc]initWithObjects:manageOptions,reportOptions, nil];
     [tableVieww setDelegate:self];
     [tableVieww setDataSource:self];
@@ -116,7 +132,16 @@
         {
             // The user wants to change his preferred currency symbol.
             [self performSegueWithIdentifier:@"enterCurrencySeg" sender:self];
+        }else if(indexPath.row == 2)
+        {
+            // The user wants to manage his expenses.
+            [self performSegueWithIdentifier:@"expensesSeg" sender:self];
+        }else if(indexPath.row == 3)
+        {
+            // The user wants to manage his expenses.
+            [self performSegueWithIdentifier:@"incomeSeg" sender:self];
         }
+
     }else if(indexPath.section == 1)
     {
         // The user chose a reporting option

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '01624C8E95EA625E49BB385C'
+               BlueprintIdentifier = 'C686E87C3774178CFA477592'
                BlueprintName = 'Pods-CrossOverProject'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-CrossOverProject.a'>

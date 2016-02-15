@@ -6,12 +6,13 @@
     <entity name="Transaction" representedClassName="Transaction" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="month" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="month" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="recurring" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="tag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
         <element name="Tags" positionX="-45" positionY="27" width="128" height="60"/>
-        <element name="Transaction" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Transaction" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

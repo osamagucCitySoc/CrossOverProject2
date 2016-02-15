@@ -6,6 +6,7 @@
 target 'CrossOverProject' do
 
 pod "MagicalRecord"
+pod "JTMaterialSwitch"
 
 end
 

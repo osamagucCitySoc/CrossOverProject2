@@ -1,12 +1,15 @@
 PODS:
+  - JTMaterialSwitch (1.1)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
 
 DEPENDENCIES:
+  - JTMaterialSwitch
   - MagicalRecord
 
 SPEC CHECKSUMS:
+  JTMaterialSwitch: cad8093c3773ff9f6c60005c98d269eb869b5e04
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
 
 COCOAPODS: 0.39.0
