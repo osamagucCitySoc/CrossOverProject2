@@ -10,7 +10,7 @@
 #import <MagicalRecord/MagicalRecord.h>
 #import "Constants.h"
 
-@interface ViewController ()
+@interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
@@ -19,6 +19,7 @@
     NSUserDefaults* userDefaults;
     __weak IBOutlet UILabel *currentBankAccountAmountLabel;
     __weak IBOutlet UITableView *tableVieww;
+    NSArray* optionsDataSource;
 }
 
 - (void)viewDidLoad {
@@ -48,6 +49,12 @@
 -(void)initVariables
 {
     userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSDictionary* manageOptions = [[NSDictionary alloc]initWithObjects:@[@"Manage your wallet",@[@"Manage your account amount",@"Manage your currency symbol",@"Manage your expenses",@"Manage your income"]] forKeys:@[@"title",@"options"]];
+     NSDictionary* reportOptions = [[NSDictionary alloc]initWithObjects:@[@"Analyse your wallet",@[@"Balance per month",@"Expenses by end of each month"]] forKeys:@[@"title",@"options"]];
+    optionsDataSource = [[NSArray alloc]initWithObjects:manageOptions,reportOptions, nil];
+    [tableVieww setDelegate:self];
+    [tableVieww setDataSource:self];
 }
 
 -(void)initialiseTheBankAccount
@@ -65,5 +72,31 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark UITableViewDelegate methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [optionsDataSource count];
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [[[optionsDataSource objectAtIndex:section] objectForKey:@"options"] count];
+}
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [[optionsDataSource objectAtIndex:section] objectForKey:@"title"];
+}
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString* cellID = @"optionsCell";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    
+    [[cell textLabel]setText:[[[optionsDataSource objectAtIndex:indexPath.section] objectForKey:@"options"] objectAtIndex:indexPath.row]];
+    
+    return cell;
+}
+
+
 
 @end
