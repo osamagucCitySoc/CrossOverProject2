@@ -33,12 +33,15 @@
 {
     userDefaults = [NSUserDefaults standardUserDefaults];
     currentlySelectedCurrencyCode = [userDefaults objectForKey:consCurrencyUserDefaultsKey];
+    // Preload the value that the use chose before, and if not then the $ is the default currency.
     if(!currentlySelectedCurrencyCode)
     {
         currentlySelectedCurrencyCode = @"$";
     }
     [currentlySelectedLabel setText:currentlySelectedCurrencyCode];
     
+    
+    // Get the list of currency codes and associated countries to be displayed for the user to choose from.
     NSLocale *locale = [NSLocale currentLocale];
     currencyCodesDataSource = [[NSMutableArray alloc]init];
     filteredCurrencyCodesDataSource = [[NSMutableArray alloc]init];
@@ -64,6 +67,7 @@
 }
 
 - (IBAction)submitClicked:(id)sender {
+    // Store the new seleceted currency and get back to the caller.
     [userDefaults setObject:currentlySelectedCurrencyCode forKey:consCurrencyUserDefaultsKey];
     [userDefaults synchronize];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -79,6 +83,8 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    // For each cell, the code and its country is displayed in an alphabaticall asc order
     static NSString* cellID = @"currencyCell";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     
@@ -100,6 +106,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Change the preffered currency symbol as per the new user selection
     currentlySelectedCurrencyCode = [[filteredCurrencyCodesDataSource objectAtIndex:indexPath.row] objectForKey:@"code"];
     NSRange range = NSMakeRange(0, 1);
     NSIndexSet *section = [NSIndexSet indexSetWithIndexesInRange:range];
@@ -114,6 +121,7 @@
 #pragma mark UISearchBarDelegate methods
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    // Show only the currencies that has at least the code or the country name contains the entered text in the search bar.
     if(searchText.length == 0)
     {
         filteredCurrencyCodesDataSource = [[NSMutableArray alloc]initWithArray:currencyCodesDataSource];
