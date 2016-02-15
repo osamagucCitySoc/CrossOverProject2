@@ -10,6 +10,7 @@
 
 
 #define consBankAccountUserDefaultsKey @"BankAccountUserDefaults"
+#define consCurrencyUserDefaultsKey @"consCurrencyUserDefaults"
 
 @interface Constants : NSObject
 

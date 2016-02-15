@@ -30,17 +30,22 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+
     [super viewDidAppear:animated];
+    // Each time the homepage appears, we need to update the current bank amount and preferred currency. // Default is 0.000 $
     [UIView transitionWithView:currentBankAccountAmountLabel duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-        NSString* currentAmount;
-        if(![userDefaults objectForKey:consBankAccountUserDefaultsKey])
+        NSString* currentAmount = [userDefaults objectForKey:consBankAccountUserDefaultsKey];
+        NSString* currentCurrencySymbol = [userDefaults objectForKey:consCurrencyUserDefaultsKey];
+        
+        if(!currentAmount)
         {
             currentAmount = @"0.000";
-        }else
-        {
-            currentAmount = [userDefaults objectForKey:consBankAccountUserDefaultsKey];
         }
-        currentBankAccountAmountLabel.text = [NSString stringWithFormat:@"%@ %@",currentAmount,@"$"];
+        if(!currentCurrencySymbol)
+        {
+            currentCurrencySymbol = @"$";
+        }
+        currentBankAccountAmountLabel.text = [NSString stringWithFormat:@"%@ %@",currentAmount,currentCurrencySymbol];
     } completion:nil];
 }
 
@@ -50,6 +55,7 @@
 {
     userDefaults = [NSUserDefaults standardUserDefaults];
     
+    // Those are the list of different options that the user can play with.
     NSDictionary* manageOptions = [[NSDictionary alloc]initWithObjects:@[@"Manage your wallet",@[@"Manage your account amount",@"Manage your currency symbol",@"Manage your expenses",@"Manage your income"]] forKeys:@[@"title",@"options"]];
      NSDictionary* reportOptions = [[NSDictionary alloc]initWithObjects:@[@"Analyse your wallet",@[@"Balance per month",@"Expenses by end of each month"]] forKeys:@[@"title",@"options"]];
     optionsDataSource = [[NSArray alloc]initWithObjects:manageOptions,reportOptions, nil];
@@ -95,6 +101,30 @@
     [[cell textLabel]setText:[[[optionsDataSource objectAtIndex:indexPath.section] objectForKey:@"options"] objectAtIndex:indexPath.row]];
     
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // The user selected a certain option, and we need to deal accordingly.
+    if(indexPath.section == 0)
+    {
+        // The user chose a managing option
+        if(indexPath.row == 0)
+        {
+            // The user wants to change his bank account amount.
+            [self performSegueWithIdentifier:@"enterBankAccountAmountSeg" sender:self];
+        }else if(indexPath.row == 1)
+        {
+            // The user wants to change his preferred currency symbol.
+            [self performSegueWithIdentifier:@"enterCurrencySeg" sender:self];
+        }
+    }else if(indexPath.section == 1)
+    {
+        // The user chose a reporting option
+        if(indexPath.row == 0)
+        {
+            
+        }
+    }
 }
 
 

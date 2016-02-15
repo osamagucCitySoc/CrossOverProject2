@@ -21,6 +21,7 @@
 		E8D60D651C722FA10014ED1F /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D5E1C722FA10014ED1F /* XMLParser.m */; };
 		E8D60D661C722FA10014ED1F /* XMLParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D601C722FA10014ED1F /* XMLParserDelegate.m */; };
 		E8D60D681C722FB70014ED1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D60D671C722FB70014ED1F /* Foundation.framework */; };
+		E8D60D6B1C7234E40014ED1F /* CurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D6A1C7234E40014ED1F /* CurrencyViewController.m */; };
 		E8EB25FF1C720F1D0015C634 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB25FE1C720F1D0015C634 /* main.m */; };
 		E8EB26021C720F1D0015C634 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26011C720F1D0015C634 /* AppDelegate.m */; };
 		E8EB26051C720F1D0015C634 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26041C720F1D0015C634 /* ViewController.m */; };
@@ -64,6 +65,8 @@
 		E8D60D5F1C722FA10014ED1F /* XMLParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParserDelegate.h; sourceTree = "<group>"; };
 		E8D60D601C722FA10014ED1F /* XMLParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserDelegate.m; sourceTree = "<group>"; };
 		E8D60D671C722FB70014ED1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E8D60D691C7234E40014ED1F /* CurrencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyViewController.h; sourceTree = "<group>"; };
+		E8D60D6A1C7234E40014ED1F /* CurrencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyViewController.m; sourceTree = "<group>"; };
 		E8EB25FA1C720F1C0015C634 /* CrossOverProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrossOverProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EB25FE1C720F1D0015C634 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8EB26001C720F1D0015C634 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -215,6 +218,8 @@
 				E8EB26041C720F1D0015C634 /* ViewController.m */,
 				E8D60D3D1C7217940014ED1F /* BankAccountAmountViewController.h */,
 				E8D60D3E1C7217940014ED1F /* BankAccountAmountViewController.m */,
+				E8D60D691C7234E40014ED1F /* CurrencyViewController.h */,
+				E8D60D6A1C7234E40014ED1F /* CurrencyViewController.m */,
 				E8EB26061C720F1D0015C634 /* Main.storyboard */,
 				E8EB260C1C720F1D0015C634 /* Assets.xcassets */,
 				E8EB260E1C720F1D0015C634 /* LaunchScreen.storyboard */,
@@ -381,6 +386,7 @@
 				E8EB25FF1C720F1D0015C634 /* main.m in Sources */,
 				E8D60D641C722FA10014ED1F /* XMLElement.m in Sources */,
 				E8D60D4F1C722F590014ED1F /* PlotChartView.m in Sources */,
+				E8D60D6B1C7234E40014ED1F /* CurrencyViewController.m in Sources */,
 				E8D60D611C722FA10014ED1F /* CMPopTipView.m in Sources */,
 				E8D60D661C722FA10014ED1F /* XMLParserDelegate.m in Sources */,
 				E8EB262C1C7210FA0015C634 /* Transaction+CoreDataProperties.m in Sources */,
