@@ -17,6 +17,7 @@
 @implementation ViewController
 {
     NSUserDefaults* userDefaults;
+    __weak IBOutlet UILabel *currentBankAccountAmountLabel;
 }
 
 - (void)viewDidLoad {
@@ -24,6 +25,23 @@
     [self initVariables];
     [self initialiseTheBankAccount];
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [UIView transitionWithView:currentBankAccountAmountLabel duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        NSString* currentAmount;
+        if(![userDefaults objectForKey:consBankAccountUserDefaultsKey])
+        {
+            currentAmount = @"0.000";
+        }else
+        {
+            currentAmount = [userDefaults objectForKey:consBankAccountUserDefaultsKey];
+        }
+        currentBankAccountAmountLabel.text = [NSString stringWithFormat:@"%@ %@",currentAmount,@"$"];
+    } completion:nil];
+}
+
 
 
 -(void)initVariables

@@ -17,11 +17,29 @@
 {
     __weak IBOutlet UISegmentedControl *minusPlusSegmentController;
     __weak IBOutlet UITextField *amountTextField;
+    NSUserDefaults* userDefaults;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self initVariables];
+}
+
+-(void)initVariables
+{
+    
+    userDefaults = [NSUserDefaults standardUserDefaults];
+    // We need to check if the user has entered something before (Bank account amount and preffered currency) if yes, then we need to initialise the UI with those inputs
+    if([userDefaults objectForKey:consBankAccountUserDefaultsKey])
+    {
+        // Then the user did store before some values.
+        [amountTextField setText:[userDefaults objectForKey:consBankAccountUserDefaultsKey]];
+    }else
+    {
+        // User didn't enter anything before.
+        [amountTextField setText:@"0.0"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,8 +61,8 @@
             // The user has a balance with negative value.
              enteredAmount = [NSNumber numberWithDouble:(-[amountTextField.text doubleValue])];
         }
-        [[NSUserDefaults standardUserDefaults]setObject:enteredAmount forKey:consBankAccountUserDefaultsKey];
-        [[NSUserDefaults standardUserDefaults]synchronize];
+        [userDefaults setObject:[NSString stringWithFormat:@"%0.3f",[enteredAmount doubleValue]] forKey:consBankAccountUserDefaultsKey];
+        [userDefaults synchronize];
         [self dismissViewControllerAnimated:YES completion:nil];
     }else
     {

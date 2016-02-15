@@ -50,8 +50,24 @@
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82I-ep-tBm">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Submit"/>
+                                <color key="backgroundColor" red="0.20392156859999999" green="0.6588235294" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="CaM-ah-zRn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="29"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.89411764709999997" green="0.8980392157" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="CaM-ah-zRn"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="CaM-ah-zRn"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="submitButtonClicked:" destination="xG6-mh-ZhT" eventType="touchUpInside" id="rwd-qo-6vE"/>
                                 </connections>
@@ -61,15 +77,16 @@
                         <constraints>
                             <constraint firstItem="p5h-fK-DfB" firstAttribute="leading" secondItem="kdp-QA-xmJ" secondAttribute="leadingMargin" id="0cY-yk-zIq"/>
                             <constraint firstItem="g5i-Xk-e4q" firstAttribute="top" secondItem="uez-HJ-Lea" secondAttribute="bottom" constant="8" id="BRb-Dq-kJz"/>
-                            <constraint firstItem="82I-ep-tBm" firstAttribute="top" secondItem="g5i-Xk-e4q" secondAttribute="bottom" constant="8" id="Fct-w9-am2"/>
                             <constraint firstItem="uez-HJ-Lea" firstAttribute="top" secondItem="9V9-zm-OjG" secondAttribute="bottom" constant="8" id="O5V-EF-F7U"/>
                             <constraint firstItem="uez-HJ-Lea" firstAttribute="leading" secondItem="kdp-QA-xmJ" secondAttribute="leadingMargin" id="PP1-lO-Jj2"/>
+                            <constraint firstItem="82I-ep-tBm" firstAttribute="trailing" secondItem="kdp-QA-xmJ" secondAttribute="trailingMargin" id="Pps-9n-yJq"/>
                             <constraint firstItem="g5i-Xk-e4q" firstAttribute="leading" secondItem="p5h-fK-DfB" secondAttribute="trailing" constant="8" id="Uzp-3n-73R"/>
+                            <constraint firstItem="82I-ep-tBm" firstAttribute="top" secondItem="g5i-Xk-e4q" secondAttribute="bottom" constant="8" id="Yov-Hu-bDt"/>
                             <constraint firstItem="g5i-Xk-e4q" firstAttribute="trailing" secondItem="kdp-QA-xmJ" secondAttribute="trailingMargin" id="b2T-Dp-DwF"/>
                             <constraint firstItem="uez-HJ-Lea" firstAttribute="trailing" secondItem="kdp-QA-xmJ" secondAttribute="trailingMargin" id="d5w-Ll-dTv"/>
-                            <constraint firstItem="g5i-Xk-e4q" firstAttribute="leading" secondItem="kdp-QA-xmJ" secondAttribute="leadingMargin" id="dtK-BU-Ilu"/>
                             <constraint firstItem="p5h-fK-DfB" firstAttribute="top" secondItem="uez-HJ-Lea" secondAttribute="bottom" constant="8" id="nug-hq-5ki"/>
                             <constraint firstItem="82I-ep-tBm" firstAttribute="centerX" secondItem="kdp-QA-xmJ" secondAttribute="centerX" id="pZ1-Dw-bla"/>
+                            <constraint firstItem="82I-ep-tBm" firstAttribute="leading" secondItem="kdp-QA-xmJ" secondAttribute="leadingMargin" id="v1o-Fm-nml"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -84,12 +101,13 @@
                                 <exclude reference="d5w-Ll-dTv"/>
                                 <exclude reference="0cY-yk-zIq"/>
                                 <exclude reference="nug-hq-5ki"/>
+                                <exclude reference="Pps-9n-yJq"/>
+                                <exclude reference="Yov-Hu-bDt"/>
+                                <exclude reference="pZ1-Dw-bla"/>
+                                <exclude reference="v1o-Fm-nml"/>
                                 <exclude reference="BRb-Dq-kJz"/>
                                 <exclude reference="Uzp-3n-73R"/>
                                 <exclude reference="b2T-Dp-DwF"/>
-                                <exclude reference="dtK-BU-Ilu"/>
-                                <exclude reference="Fct-w9-am2"/>
-                                <exclude reference="pZ1-Dw-bla"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -105,12 +123,13 @@
                                 <include reference="d5w-Ll-dTv"/>
                                 <include reference="0cY-yk-zIq"/>
                                 <include reference="nug-hq-5ki"/>
+                                <include reference="Pps-9n-yJq"/>
+                                <include reference="Yov-Hu-bDt"/>
+                                <include reference="pZ1-Dw-bla"/>
+                                <include reference="v1o-Fm-nml"/>
                                 <include reference="BRb-Dq-kJz"/>
                                 <include reference="Uzp-3n-73R"/>
                                 <include reference="b2T-Dp-DwF"/>
-                                <exclude reference="dtK-BU-Ilu"/>
-                                <include reference="Fct-w9-am2"/>
-                                <include reference="pZ1-Dw-bla"/>
                             </mask>
                         </variation>
                     </view>
@@ -123,7 +142,7 @@
             </objects>
             <point key="canvasLocation" x="951" y="319.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Welcome..-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
@@ -134,10 +153,76 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your current bank account amount is :" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtB-Pl-X8c">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.000 $" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smg-Gs-p7u">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="l5d-nJ-yer"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="32"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="l5d-nJ-yer"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="l5d-nJ-yer"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FtB-Pl-X8c" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="OWF-at-p7L"/>
+                            <constraint firstItem="smg-Gs-p7u" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="YVa-l5-T6h"/>
+                            <constraint firstItem="FtB-Pl-X8c" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ah0-Qt-wh7"/>
+                            <constraint firstItem="smg-Gs-p7u" firstAttribute="top" secondItem="FtB-Pl-X8c" secondAttribute="bottom" constant="20" id="d1H-TE-Yv6"/>
+                            <constraint firstItem="FtB-Pl-X8c" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="hcI-2U-dV6"/>
+                            <constraint firstItem="smg-Gs-p7u" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="pi0-SK-scI"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="FtB-Pl-X8c"/>
+                                <exclude reference="smg-Gs-p7u"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="OWF-at-p7L"/>
+                                <exclude reference="ah0-Qt-wh7"/>
+                                <exclude reference="hcI-2U-dV6"/>
+                                <exclude reference="YVa-l5-T6h"/>
+                                <exclude reference="d1H-TE-Yv6"/>
+                                <exclude reference="pi0-SK-scI"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="FtB-Pl-X8c"/>
+                                <include reference="smg-Gs-p7u"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="OWF-at-p7L"/>
+                                <include reference="ah0-Qt-wh7"/>
+                                <include reference="hcI-2U-dV6"/>
+                                <include reference="YVa-l5-T6h"/>
+                                <include reference="d1H-TE-Yv6"/>
+                                <include reference="pi0-SK-scI"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="E2U-M4-1tO"/>
+                    <navigationItem key="navigationItem" title="Welcome.." id="E2U-M4-1tO">
+                        <barButtonItem key="rightBarButtonItem" title="Options" id="HXO-mh-NdX"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="currentBankAccountAmountLabel" destination="smg-Gs-p7u" id="HfS-Za-EKb"/>
                         <segue destination="xG6-mh-ZhT" kind="presentation" identifier="enterBankAccountAmountSeg" modalTransitionStyle="crossDissolve" id="Tju-Ht-sbW"/>
                     </connections>
                 </viewController>
