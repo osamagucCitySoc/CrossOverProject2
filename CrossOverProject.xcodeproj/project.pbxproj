@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7CC1B072DDD9E5B2279A72B2 /* libPods-CrossOverProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C61D8079F183095BBA07AC8 /* libPods-CrossOverProject.a */; };
 		E8EB25FF1C720F1D0015C634 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB25FE1C720F1D0015C634 /* main.m */; };
 		E8EB26021C720F1D0015C634 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26011C720F1D0015C634 /* AppDelegate.m */; };
 		E8EB26051C720F1D0015C634 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26041C720F1D0015C634 /* ViewController.m */; };
@@ -14,9 +15,16 @@
 		E8EB260B1C720F1D0015C634 /* CrossOverProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26091C720F1D0015C634 /* CrossOverProject.xcdatamodeld */; };
 		E8EB260D1C720F1D0015C634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8EB260C1C720F1D0015C634 /* Assets.xcassets */; };
 		E8EB26101C720F1D0015C634 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EB260E1C720F1D0015C634 /* LaunchScreen.storyboard */; };
+		E8EB262C1C7210FA0015C634 /* Transaction+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26251C7210FA0015C634 /* Transaction+CoreDataProperties.m */; };
+		E8EB262D1C7210FA0015C634 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26271C7210FA0015C634 /* Transaction.m */; };
+		E8EB262E1C7210FA0015C634 /* Tags+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26291C7210FA0015C634 /* Tags+CoreDataProperties.m */; };
+		E8EB262F1C7210FA0015C634 /* Tags.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB262B1C7210FA0015C634 /* Tags.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C61D8079F183095BBA07AC8 /* libPods-CrossOverProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CrossOverProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFFE722C56FF54658D258AB9 /* Pods-CrossOverProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrossOverProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrossOverProject/Pods-CrossOverProject.debug.xcconfig"; sourceTree = "<group>"; };
+		E1DDC3643EF176F17A674BDB /* Pods-CrossOverProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrossOverProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrossOverProject/Pods-CrossOverProject.release.xcconfig"; sourceTree = "<group>"; };
 		E8EB25FA1C720F1C0015C634 /* CrossOverProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrossOverProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EB25FE1C720F1D0015C634 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8EB26001C720F1D0015C634 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -28,6 +36,14 @@
 		E8EB260C1C720F1D0015C634 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8EB260F1C720F1D0015C634 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8EB26111C720F1D0015C634 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8EB26241C7210FA0015C634 /* Transaction+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Transaction+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E8EB26251C7210FA0015C634 /* Transaction+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Transaction+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E8EB26261C7210FA0015C634 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		E8EB26271C7210FA0015C634 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
+		E8EB26281C7210FA0015C634 /* Tags+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tags+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E8EB26291C7210FA0015C634 /* Tags+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tags+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E8EB262A1C7210FA0015C634 /* Tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tags.h; sourceTree = "<group>"; };
+		E8EB262B1C7210FA0015C634 /* Tags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tags.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +51,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CC1B072DDD9E5B2279A72B2 /* libPods-CrossOverProject.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15930E81FC1F3944CCC9663F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BFFE722C56FF54658D258AB9 /* Pods-CrossOverProject.debug.xcconfig */,
+				E1DDC3643EF176F17A674BDB /* Pods-CrossOverProject.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		49F802FCFA6AE3BDB729DFD9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8C61D8079F183095BBA07AC8 /* libPods-CrossOverProject.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E8EB25F11C720F1C0015C634 = {
 			isa = PBXGroup;
 			children = (
 				E8EB25FC1C720F1C0015C634 /* CrossOverProject */,
 				E8EB25FB1C720F1C0015C634 /* Products */,
+				15930E81FC1F3944CCC9663F /* Pods */,
+				49F802FCFA6AE3BDB729DFD9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +96,7 @@
 		E8EB25FC1C720F1C0015C634 /* CrossOverProject */ = {
 			isa = PBXGroup;
 			children = (
+				E8EB26231C72106C0015C634 /* CoreData */,
 				E8EB26001C720F1D0015C634 /* AppDelegate.h */,
 				E8EB26011C720F1D0015C634 /* AppDelegate.m */,
 				E8EB26031C720F1D0015C634 /* ViewController.h */,
@@ -82,6 +119,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E8EB26231C72106C0015C634 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E8EB26241C7210FA0015C634 /* Transaction+CoreDataProperties.h */,
+				E8EB26251C7210FA0015C634 /* Transaction+CoreDataProperties.m */,
+				E8EB26261C7210FA0015C634 /* Transaction.h */,
+				E8EB26271C7210FA0015C634 /* Transaction.m */,
+				E8EB26281C7210FA0015C634 /* Tags+CoreDataProperties.h */,
+				E8EB26291C7210FA0015C634 /* Tags+CoreDataProperties.m */,
+				E8EB262A1C7210FA0015C634 /* Tags.h */,
+				E8EB262B1C7210FA0015C634 /* Tags.m */,
+			);
+			name = CoreData;
+			path = ..;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,9 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8EB26141C720F1D0015C634 /* Build configuration list for PBXNativeTarget "CrossOverProject" */;
 			buildPhases = (
+				CAE9B2AA39C596F6C3D19FCB /* Check Pods Manifest.lock */,
 				E8EB25F61C720F1C0015C634 /* Sources */,
 				E8EB25F71C720F1C0015C634 /* Frameworks */,
 				E8EB25F81C720F1C0015C634 /* Resources */,
+				01011BB82F7552BDD56911AF /* Embed Pods Frameworks */,
+				CB5E15288F1B06F6D3165001 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -147,15 +203,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		01011BB82F7552BDD56911AF /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrossOverProject/Pods-CrossOverProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CAE9B2AA39C596F6C3D19FCB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CB5E15288F1B06F6D3165001 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CrossOverProject/Pods-CrossOverProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E8EB25F61C720F1C0015C634 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8EB262F1C7210FA0015C634 /* Tags.m in Sources */,
+				E8EB262D1C7210FA0015C634 /* Transaction.m in Sources */,
 				E8EB26051C720F1D0015C634 /* ViewController.m in Sources */,
 				E8EB26021C720F1D0015C634 /* AppDelegate.m in Sources */,
 				E8EB260B1C720F1D0015C634 /* CrossOverProject.xcdatamodeld in Sources */,
 				E8EB25FF1C720F1D0015C634 /* main.m in Sources */,
+				E8EB262C1C7210FA0015C634 /* Transaction+CoreDataProperties.m in Sources */,
+				E8EB262E1C7210FA0015C634 /* Tags+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +371,7 @@
 		};
 		E8EB26151C720F1D0015C634 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFFE722C56FF54658D258AB9 /* Pods-CrossOverProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CrossOverProject/Info.plist;
@@ -275,6 +384,7 @@
 		};
 		E8EB26161C720F1D0015C634 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1DDC3643EF176F17A674BDB /* Pods-CrossOverProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CrossOverProject/Info.plist;
@@ -304,6 +414,7 @@
 				E8EB26161C720F1D0015C634 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
