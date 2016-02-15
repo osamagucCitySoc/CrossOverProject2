@@ -18,6 +18,7 @@
 {
     NSUserDefaults* userDefaults;
     __weak IBOutlet UILabel *currentBankAccountAmountLabel;
+    __weak IBOutlet UITableView *tableVieww;
 }
 
 - (void)viewDidLoad {

@@ -10,6 +10,17 @@
 		7CC1B072DDD9E5B2279A72B2 /* libPods-CrossOverProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C61D8079F183095BBA07AC8 /* libPods-CrossOverProject.a */; };
 		E8D60D3B1C7217040014ED1F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D3A1C7217040014ED1F /* Constants.m */; };
 		E8D60D3F1C7217940014ED1F /* BankAccountAmountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D3E1C7217940014ED1F /* BankAccountAmountViewController.m */; };
+		E8D60D4C1C722F590014ED1F /* BarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D441C722F590014ED1F /* BarChartView.m */; };
+		E8D60D4D1C722F590014ED1F /* BarLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D461C722F590014ED1F /* BarLabel.m */; };
+		E8D60D4E1C722F590014ED1F /* BarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D491C722F590014ED1F /* BarView.m */; };
+		E8D60D4F1C722F590014ED1F /* PlotChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D4B1C722F590014ED1F /* PlotChartView.m */; };
+		E8D60D611C722FA10014ED1F /* CMPopTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D541C722FA10014ED1F /* CMPopTipView.m */; };
+		E8D60D621C722FA10014ED1F /* UIColor+i7HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D571C722FA10014ED1F /* UIColor+i7HexColor.m */; };
+		E8D60D631C722FA10014ED1F /* UIViewSizeShortcuts.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D591C722FA10014ED1F /* UIViewSizeShortcuts.m */; };
+		E8D60D641C722FA10014ED1F /* XMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D5C1C722FA10014ED1F /* XMLElement.m */; };
+		E8D60D651C722FA10014ED1F /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D5E1C722FA10014ED1F /* XMLParser.m */; };
+		E8D60D661C722FA10014ED1F /* XMLParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D601C722FA10014ED1F /* XMLParserDelegate.m */; };
+		E8D60D681C722FB70014ED1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D60D671C722FB70014ED1F /* Foundation.framework */; };
 		E8EB25FF1C720F1D0015C634 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB25FE1C720F1D0015C634 /* main.m */; };
 		E8EB26021C720F1D0015C634 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26011C720F1D0015C634 /* AppDelegate.m */; };
 		E8EB26051C720F1D0015C634 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8EB26041C720F1D0015C634 /* ViewController.m */; };
@@ -31,6 +42,28 @@
 		E8D60D3A1C7217040014ED1F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		E8D60D3D1C7217940014ED1F /* BankAccountAmountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankAccountAmountViewController.h; sourceTree = "<group>"; };
 		E8D60D3E1C7217940014ED1F /* BankAccountAmountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BankAccountAmountViewController.m; sourceTree = "<group>"; };
+		E8D60D431C722F590014ED1F /* BarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartView.h; sourceTree = "<group>"; };
+		E8D60D441C722F590014ED1F /* BarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChartView.m; sourceTree = "<group>"; };
+		E8D60D451C722F590014ED1F /* BarLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarLabel.h; sourceTree = "<group>"; };
+		E8D60D461C722F590014ED1F /* BarLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarLabel.m; sourceTree = "<group>"; };
+		E8D60D471C722F590014ED1F /* BarTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarTypes.h; sourceTree = "<group>"; };
+		E8D60D481C722F590014ED1F /* BarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarView.h; sourceTree = "<group>"; };
+		E8D60D491C722F590014ED1F /* BarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarView.m; sourceTree = "<group>"; };
+		E8D60D4A1C722F590014ED1F /* PlotChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotChartView.h; sourceTree = "<group>"; };
+		E8D60D4B1C722F590014ED1F /* PlotChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlotChartView.m; sourceTree = "<group>"; };
+		E8D60D531C722FA10014ED1F /* CMPopTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMPopTipView.h; sourceTree = "<group>"; };
+		E8D60D541C722FA10014ED1F /* CMPopTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMPopTipView.m; sourceTree = "<group>"; };
+		E8D60D561C722FA10014ED1F /* UIColor+i7HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+i7HexColor.h"; sourceTree = "<group>"; };
+		E8D60D571C722FA10014ED1F /* UIColor+i7HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+i7HexColor.m"; sourceTree = "<group>"; };
+		E8D60D581C722FA10014ED1F /* UIViewSizeShortcuts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewSizeShortcuts.h; sourceTree = "<group>"; };
+		E8D60D591C722FA10014ED1F /* UIViewSizeShortcuts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewSizeShortcuts.m; sourceTree = "<group>"; };
+		E8D60D5B1C722FA10014ED1F /* XMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLElement.h; sourceTree = "<group>"; };
+		E8D60D5C1C722FA10014ED1F /* XMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLElement.m; sourceTree = "<group>"; };
+		E8D60D5D1C722FA10014ED1F /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
+		E8D60D5E1C722FA10014ED1F /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
+		E8D60D5F1C722FA10014ED1F /* XMLParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParserDelegate.h; sourceTree = "<group>"; };
+		E8D60D601C722FA10014ED1F /* XMLParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserDelegate.m; sourceTree = "<group>"; };
+		E8D60D671C722FB70014ED1F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E8EB25FA1C720F1C0015C634 /* CrossOverProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrossOverProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EB25FE1C720F1D0015C634 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8EB26001C720F1D0015C634 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -57,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8D60D681C722FB70014ED1F /* Foundation.framework in Frameworks */,
 				7CC1B072DDD9E5B2279A72B2 /* libPods-CrossOverProject.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +110,7 @@
 		49F802FCFA6AE3BDB729DFD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8D60D671C722FB70014ED1F /* Foundation.framework */,
 				8C61D8079F183095BBA07AC8 /* libPods-CrossOverProject.a */,
 			);
 			name = Frameworks;
@@ -84,10 +119,72 @@
 		E8D60D3C1C72170B0014ED1F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E8D60D501C722F620014ED1F /* ChartLibrary */,
 				E8D60D391C7217040014ED1F /* Constants.h */,
 				E8D60D3A1C7217040014ED1F /* Constants.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		E8D60D501C722F620014ED1F /* ChartLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				E8D60D511C722FA10014ED1F /* External */,
+				E8D60D431C722F590014ED1F /* BarChartView.h */,
+				E8D60D441C722F590014ED1F /* BarChartView.m */,
+				E8D60D451C722F590014ED1F /* BarLabel.h */,
+				E8D60D461C722F590014ED1F /* BarLabel.m */,
+				E8D60D471C722F590014ED1F /* BarTypes.h */,
+				E8D60D481C722F590014ED1F /* BarView.h */,
+				E8D60D491C722F590014ED1F /* BarView.m */,
+				E8D60D4A1C722F590014ED1F /* PlotChartView.h */,
+				E8D60D4B1C722F590014ED1F /* PlotChartView.m */,
+			);
+			name = ChartLibrary;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		E8D60D511C722FA10014ED1F /* External */ = {
+			isa = PBXGroup;
+			children = (
+				E8D60D521C722FA10014ED1F /* CMPopTipView */,
+				E8D60D551C722FA10014ED1F /* Helpers */,
+				E8D60D5A1C722FA10014ED1F /* XMLParser */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		E8D60D521C722FA10014ED1F /* CMPopTipView */ = {
+			isa = PBXGroup;
+			children = (
+				E8D60D531C722FA10014ED1F /* CMPopTipView.h */,
+				E8D60D541C722FA10014ED1F /* CMPopTipView.m */,
+			);
+			path = CMPopTipView;
+			sourceTree = "<group>";
+		};
+		E8D60D551C722FA10014ED1F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E8D60D561C722FA10014ED1F /* UIColor+i7HexColor.h */,
+				E8D60D571C722FA10014ED1F /* UIColor+i7HexColor.m */,
+				E8D60D581C722FA10014ED1F /* UIViewSizeShortcuts.h */,
+				E8D60D591C722FA10014ED1F /* UIViewSizeShortcuts.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E8D60D5A1C722FA10014ED1F /* XMLParser */ = {
+			isa = PBXGroup;
+			children = (
+				E8D60D5B1C722FA10014ED1F /* XMLElement.h */,
+				E8D60D5C1C722FA10014ED1F /* XMLElement.m */,
+				E8D60D5D1C722FA10014ED1F /* XMLParser.h */,
+				E8D60D5E1C722FA10014ED1F /* XMLParser.m */,
+				E8D60D5F1C722FA10014ED1F /* XMLParserDelegate.h */,
+				E8D60D601C722FA10014ED1F /* XMLParserDelegate.m */,
+			);
+			path = XMLParser;
 			sourceTree = "<group>";
 		};
 		E8EB25F11C720F1C0015C634 = {
@@ -274,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8D60D4C1C722F590014ED1F /* BarChartView.m in Sources */,
 				E8EB262F1C7210FA0015C634 /* Tags.m in Sources */,
 				E8EB262D1C7210FA0015C634 /* Transaction.m in Sources */,
 				E8EB26051C720F1D0015C634 /* ViewController.m in Sources */,
@@ -281,9 +379,18 @@
 				E8D60D3F1C7217940014ED1F /* BankAccountAmountViewController.m in Sources */,
 				E8EB260B1C720F1D0015C634 /* CrossOverProject.xcdatamodeld in Sources */,
 				E8EB25FF1C720F1D0015C634 /* main.m in Sources */,
+				E8D60D641C722FA10014ED1F /* XMLElement.m in Sources */,
+				E8D60D4F1C722F590014ED1F /* PlotChartView.m in Sources */,
+				E8D60D611C722FA10014ED1F /* CMPopTipView.m in Sources */,
+				E8D60D661C722FA10014ED1F /* XMLParserDelegate.m in Sources */,
 				E8EB262C1C7210FA0015C634 /* Transaction+CoreDataProperties.m in Sources */,
+				E8D60D621C722FA10014ED1F /* UIColor+i7HexColor.m in Sources */,
+				E8D60D4E1C722F590014ED1F /* BarView.m in Sources */,
+				E8D60D651C722FA10014ED1F /* XMLParser.m in Sources */,
 				E8EB262E1C7210FA0015C634 /* Tags+CoreDataProperties.m in Sources */,
+				E8D60D4D1C722F590014ED1F /* BarLabel.m in Sources */,
 				E8D60D3B1C7217040014ED1F /* Constants.m in Sources */,
+				E8D60D631C722FA10014ED1F /* UIViewSizeShortcuts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
