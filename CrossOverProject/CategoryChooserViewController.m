@@ -16,10 +16,10 @@
 
 @implementation CategoryChooserViewController
 {
-    __weak IBOutlet UITextField *categoryTextField;
-    __weak IBOutlet UITableView *tableVieww;
-    NSArray* allTags;
-    NSMutableArray* dataSource;
+    __weak IBOutlet UITextField *categoryTextField /** @param where the user types in the category.*/;
+    __weak IBOutlet UITableView *tableVieww /** @param table used to show all the previously entered tags.*/;
+    NSArray* allTags/** @param array of all previously entered tags, used to help user to reuse a tag.*/;
+    NSMutableArray* dataSource/** @param Instance of the NSUserDefaults.*/;
 }
 
 - (void)viewDidLoad {

@@ -15,9 +15,9 @@
 
 @implementation BankAccountAmountViewController
 {
-    __weak IBOutlet UISegmentedControl *minusPlusSegmentController;
-    __weak IBOutlet UITextField *amountTextField;
-    NSUserDefaults* userDefaults;
+    __weak IBOutlet UISegmentedControl *minusPlusSegmentController /** @param outlet of a segment controller used by the user to indicate whether added amount is negative or positive.*/;
+    __weak IBOutlet UITextField *amountTextField /** @param outlet of a text field that the user enters the amount in it.*/;
+    NSUserDefaults* userDefaults /** @param Instance of the NSUserDefaults.*/;
 }
 
 - (void)viewDidLoad {

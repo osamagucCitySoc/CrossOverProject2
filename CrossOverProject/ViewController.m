@@ -19,13 +19,13 @@
 
 @implementation ViewController
 {
-    NSUserDefaults* userDefaults;
-    __weak IBOutlet UILabel *currentBankAccountAmountLabel;
-    __weak IBOutlet UITableView *tableVieww;
-    NSArray* optionsDataSource;
-    __weak IBOutlet UIView *datePickerView;
-    __weak IBOutlet UIDatePicker *datePicker;
-    NSMutableDictionary* monthSummary;
+    NSUserDefaults* userDefaults; /** @param Instance of the NSUserDefaults.*/
+    __weak IBOutlet UILabel *currentBankAccountAmountLabel /** @param outlet for the label that shows the currently stored amount in the bank account.*/;
+    __weak IBOutlet UITableView *tableVieww /** @param outlet for the table view that will be showing the different options the user can choose from.*/;
+    NSArray* optionsDataSource /** @param array that contains all options a user can choose from.*/;
+    __weak IBOutlet UIView *datePickerView /** @param UIView to be used when a user wants to see a report for a certain month.*/;
+    __weak IBOutlet UIDatePicker *datePicker/** @param date picker to be used when a user wants to see a report for a certain month.*/;
+    NSMutableDictionary* monthSummary/** @param Dictionary contains the whole summary for a certain month the user wants to see the reports about it.*/;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

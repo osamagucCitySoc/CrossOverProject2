@@ -19,18 +19,18 @@
 
 @implementation ManageTransactionsViewController
 {
-    IBOutlet UIBarButtonItem *addButton;
-    NSMutableArray* dataSource;
-    NSArray* monthNames;
-    __weak IBOutlet UITableView *tableVieww;
-    __weak IBOutlet UIView *addTransactionView;
-    IBOutlet UIBarButtonItem *cancelButton;
+    IBOutlet UIBarButtonItem *addButton/** @param button that shows the UIView responsible for adding a new transaction.*/;
+    NSMutableArray* dataSource/** @param array of all transactions.*/;
+    NSArray* monthNames /** @param sorted array containg the months names.*/;
+    __weak IBOutlet UITableView *tableVieww /** @param table view used to show the details about the transactions.*/;
+    __weak IBOutlet UIView *addTransactionView /** @param The UIView contains the needed fields and UI to enter a new transaction*/;
+    IBOutlet UIBarButtonItem *cancelButton/** @param button used to hide the adding new transaction uiview.*/;
     __weak IBOutlet UITextField *newTransactionAmountTextField;
     __weak IBOutlet UIDatePicker *newTransactionDatePicker;
     __weak IBOutlet UISegmentedControl *newTransactionTypeSegment;
     __weak IBOutlet UILabel *newTransactionDateHintLabel;
     __weak IBOutlet UIButton *newTransactionSubmitButton;
-    NSUserDefaults* userDefaults;
+    NSUserDefaults* userDefaults/** @param Instance of the NSUserDefaults.*/;
 }
 
 @synthesize transactionType;

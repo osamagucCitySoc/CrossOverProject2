@@ -15,12 +15,12 @@
 
 @implementation CurrencyViewController
 {
-    NSString* currentlySelectedCurrencyCode;
-    NSMutableArray* currencyCodesDataSource;
-    NSMutableArray* filteredCurrencyCodesDataSource;
-    __weak IBOutlet UISearchBar *searchBar;
-    __weak IBOutlet UITableView *tableVieww;
-    NSUserDefaults* userDefaults;
+    NSString* currentlySelectedCurrencyCode /** @param holds the currently selected currency code by the user or $ by default.*/;
+    NSMutableArray* currencyCodesDataSource /** @param the full currency codes ISO list.*/;
+    NSMutableArray* filteredCurrencyCodesDataSource;/** @param the filtered version of currency codes based on keywords entered by the user*/
+    __weak IBOutlet UISearchBar *searchBar /** @param outlet of a search bar used to filter the currency codes list*/;
+    __weak IBOutlet UITableView *tableVieww /** @param the table that shows the currency codes*/;
+    NSUserDefaults* userDefaults/** @param Instance of the NSUserDefaults.*/;
     __weak IBOutlet UILabel *currentlySelectedLabel;
 }
 

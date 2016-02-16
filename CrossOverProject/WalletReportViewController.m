@@ -21,11 +21,11 @@
 @implementation WalletReportViewController
 {
     __weak IBOutlet HorizontalBarChartView *_chartView;
-    NSUserDefaults* userDefaults;
+    NSUserDefaults* userDefaults/** @param Instance of the NSUserDefaults.*/;
     NSArray* monthNames;
     NSMutableArray* mainDataSource;
-    float maxExpense;
-    float maxIncome;
+    float maxExpense/** @param used to propoerly and dynamically set the minimum X value on the chart.*/;
+    float maxIncome/** @param used to propoerly and dynamically set the maximum X value on the chart.*/;;
 }
 
 
