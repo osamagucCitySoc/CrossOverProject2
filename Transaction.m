@@ -205,5 +205,28 @@
 
 }
 
++(void)storeTransaction:(float)amount day:(int)day month:(int)month year:(int)year recurring:(BOOL)recurring category:(NSString*)category
+{
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+        Transaction* newTransaction = [Transaction MR_createEntityInContext:localContext];
+        newTransaction.amount = [NSNumber numberWithDouble:amount];
+        newTransaction.day = [NSNumber numberWithInteger:day];
+        newTransaction.month = [NSNumber numberWithInteger:month];
+        newTransaction.year = [NSNumber numberWithInteger:year];
+        newTransaction.recurring = [NSNumber numberWithBool:recurring];
+        newTransaction.tag = category;
+    } completion:^(BOOL contextDidSave, NSError *error) {}];
+}
+
++(void)deleteTransaction:(Transaction*)transaction
+{
+    [transaction MR_deleteEntityInContext:[NSManagedObjectContext MR_defaultContext]];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+}
+
++(long)countAll
+{
+    return [Transaction MR_countOfEntities];
+}
 
 @end

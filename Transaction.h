@@ -34,6 +34,28 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(NSMutableArray*)loadTransactions:(NSString*)transactionType;
 
+/**
+ This method is used for storing a transaction in the database.
+ @param amount is the amount of this expens/income.
+ @param day is the day component of the transaction date.
+ @param month is the month component of the transaction date.
+ @param year is the year component of the transaction date.
+ @param recurring whether this transaction is a repeated monthly or not.
+ @param category is the category of the transaction. nothing is the default of not recurring.
+ */
++(void)storeTransaction:(float)amount day:(int)day month:(int)month year:(int)year recurring:(BOOL)recurring category:(NSString*)category;
+
+/**
+ This method is used for deleting a transaction from the database.
+ @param transaction is the transaction to be deleted. */
++(void)deleteTransaction:(Transaction*)transaction;
+
+/**
+ This method is used only for testing purposes. It returns the number of all stored transactions.
+ @return number of all stored transactions
+ */
++(long)countAll;
+
 @end
 
 NS_ASSUME_NONNULL_END

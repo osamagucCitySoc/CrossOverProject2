@@ -7,7 +7,6 @@
 //
 
 #import "ManageTransactionsViewController.h"
-#import <MagicalRecord/MagicalRecord.h>
 #import "Transaction.h"
 #import "Constants.h"
 #import "JTMaterialSwitch.h"
@@ -163,8 +162,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         Transaction* transaction =[[[dataSource objectAtIndex:indexPath.section] objectForKey:@"transactions"] objectAtIndex:indexPath.row];
-        [transaction MR_deleteEntityInContext:[NSManagedObjectContext MR_defaultContext]];
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        [Transaction deleteTransaction:transaction];
         [[[dataSource objectAtIndex:indexPath.section] objectForKey:@"transactions"] removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -260,31 +258,27 @@
 
 -(void)addTransaction:(int)type category:(NSString*)category
 {
-    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-        Transaction* newTransaction = [Transaction MR_createEntityInContext:localContext];
-        // The amount will be - or + based on the current type of the transactions (if the user chose to see the exepenses or the incomings
-        if([transactionType isEqualToString:@"Expenses"])
-        {
-            newTransaction.amount = [NSNumber numberWithDouble:(-newTransactionAmountTextField.text.doubleValue)];
-        }else
-        {
-            newTransaction.amount = [NSNumber numberWithDouble:newTransactionAmountTextField.text.doubleValue];
-        }
-        NSDate *dateFromPicker = [newTransactionDatePicker date];
-        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
-        unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-        NSDateComponents *components = [calendar components: unitFlags fromDate: dateFromPicker];
-        
-        newTransaction.day = [NSNumber numberWithInteger:[components day]];
-        newTransaction.month = [NSNumber numberWithInteger:[components month]];
-        newTransaction.year = [NSNumber numberWithInteger:[components year]];
-        newTransaction.recurring = [NSNumber numberWithInt:type];
-        newTransaction.tag = category;
+    float amount;
+    // The amount will be - or + based on the current type of the transactions (if the user chose to see the exepenses or the incomings
+    if([transactionType isEqualToString:@"Expenses"])
+    {
+        amount = -newTransactionAmountTextField.text.doubleValue;
+    }else
+    {
+        amount = newTransactionAmountTextField.text.doubleValue;
+    }
+    NSDate *dateFromPicker = [newTransactionDatePicker date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSDateComponents *components = [calendar components: unitFlags fromDate: dateFromPicker];
     
-    } completion:^(BOOL contextDidSave, NSError *error) {
-        [self cancelButtonClicked:nil];
-        [self loadTransactions];
-    }];
+    int day = (int)[components day];
+    int month = (int)[components month];
+    int year = (int)[components year];
+    BOOL recurring = type;
+    [Transaction storeTransaction:amount day:day month:month year:year recurring:recurring category:category];
+    [self cancelButtonClicked:nil];
+    [self loadTransactions];
 }
 
 /**

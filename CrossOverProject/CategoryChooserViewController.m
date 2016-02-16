@@ -7,7 +7,6 @@
 //
 
 #import "CategoryChooserViewController.h"
-#import <MagicalRecord/MagicalRecord.h>
 #import "Tags.h"
 
 @interface CategoryChooserViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
@@ -35,7 +34,7 @@
 -(void)initVariables
 {
     dataSource = [[NSMutableArray alloc]init];
-    allTags = [Tags MR_findAllSortedBy:@"tag" ascending:YES inContext:[NSManagedObjectContext MR_defaultContext]];
+    allTags = [Tags loadTags];
     dataSource = [[NSMutableArray alloc]initWithArray:allTags];
     [tableVieww setDelegate:self];
     [tableVieww setDataSource:self];
@@ -67,15 +66,11 @@
         }
         if(unique)
         {
-            [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-                Tags* newTag = [Tags MR_createEntityInContext:localContext];
-                newTag.tag = categoryTextField.text;
-            } completion:^(BOOL contextDidSave, NSError *error) {
-                [self dismissViewControllerAnimated:YES completion:^
-                 {
-                     [[self delegate]addRecurringTransaction:categoryTextField.text];
-                 }];
-            }];
+            [Tags storeTag:categoryTextField.text];
+            [self dismissViewControllerAnimated:YES completion:^
+             {
+                 [[self delegate]addRecurringTransaction:categoryTextField.text];
+             }];
         }else
         {
             [self dismissViewControllerAnimated:YES completion:^

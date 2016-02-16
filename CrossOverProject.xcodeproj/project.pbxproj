@@ -10,6 +10,8 @@
 		7CC1B072DDD9E5B2279A72B2 /* libPods-CrossOverProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C61D8079F183095BBA07AC8 /* libPods-CrossOverProject.a */; };
 		E84D52781C7312DC00A35D21 /* WalletReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D52771C7312DC00A35D21 /* WalletReportViewController.m */; };
 		E84D527C1C732F3D00A35D21 /* MonthReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D527B1C732F3D00A35D21 /* MonthReportViewController.m */; };
+		E84D52861C734F5000A35D21 /* CrossOverProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D52851C734F5000A35D21 /* CrossOverProjectTests.m */; };
+		E84D528E1C7357E400A35D21 /* CoreDataTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D528D1C7357E400A35D21 /* CoreDataTesting.m */; };
 		E85D1E391C72502300297209 /* ManageTransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85D1E381C72502300297209 /* ManageTransactionsViewController.m */; };
 		E85D1E3C1C727B8800297209 /* CategoryChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85D1E3B1C727B8800297209 /* CategoryChooserViewController.m */; };
 		E87362FA1C729A39003762C5 /* ChartAnimationEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87362841C729A39003762C5 /* ChartAnimationEasing.swift */; };
@@ -135,6 +137,16 @@
 		E8EB26101C720F1D0015C634 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8EB260E1C720F1D0015C634 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E84D52881C734F5000A35D21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8EB25F21C720F1C0015C634 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E8EB25F91C720F1C0015C634;
+			remoteInfo = CrossOverProject;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		8C61D8079F183095BBA07AC8 /* libPods-CrossOverProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CrossOverProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFFE722C56FF54658D258AB9 /* Pods-CrossOverProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrossOverProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrossOverProject/Pods-CrossOverProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +155,10 @@
 		E84D52771C7312DC00A35D21 /* WalletReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletReportViewController.m; sourceTree = "<group>"; };
 		E84D527A1C732F3D00A35D21 /* MonthReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthReportViewController.h; sourceTree = "<group>"; };
 		E84D527B1C732F3D00A35D21 /* MonthReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthReportViewController.m; sourceTree = "<group>"; };
+		E84D52831C734F5000A35D21 /* CrossOverProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrossOverProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E84D52851C734F5000A35D21 /* CrossOverProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrossOverProjectTests.m; sourceTree = "<group>"; };
+		E84D52871C734F5000A35D21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E84D528D1C7357E400A35D21 /* CoreDataTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTesting.m; sourceTree = "<group>"; };
 		E85D1E371C72502300297209 /* ManageTransactionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageTransactionsViewController.h; sourceTree = "<group>"; };
 		E85D1E381C72502300297209 /* ManageTransactionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageTransactionsViewController.m; sourceTree = "<group>"; };
 		E85D1E3A1C727B8800297209 /* CategoryChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryChooserViewController.h; sourceTree = "<group>"; };
@@ -283,6 +299,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E84D52801C734F5000A35D21 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E8EB25F71C720F1C0015C634 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -354,6 +377,16 @@
 				E87362F21C729A39003762C5 /* Utils */,
 			);
 			name = Plotting;
+			sourceTree = "<group>";
+		};
+		E84D52841C734F5000A35D21 /* CrossOverProjectTests */ = {
+			isa = PBXGroup;
+			children = (
+				E84D52851C734F5000A35D21 /* CrossOverProjectTests.m */,
+				E84D52871C734F5000A35D21 /* Info.plist */,
+				E84D528D1C7357E400A35D21 /* CoreDataTesting.m */,
+			);
+			path = CrossOverProjectTests;
 			sourceTree = "<group>";
 		};
 		E87362831C729A39003762C5 /* Animation */ = {
@@ -570,6 +603,7 @@
 			isa = PBXGroup;
 			children = (
 				E8EB25FC1C720F1C0015C634 /* CrossOverProject */,
+				E84D52841C734F5000A35D21 /* CrossOverProjectTests */,
 				E8EB25FB1C720F1C0015C634 /* Products */,
 				15930E81FC1F3944CCC9663F /* Pods */,
 				49F802FCFA6AE3BDB729DFD9 /* Frameworks */,
@@ -580,6 +614,7 @@
 			isa = PBXGroup;
 			children = (
 				E8EB25FA1C720F1C0015C634 /* CrossOverProject.app */,
+				E84D52831C734F5000A35D21 /* CrossOverProjectTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -633,6 +668,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E84D52821C734F5000A35D21 /* CrossOverProjectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E84D528A1C734F5000A35D21 /* Build configuration list for PBXNativeTarget "CrossOverProjectTests" */;
+			buildPhases = (
+				E84D527F1C734F5000A35D21 /* Sources */,
+				E84D52801C734F5000A35D21 /* Frameworks */,
+				E84D52811C734F5000A35D21 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E84D52891C734F5000A35D21 /* PBXTargetDependency */,
+			);
+			name = CrossOverProjectTests;
+			productName = CrossOverProjectTests;
+			productReference = E84D52831C734F5000A35D21 /* CrossOverProjectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E8EB25F91C720F1C0015C634 /* CrossOverProject */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8EB26141C720F1D0015C634 /* Build configuration list for PBXNativeTarget "CrossOverProject" */;
@@ -662,6 +715,10 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Osama Rabie";
 				TargetAttributes = {
+					E84D52821C734F5000A35D21 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = E8EB25F91C720F1C0015C634;
+					};
 					E8EB25F91C720F1C0015C634 = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -681,11 +738,19 @@
 			projectRoot = "";
 			targets = (
 				E8EB25F91C720F1C0015C634 /* CrossOverProject */,
+				E84D52821C734F5000A35D21 /* CrossOverProjectTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E84D52811C734F5000A35D21 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E8EB25F81C720F1C0015C634 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -747,6 +812,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E84D527F1C734F5000A35D21 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E84D52861C734F5000A35D21 /* CrossOverProjectTests.m in Sources */,
+				E84D528E1C7357E400A35D21 /* CoreDataTesting.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E8EB25F61C720F1C0015C634 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -877,6 +951,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		E84D52891C734F5000A35D21 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E8EB25F91C720F1C0015C634 /* CrossOverProject */;
+			targetProxy = E84D52881C734F5000A35D21 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		E8EB26061C720F1D0015C634 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -897,6 +979,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E84D528B1C734F5000A35D21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CrossOverProjectTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = arabdevs.CrossOverProjectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrossOverProject.app/CrossOverProject";
+			};
+			name = Debug;
+		};
+		E84D528C1C734F5000A35D21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CrossOverProjectTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = arabdevs.CrossOverProjectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CrossOverProject.app/CrossOverProject";
+			};
+			name = Release;
+		};
 		E8EB26121C720F1D0015C634 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -983,6 +1091,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = CrossOverProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -999,6 +1108,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = CrossOverProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1011,6 +1121,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E84D528A1C734F5000A35D21 /* Build configuration list for PBXNativeTarget "CrossOverProjectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E84D528B1C734F5000A35D21 /* Debug */,
+				E84D528C1C734F5000A35D21 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		E8EB25F51C720F1C0015C634 /* Build configuration list for PBXProject "CrossOverProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
