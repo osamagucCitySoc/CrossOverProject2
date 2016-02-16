@@ -51,7 +51,9 @@
     [self initVariables];
 }
 
-
+/**
+ This method is used to initialise the inner variables and views used by this controller.
+ */
 -(void)initVariables
 {
     userDefaults = [NSUserDefaults standardUserDefaults];
@@ -67,6 +69,9 @@
     [self adjustBarChart];
 }
 
+/**
+ This method is used to load the monthly summary for a period of a one year.
+ */
 -(void)loadTransactions
 {
     // We need to display the total expenses and incomes for each month Then the query will get all entries for all months and then they will be grouped.
@@ -92,6 +97,10 @@
         }
     }
 }
+
+/**
+ This method is used to setup the bar chart with the given months summary details.
+ */
 
 -(void)adjustBarChart
 {
@@ -180,16 +189,11 @@
 
 - (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry dataSetIndex:(NSInteger)dataSetIndex highlight:(ChartHighlight * __nonnull)highlight
 {
-    NSLog(@"chartValueSelected, dataSetIndex %ld, stack-index %ld",(long)dataSetIndex, (long)highlight.stackIndex);
     UIActionSheet* sheet = [[UIActionSheet alloc]initWithTitle:@"Options" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Expenses report",@"Incomes report", nil];
     sheet.tag = 1;
     [sheet showInView:self.view];
 }
 
-- (void)chartValueNothingSelected:(ChartViewBase * __nonnull)chartView
-{
-    NSLog(@"chartValueNothingSelected");
-}
 
 #pragma mark UIActionSheetDelegate Methods
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

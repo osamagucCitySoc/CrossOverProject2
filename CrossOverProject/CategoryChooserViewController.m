@@ -28,6 +28,10 @@
     // Do any additional setup after loading the view.
 }
 
+/**
+ This method is used to initialise the inner variables and views used by this controller.
+ */
+
 -(void)initVariables
 {
     dataSource = [[NSMutableArray alloc]init];
@@ -42,6 +46,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+/**
+ This method is used to inform the caller (i.e the delegate) about the category entered by the user.
+ */
 - (IBAction)submitButtonClicked:(id)sender {
     if(categoryTextField.text.length > 0)
     {

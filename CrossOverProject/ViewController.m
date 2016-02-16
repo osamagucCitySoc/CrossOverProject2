@@ -83,7 +83,9 @@
     } completion:nil];
 }
 
-
+/**
+ This method is used to initialise the inner variables and views used by this controller.
+ */
 
 -(void)initVariables
 {
@@ -104,6 +106,10 @@
     [tableVieww setDelegate:self];
     [tableVieww setDataSource:self];
 }
+
+/**
+ This method is used whenever the user wants to change the current balance in his bank account, or to tell him to do so on the first launch of the app
+ */
 
 -(void)initialiseTheBankAccount
 {
@@ -186,6 +192,10 @@
     }
 }
 
+
+/**
+ This method is used to hide the month/year date picker. This picker is shown whenever the user wants to see the reports (expenses or incomes) for a certain month.
+ */
 - (IBAction)cancelButtonClicked:(id)sender {
     [UIView animateWithDuration:1.0f animations:^{
         
@@ -194,6 +204,10 @@
     }];
     
 }
+
+/**
+ This method is used to generate the report (expenses or incomes) for a certain month selected by the user.
+ */
 - (IBAction)generateMonthReportClicked:(id)sender
 {
     NSDate *currentDate = [NSDate date];

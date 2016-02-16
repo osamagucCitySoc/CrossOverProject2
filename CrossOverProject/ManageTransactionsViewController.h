@@ -12,7 +12,7 @@
 
 @interface ManageTransactionsViewController : UIViewController
 
-@property(nonatomic,strong)NSString* transactionType;
+@property(nonatomic,strong)NSString* transactionType; /** @param transactioType is a NSString that tells the instance which transactions types the user wants to manage. The accepted values are : Expenses or Incomes.*/
 
 
 

@@ -339,6 +339,23 @@
 			name = ReportingFiles;
 			sourceTree = "<group>";
 		};
+		E84D527E1C734A7000A35D21 /* Plotting */ = {
+			isa = PBXGroup;
+			children = (
+				E87362831C729A39003762C5 /* Animation */,
+				E87362861C729A39003762C5 /* Charts */,
+				E87362931C729A39003762C5 /* Components */,
+				E873629B1C729A39003762C5 /* Data */,
+				E87362C41C729A39003762C5 /* Filters */,
+				E87362C71C729A39003762C5 /* Formatters */,
+				E87362CC1C729A39003762C5 /* Highlight */,
+				E87362D31C729A39003762C5 /* Interfaces */,
+				E87362DB1C729A39003762C5 /* Renderers */,
+				E87362F21C729A39003762C5 /* Utils */,
+			);
+			name = Plotting;
+			sourceTree = "<group>";
+		};
 		E87362831C729A39003762C5 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,6 +559,7 @@
 		E8D60D3C1C72170B0014ED1F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E84D527E1C734A7000A35D21 /* Plotting */,
 				E8D60D391C7217040014ED1F /* Constants.h */,
 				E8D60D3A1C7217040014ED1F /* Constants.m */,
 			);
@@ -569,23 +587,13 @@
 		E8EB25FC1C720F1C0015C634 /* CrossOverProject */ = {
 			isa = PBXGroup;
 			children = (
-				E87362831C729A39003762C5 /* Animation */,
-				E87362861C729A39003762C5 /* Charts */,
-				E87362931C729A39003762C5 /* Components */,
-				E873629B1C729A39003762C5 /* Data */,
-				E87362C41C729A39003762C5 /* Filters */,
-				E87362C71C729A39003762C5 /* Formatters */,
-				E87362CC1C729A39003762C5 /* Highlight */,
-				E87362D31C729A39003762C5 /* Interfaces */,
-				E87362DB1C729A39003762C5 /* Renderers */,
-				E87362F21C729A39003762C5 /* Utils */,
-				E8EB26231C72106C0015C634 /* CoreData */,
 				E8EB26001C720F1D0015C634 /* AppDelegate.h */,
 				E8EB26011C720F1D0015C634 /* AppDelegate.m */,
 				E8EB26031C720F1D0015C634 /* ViewController.h */,
 				E8EB26041C720F1D0015C634 /* ViewController.m */,
 				E84D52791C73131700A35D21 /* ManagingWalletFiles */,
 				E84D527D1C732F8000A35D21 /* ReportingFiles */,
+				E8EB26231C72106C0015C634 /* CoreData */,
 				E8EB26061C720F1D0015C634 /* Main.storyboard */,
 				E8EB260C1C720F1D0015C634 /* Assets.xcassets */,
 				E8EB260E1C720F1D0015C634 /* LaunchScreen.storyboard */,

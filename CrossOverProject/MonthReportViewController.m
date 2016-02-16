@@ -58,6 +58,9 @@
     [_chartView animateWithYAxisDuration:1.4 easingOption:ChartEasingOptionEaseOutBack];
 }
 
+/**
+ This method is used to generate the data for the PIE chart using the passed month details and also to setup the UI of the pie chart itself.
+ */
 
 - (void)generateData
 {
@@ -65,6 +68,7 @@
     NSMutableArray *xVals = [[NSMutableArray alloc] init];
     NSMutableArray *colors = [[NSMutableArray alloc] init];
     
+    // First, we add all the tags and their associated values.
     NSMutableDictionary* categories;
     float totalValue;
     if([reportType isEqualToString:@"Expenses"])
@@ -90,7 +94,7 @@
         [colors addObject:color];
     }
     
-    
+    // Second, we add a standalone entry to the pie chart, which are the summation of all transactions in this month only (i.e not recurring).
     [yVals addObject:[[BarChartDataEntry alloc] initWithValue:totalValue xIndex:categories.count]];
     [xVals addObject:@"One time"];
     CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0

@@ -26,6 +26,10 @@
     [self initVariables];
 }
 
+/**
+ This method is used to initialise the inner variables and views used by this controller.
+ */
+
 -(void)initVariables
 {
     
@@ -46,6 +50,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+/**
+ This method is used to store the new bank account amount enetred by the user and returns back to the caller.
+ */
 - (IBAction)submitButtonClicked:(id)sender {
     // First, we need to check that the user has enetred something in the bank account amount textfield
     if(amountTextField.text.length > 0)

@@ -51,6 +51,10 @@
     [self initVariables];
 }
 
+/**
+ This method is used to initialise the inner variables and views used by this controller.
+ */
+
 -(void)initVariables
 {
     
@@ -72,48 +76,7 @@
 -(void)loadTransactions
 {
     // We first get all the transactions exepnses or incomes depending on the type ordered by the month and then the day.
-    dataSource = [[NSMutableArray alloc]init];
-    NSPredicate *transactionFilter;
-    if([transactionType isEqualToString:@"Expenses"])
-    {
-         transactionFilter = [NSPredicate predicateWithFormat:@"amount < %i", 0];
-    }else
-    {
-        transactionFilter  = [NSPredicate predicateWithFormat:@"amount > %i", 0];
-    }
-    NSArray* allTransactions = [Transaction MR_findAllSortedBy:@"year,month,day" ascending:YES withPredicate:transactionFilter inContext:[NSManagedObjectContext MR_defaultContext]];
-    // Then we create a grouping based on the month so we show them more elegant in the table view summary grouped by the month
-    if([allTransactions count]>0)
-    {
-        NSString* currentMonth = @"";
-        NSMutableArray* transactionForAMonth = [[NSMutableArray alloc]init];
-        
-        for(Transaction* transaction in allTransactions)
-        {
-            NSString* transactionMonth = [NSString stringWithFormat:@"%@/%@",[monthNames objectAtIndex:transaction.month.intValue-1],transaction.year];
-            
-            if(![currentMonth isEqualToString:transactionMonth])
-            {
-                if(transactionForAMonth.count > 0)
-                {
-                    // We had grapped all the transactions for the previous month, so we need to add them as one entity to the data source.
-                    NSDictionary* transactionsGroupByMonth = [[NSDictionary alloc]initWithObjects:@[currentMonth,transactionForAMonth] forKeys:@[@"title",@"transactions"]];
-                    [dataSource addObject:transactionsGroupByMonth];
-                    transactionForAMonth = [[NSMutableArray alloc]init];
-                }
-                currentMonth = transactionMonth;
-            }
-            [transactionForAMonth addObject:transaction];
-        }
-        
-        if(transactionForAMonth.count > 0)
-        {
-            // Add any non-added values
-            NSDictionary* transactionsGroupByMonth = [[NSDictionary alloc]initWithObjects:@[currentMonth,transactionForAMonth] forKeys:@[@"title",@"transactions"]];
-            [dataSource addObject:transactionsGroupByMonth];
-            transactionForAMonth = [[NSMutableArray alloc]init];
-        }
-    }
+    dataSource = [Transaction loadTransactions:transactionType];
     [tableVieww reloadData];
 }
 -(void)viewDidAppear:(BOOL)animated
@@ -207,30 +170,9 @@
     }
 }
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
+/**
+ This method is used to show the UIView repsonsible for adding a new transaction.
+ */
 - (IBAction)addButtonClicked:(id)sender {
     [newTransactionDateHintLabel setText:@"Occuring on:"];
     [newTransactionSubmitButton setTitle:@"Submit" forState:UIControlStateNormal];
@@ -244,6 +186,10 @@
     } completion:^(BOOL finished) {
     }];
 }
+/**
+ This method is used to hide the UIView repsonsible for adding a new transaction.
+ */
+
 - (IBAction)cancelButtonClicked:(id)sender {
     
     [UIView animateWithDuration:2.0f animations:^{
@@ -254,6 +200,10 @@
         
     }];
 }
+/**
+ This method is used to whether save a currently entered transaction (if not recurring) or asks the user to complete the transaction details by entering a category name (if it is recurring).
+ */
+
 - (IBAction)submitNewTransactionClicked:(id)sender {
     if(newTransactionAmountTextField.text.length>0)
     {
@@ -282,6 +232,10 @@
         [[newTransactionAmountTextField layer] addAnimation:animation forKey:@"position"];
     }
 }
+/**
+ This method updates the UI of the UIView for adding a transaction based on its type (recurring or not).
+ */
+
 - (IBAction)newTransactionTypeSegmentChanged:(id)sender {
     // Change the adding of a new transaction logic based on the type whether recurring or one time
     if([newTransactionTypeSegment selectedSegmentIndex] == 0)
@@ -301,6 +255,8 @@
 
     }
 }
+
+
 
 -(void)addTransaction:(int)type category:(NSString*)category
 {
@@ -331,7 +287,9 @@
     }];
 }
 
-
+/**
+ This method listens to the delegate when the user finishes typing the category of a recurring transaction.
+ */
 -(void)addRecurringTransaction:(NSString*)category
 {
     [self addTransaction:1 category:category];

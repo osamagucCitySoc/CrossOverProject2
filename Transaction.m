@@ -155,5 +155,55 @@
     return mainDataSource;
 }
 
++(NSMutableArray*)loadTransactions:(NSString*)transactionType
+{
+    NSMutableArray* dataSource = [[NSMutableArray alloc]init];
+    NSArray*  monthNames = @[@"January",@"February",@"March",@"April",@"May",@"June",@"July",@"August",@"September",@"October",@"November",@"December"];
+    NSPredicate *transactionFilter;
+    if([transactionType isEqualToString:@"Expenses"])
+    {
+        transactionFilter = [NSPredicate predicateWithFormat:@"amount < %i", 0];
+    }else
+    {
+        transactionFilter  = [NSPredicate predicateWithFormat:@"amount > %i", 0];
+    }
+    NSArray* allTransactions = [Transaction MR_findAllSortedBy:@"year,month,day" ascending:YES withPredicate:transactionFilter inContext:[NSManagedObjectContext MR_defaultContext]];
+    // Then we create a grouping based on the month so we show them more elegant in the table view summary grouped by the month
+    if([allTransactions count]>0)
+    {
+        NSString* currentMonth = @"";
+        NSMutableArray* transactionForAMonth = [[NSMutableArray alloc]init];
+        
+        for(Transaction* transaction in allTransactions)
+        {
+            NSString* transactionMonth = [NSString stringWithFormat:@"%@/%@",[monthNames objectAtIndex:transaction.month.intValue-1],transaction.year];
+            
+            if(![currentMonth isEqualToString:transactionMonth])
+            {
+                if(transactionForAMonth.count > 0)
+                {
+                    // We had grapped all the transactions for the previous month, so we need to add them as one entity to the data source.
+                    NSDictionary* transactionsGroupByMonth = [[NSDictionary alloc]initWithObjects:@[currentMonth,transactionForAMonth] forKeys:@[@"title",@"transactions"]];
+                    [dataSource addObject:transactionsGroupByMonth];
+                    transactionForAMonth = [[NSMutableArray alloc]init];
+                }
+                currentMonth = transactionMonth;
+            }
+            [transactionForAMonth addObject:transaction];
+        }
+        
+        if(transactionForAMonth.count > 0)
+        {
+            // Add any non-added values
+            NSDictionary* transactionsGroupByMonth = [[NSDictionary alloc]initWithObjects:@[currentMonth,transactionForAMonth] forKeys:@[@"title",@"transactions"]];
+            [dataSource addObject:transactionsGroupByMonth];
+            transactionForAMonth = [[NSMutableArray alloc]init];
+        }
+    }
+    
+    return dataSource;
+
+}
+
 
 @end

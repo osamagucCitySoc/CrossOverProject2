@@ -22,10 +22,17 @@ NS_ASSUME_NONNULL_BEGIN
  @param minYear the starting year of the period.
  @param maxMonth the ending month of the period.
  @param maxYear the ending year of the period.
- @return sorted Array of NSMutableDictionaries, where each dictionary contains the information about a month in the selected period
+ @return sorted based on year,month Array of NSMutableDictionaries, where each dictionary contains the information about a month in the selected period
  */
 +(NSMutableArray*)loadTransactions:(int)minMonth minYear:(int)minYear maxMonth:(int)maxMonth maxYear:(int)maxYear;
 
+
+/**
+ This method is used to fetch all the transactions of a certain type.
+ @param transactionType decides which transactions should be fetched. Accepted values are : Expenses and Incomes
+ @return  sorted based on year,month,year Array of NSMutableDictionaries, where each dictionary contains the information about each transaction, its date, its value and whether it is recurring or not.
+ */
++(NSMutableArray*)loadTransactions:(NSString*)transactionType;
 
 @end
 

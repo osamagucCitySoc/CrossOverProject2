@@ -29,6 +29,10 @@
     [self initVariables];
 }
 
+/**
+ This method is used to initialise the inner variables and views used by this controller.
+ */
+
 -(void)initVariables
 {
     userDefaults = [NSUserDefaults standardUserDefaults];
