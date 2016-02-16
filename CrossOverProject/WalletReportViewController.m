@@ -7,7 +7,6 @@
 //
 
 #import "WalletReportViewController.h"
-#import <MagicalRecord/MagicalRecord.h>
 #import "Transaction.h"
 #import "Constants.h"
 #import "MonthReportViewController.h"

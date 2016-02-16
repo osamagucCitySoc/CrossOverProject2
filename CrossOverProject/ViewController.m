@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import <MagicalRecord/MagicalRecord.h>
 #import "Constants.h"
 #import "ManageTransactionsViewController.h"
 #import "Transaction.h"
