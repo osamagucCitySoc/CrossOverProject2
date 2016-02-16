@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <MagicalRecord/MagicalRecord.h>
+#import "Constants.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [MagicalRecord setupCoreDataStack];
+    if(![[NSUserDefaults standardUserDefaults] objectForKey:consCurrencyUserDefaultsKey])
+    {
+        [[NSUserDefaults standardUserDefaults]setObject:@"$" forKey:consCurrencyUserDefaultsKey];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }
     return YES;
 }
 

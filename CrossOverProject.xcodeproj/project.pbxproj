@@ -11,7 +11,6 @@
 		E84D52781C7312DC00A35D21 /* WalletReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D52771C7312DC00A35D21 /* WalletReportViewController.m */; };
 		E84D527C1C732F3D00A35D21 /* MonthReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D527B1C732F3D00A35D21 /* MonthReportViewController.m */; };
 		E84D52861C734F5000A35D21 /* CrossOverProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D52851C734F5000A35D21 /* CrossOverProjectTests.m */; };
-		E84D528E1C7357E400A35D21 /* CoreDataTesting.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D528D1C7357E400A35D21 /* CoreDataTesting.m */; };
 		E85D1E391C72502300297209 /* ManageTransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85D1E381C72502300297209 /* ManageTransactionsViewController.m */; };
 		E85D1E3C1C727B8800297209 /* CategoryChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85D1E3B1C727B8800297209 /* CategoryChooserViewController.m */; };
 		E87362FA1C729A39003762C5 /* ChartAnimationEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87362841C729A39003762C5 /* ChartAnimationEasing.swift */; };
@@ -158,7 +157,6 @@
 		E84D52831C734F5000A35D21 /* CrossOverProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrossOverProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E84D52851C734F5000A35D21 /* CrossOverProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrossOverProjectTests.m; sourceTree = "<group>"; };
 		E84D52871C734F5000A35D21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E84D528D1C7357E400A35D21 /* CoreDataTesting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTesting.m; sourceTree = "<group>"; };
 		E85D1E371C72502300297209 /* ManageTransactionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageTransactionsViewController.h; sourceTree = "<group>"; };
 		E85D1E381C72502300297209 /* ManageTransactionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageTransactionsViewController.m; sourceTree = "<group>"; };
 		E85D1E3A1C727B8800297209 /* CategoryChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryChooserViewController.h; sourceTree = "<group>"; };
@@ -384,7 +382,6 @@
 			children = (
 				E84D52851C734F5000A35D21 /* CrossOverProjectTests.m */,
 				E84D52871C734F5000A35D21 /* Info.plist */,
-				E84D528D1C7357E400A35D21 /* CoreDataTesting.m */,
 			);
 			path = CrossOverProjectTests;
 			sourceTree = "<group>";
@@ -817,7 +814,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E84D52861C734F5000A35D21 /* CrossOverProjectTests.m in Sources */,
-				E84D528E1C7357E400A35D21 /* CoreDataTesting.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

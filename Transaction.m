@@ -207,7 +207,8 @@
 
 +(void)storeTransaction:(float)amount day:(int)day month:(int)month year:(int)year recurring:(BOOL)recurring category:(NSString*)category
 {
-    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+    
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
         Transaction* newTransaction = [Transaction MR_createEntityInContext:localContext];
         newTransaction.amount = [NSNumber numberWithDouble:amount];
         newTransaction.day = [NSNumber numberWithInteger:day];
@@ -215,7 +216,7 @@
         newTransaction.year = [NSNumber numberWithInteger:year];
         newTransaction.recurring = [NSNumber numberWithBool:recurring];
         newTransaction.tag = category;
-    } completion:^(BOOL contextDidSave, NSError *error) {}];
+    }];
 }
 
 +(void)deleteTransaction:(Transaction*)transaction

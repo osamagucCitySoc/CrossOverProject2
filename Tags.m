@@ -20,18 +20,19 @@
 }
 +(void)storeTag:(NSString*)tag
 {
-    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
         Tags* newTag = [Tags MR_createEntityInContext:localContext];
         newTag.tag = tag;
-    } completion:^(BOOL contextDidSave, NSError *error) {}];
+    }];
 }
 +(void)deleteTag:(Tags*)tag
 {
     [tag MR_deleteEntityInContext:[NSManagedObjectContext MR_defaultContext]];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
+
 +(long)countAll
 {
-    return [Tags countAll];
+    return [Tags MR_countOfEntities];
 }
 @end
