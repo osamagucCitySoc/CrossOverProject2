@@ -7,55 +7,29 @@
 //
 
 #import "MonthReportViewController.h"
-@import Charts;
+#import "PNChart.h"
 
-@interface MonthReportViewController ()<ChartViewDelegate>
+@interface MonthReportViewController ()
 
 @end
 
 @implementation MonthReportViewController
 {
-    __weak IBOutlet PieChartView *_chartView;
+    __weak IBOutlet UIView *chartViewContainer;
+    PNPieChart *_chartView;
 }
 
 @synthesize reportType,monthData;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _chartView.usePercentValuesEnabled = YES;
-    _chartView.holeTransparent = YES;
-    _chartView.holeRadiusPercent = 0.58;
-    _chartView.transparentCircleRadiusPercent = 0.61;
-    _chartView.descriptionText = @"";
-    [_chartView setExtraOffsetsWithLeft:5.f top:10.f right:5.f bottom:5.f];
-    
-    _chartView.drawCenterTextEnabled = YES;
-    
-    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
-    paragraphStyle.alignment = NSTextAlignmentCenter;
-    
-    NSMutableAttributedString *centerText = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n%@ Report",[monthData objectForKey:@"title"],reportType]];
-    _chartView.centerAttributedText = centerText;
-    
-    _chartView.drawHoleEnabled = YES;
-    _chartView.rotationAngle = 0.0;
-    _chartView.rotationEnabled = YES;
-    _chartView.highlightPerTapEnabled = YES;
-    
-    ChartLegend *l =_chartView.legend;
-    l.position = ChartLegendPositionRightOfChart;
-    l.xEntrySpace = 7.0;
-    l.yEntrySpace = 0.0;
-    l.yOffset = 0.0;
-    
-    
-    _chartView.delegate = self;
-    
+
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self generateData];
-    
-    [_chartView animateWithYAxisDuration:1.4 easingOption:ChartEasingOptionEaseOutBack];
 }
 
 /**
@@ -65,8 +39,6 @@
 - (void)generateData
 {
     NSMutableArray *yVals = [[NSMutableArray alloc] init];
-    NSMutableArray *xVals = [[NSMutableArray alloc] init];
-    NSMutableArray *colors = [[NSMutableArray alloc] init];
     
     // First, we add all the tags and their associated values.
     NSMutableDictionary* categories;
@@ -84,44 +56,32 @@
     
     for (int i = 0; i < [categories allKeys].count; i++)
     {
-        [yVals addObject:[[BarChartDataEntry alloc] initWithValue:[[categories objectForKey:[categories.allKeys objectAtIndex:i]] floatValue] xIndex:i]];
-        [xVals addObject:categories.allKeys[i]];
-        totalValue -= [[categories objectForKey:[categories.allKeys objectAtIndex:i]] floatValue];
         CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
         CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from white
         CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from black
         UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
-        [colors addObject:color];
+        
+        [yVals addObject:[PNPieChartDataItem dataItemWithValue:[[categories objectForKey:[categories.allKeys objectAtIndex:i]] floatValue] color:color description:categories.allKeys[i]]];
+        totalValue -= [[categories objectForKey:[categories.allKeys objectAtIndex:i]] floatValue];
     }
     
-    // Second, we add a standalone entry to the pie chart, which are the summation of all transactions in this month only (i.e not recurring).
-    [yVals addObject:[[BarChartDataEntry alloc] initWithValue:totalValue xIndex:categories.count]];
-    [xVals addObject:@"One time"];
+    
     CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
     CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from white
     CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from black
     UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
-    [colors addObject:color];
+    [yVals addObject:[PNPieChartDataItem dataItemWithValue:totalValue color:color description:@"One Time"]];
+    
+    _chartView = [[PNPieChart alloc] initWithFrame:chartViewContainer.frame items:yVals];
+    _chartView.descriptionTextColor = [UIColor blackColor];
+    _chartView.descriptionTextFont  = [UIFont fontWithName:@"Avenir-Medium" size:15.0];
+    _chartView.descriptionTextShadowColor = [UIColor whiteColor];
+    _chartView.showAbsoluteValues = NO;
+    _chartView.showOnlyValues = NO;
+    [_chartView strokeChart];
 
-    
-    PieChartDataSet *dataSet = [[PieChartDataSet alloc] initWithYVals:yVals label:[reportType stringByAppendingString:@" Decomposition"]];
-    dataSet.sliceSpace = 2.0;
-    
-    dataSet.colors = colors;
-    
-    PieChartData *data = [[PieChartData alloc] initWithXVals:xVals dataSet:dataSet];
-    
-    NSNumberFormatter *pFormatter = [[NSNumberFormatter alloc] init];
-    pFormatter.numberStyle = NSNumberFormatterPercentStyle;
-    pFormatter.maximumFractionDigits = 1;
-    pFormatter.multiplier = @1.f;
-    pFormatter.percentSymbol = @" %";
-    [data setValueFormatter:pFormatter];
-    [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:11.f]];
-    [data setValueTextColor:UIColor.whiteColor];
-    
-    _chartView.data = data;
-    [_chartView highlightValues:nil];
+    [chartViewContainer addSubview:_chartView];
+
 }
 
 - (void)didReceiveMemoryWarning {
