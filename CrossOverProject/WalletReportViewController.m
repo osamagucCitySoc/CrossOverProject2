@@ -10,9 +10,10 @@
 #import <MagicalRecord/MagicalRecord.h>
 #import "Transaction.h"
 #import "Constants.h"
+
 @import Charts;
 
-@interface WalletReportViewController ()<ChartViewDelegate>
+@interface WalletReportViewController ()<ChartViewDelegate,UIActionSheetDelegate>
 
 @end
 
@@ -22,6 +23,8 @@
     NSUserDefaults* userDefaults;
     NSArray* monthNames;
     NSMutableArray* mainDataSource;
+    float maxExpense;
+    float maxIncome;
 }
 
 - (void)viewDidLoad {
@@ -34,7 +37,8 @@
 -(void)initVariables
 {
     userDefaults = [NSUserDefaults standardUserDefaults];
-    
+    maxExpense = 0;
+    maxIncome = 0;
     // We create a list of the months names
     monthNames = @[@"January",@"February",@"March",@"April",@"May",@"June",@"July",@"August",@"September",@"October",@"November",@"December"];
     
@@ -65,19 +69,19 @@
     // Assumption is, the current bank account amount is the current amount the user has at this moment. So it will be the initial starting point value.
     float startingAmount = [[userDefaults objectForKey:consBankAccountUserDefaultsKey] floatValue];
     
-    // We then need to have a data source that will have the name of each month in the coming year, total expenses in this month, total incomes in this month, the estimated balance by end of this month.
+    // We then need to have a data source that will have the name of each month in the coming year, total expenses in this month, total incomes in this month, the estimated balance by end of this month and the related categories.
     // First, we initialise this data source
     mainDataSource = [[NSMutableArray alloc]init];
     NSMutableDictionary* mainDataSourceHelper = [[NSMutableDictionary alloc]init];
     // Second, we fill it with dictionaries only having the name of the 12 period months with expenses, incomes and balance are set to 0
     for(int i = minMonth ; i <= 12 ; i++)
     {
-        NSMutableDictionary* monthSummary = [[NSMutableDictionary alloc]initWithObjects:@[[NSString stringWithFormat:@"%i-%i",i,minYear],@(0),@(0),@(0),@(mainDataSourceHelper.count)] forKeys:@[@"title",@"expenses",@"incomes",@"endBalance",@"orderingKey"]];
+        NSMutableDictionary* monthSummary = [[NSMutableDictionary alloc]initWithObjects:@[[NSString stringWithFormat:@"%i-%i",i,minYear],@(0),@(0),@(0),@(mainDataSourceHelper.count),[[NSMutableDictionary alloc] initWithObjects:@[[NSMutableDictionary dictionary],[NSMutableDictionary dictionary]] forKeys:@[@"expensesCategories",@"incomesCategories"]]] forKeys:@[@"title",@"expenses",@"incomes",@"endBalance",@"orderingKey",@"tags"]];
         [mainDataSourceHelper setValue:monthSummary forKey:[NSString stringWithFormat:@"%i-%i",i,minYear]];
     }
     for(int i = 1 ; i < minMonth ; i++)
     {
-        NSMutableDictionary* monthSummary = [[NSMutableDictionary alloc]initWithObjects:@[[NSString stringWithFormat:@"%i-%i",i,maxYear],@(0),@(0),@(0),@(mainDataSourceHelper.count)] forKeys:@[@"title",@"expenses",@"incomes",@"endBalance",@"orderingKey"]];
+        NSMutableDictionary* monthSummary = [[NSMutableDictionary alloc]initWithObjects:@[[NSString stringWithFormat:@"%i-%i",i,maxYear],@(0),@(0),@(0),@(mainDataSourceHelper.count),[[NSMutableDictionary alloc] initWithObjects:@[[NSMutableDictionary dictionary],[NSMutableDictionary dictionary]] forKeys:@[@"expensesCategories",@"incomesCategories"]]] forKeys:@[@"title",@"expenses",@"incomes",@"endBalance",@"orderingKey",@"tags"]];
         [mainDataSourceHelper setValue:monthSummary forKey:[NSString stringWithFormat:@"%i-%i",i,maxYear]];
     }
 
@@ -102,6 +106,7 @@
                 // Then this is a one time event, hence, only affects its month.
                 if(transaction.amount.floatValue < 0)
                 {
+                    // Update the expense
                     monthSummaryExpenses += transaction.amount.floatValue;
                 }else
                 {
@@ -121,9 +126,32 @@
                         if(transaction.amount.floatValue < 0)
                         {
                             [[mainDataSourceHelper objectForKey:key] setValue:@([[mainDataSourceHelper objectForKey:@"expenses"] floatValue]+transaction.amount.floatValue) forKey:@"expenses"];
+                            
+                            // Update the categories for the expense
+                            float expensesForThatTag = [[[[[mainDataSourceHelper objectForKey:key] objectForKey:@"tags"] objectForKey:@"expensesCategories"] objectForKey:transaction.tag] floatValue];
+                            if(expensesForThatTag)
+                            {
+                                expensesForThatTag += transaction.amount.floatValue;
+                                
+                                [[[[mainDataSourceHelper objectForKey:key] objectForKey:@"tags"] objectForKey:@"expensesCategories"] setObject:@(expensesForThatTag) forKey:transaction.tag];
+                            }else
+                            {
+                                [[[[mainDataSourceHelper objectForKey:key] objectForKey:@"tags"] objectForKey:@"expensesCategories"] setObject:@(transaction.amount.floatValue) forKey:transaction.tag];
+                            }
                         }else
                         {
                             [[mainDataSourceHelper objectForKey:key] setValue:@([[mainDataSourceHelper objectForKey:@"incomes"] floatValue]+transaction.amount.floatValue) forKey:@"expenses"];
+                            // Update the categories for the expense
+                            float expensesForThatTag = [[[[[mainDataSourceHelper objectForKey:key] objectForKey:@"tags"] objectForKey:@"incomesCategories"] objectForKey:transaction.tag] floatValue];
+                            if(expensesForThatTag)
+                            {
+                                expensesForThatTag += transaction.amount.floatValue;
+                                
+                                [[[[mainDataSourceHelper objectForKey:key] objectForKey:@"tags"] objectForKey:@"incomesCategories"] setObject:@(expensesForThatTag) forKey:transaction.tag];
+                            }else
+                            {
+                                [[[[mainDataSourceHelper objectForKey:key] objectForKey:@"tags"] objectForKey:@"incomesCategories"] setObject:@(transaction.amount.floatValue) forKey:transaction.tag];
+                            }
                         }
                     }
                 }
@@ -135,6 +163,14 @@
         // Then we need to set the balance by the end of each month.
         for(int i = 0 ;i < mainDataSource.count ; i++)
         {
+            if([[[mainDataSource objectAtIndex:i] objectForKey:@"expenses"] floatValue]<maxExpense)
+            {
+                maxExpense = [[[mainDataSource objectAtIndex:i] objectForKey:@"expenses"] floatValue];
+            }
+            if([[[mainDataSource objectAtIndex:i] objectForKey:@"incomes"] floatValue]>maxIncome)
+            {
+                maxIncome = [[[mainDataSource objectAtIndex:i] objectForKey:@"incomes"] floatValue];
+            }
             startingAmount += [[[mainDataSource objectAtIndex:i] objectForKey:@"expenses"] floatValue];
             startingAmount += [[[mainDataSource objectAtIndex:i] objectForKey:@"incomes"] floatValue];
             [[mainDataSource objectAtIndex:i] setValue:@(startingAmount) forKey:@"endBalance"];
@@ -167,18 +203,18 @@
     _chartView.drawValueAboveBarEnabled = YES;
     
     // scaling can now only be done on x- and y-axis separately
-    _chartView.pinchZoomEnabled = NO;
+    _chartView.pinchZoomEnabled = YES;
     
     _chartView.drawBarShadowEnabled = NO;
     _chartView.drawValueAboveBarEnabled = YES;
     
     _chartView.leftAxis.enabled = NO;
     _chartView.rightAxis.startAtZeroEnabled = NO;
-    _chartView.rightAxis.customAxisMax = 25.0;
-    _chartView.rightAxis.customAxisMin = -25.0;
+    _chartView.rightAxis.customAxisMax = maxIncome+20;
+    _chartView.rightAxis.customAxisMin = maxExpense-20;
     _chartView.rightAxis.drawGridLinesEnabled = NO;
     _chartView.rightAxis.drawZeroLineEnabled = YES;
-    _chartView.rightAxis.labelCount = 7;
+    _chartView.rightAxis.labelCount = 10;
     _chartView.rightAxis.valueFormatter = customFormatter;
     _chartView.rightAxis.labelFont = [UIFont systemFontOfSize:9.f];
     
@@ -195,22 +231,12 @@
     l.xEntrySpace = 6.f;
     
     NSMutableArray *yValues = [NSMutableArray array];
+    NSMutableArray *xVals = [NSMutableArray array];
     for(int i = 0 ; i < mainDataSource.count ; i++)
     {
-        
+        [yValues addObject:[[BarChartDataEntry alloc] initWithValues:@[ [[mainDataSource objectAtIndex:i] objectForKey:@"expenses"], [[mainDataSource objectAtIndex:i] objectForKey:@"incomes"]] xIndex:i]];
+        [xVals addObject:[[[mainDataSource objectAtIndex:i] objectForKey:@"title"] stringByAppendingFormat:@"\n%0.2f",[[[mainDataSource objectAtIndex:i] objectForKey:@"endBalance"] floatValue]]];
     }
-    [yValues addObject:[[BarChartDataEntry alloc] initWithValues:@[ @-10, @10 ] xIndex: 0]];
-    [yValues addObject:[[BarChartDataEntry alloc] initWithValues:@[ @-12, @13 ] xIndex: 1]];
-    [yValues addObject:[[BarChartDataEntry alloc] initWithValues:@[ @-15, @15 ] xIndex: 2]];
-    [yValues addObject:[[BarChartDataEntry alloc] initWithValues:@[ @-17, @17 ] xIndex: 3]];
-    [yValues addObject:[[BarChartDataEntry alloc] initWithValues:@[ @-19, @20 ] xIndex: 4]];
-    [yValues addObject:[[BarChartDataEntry alloc] initWithValues:@[ @-19, @19 ] xIndex: 5]];
-    [yValues addObject:[[BarChartDataEntry alloc] initWithValues:@[ @-16, @16 ] xIndex: 6]];
-    [yValues addObject:[[BarChartDataEntry alloc] initWithValues:@[ @-13, @14 ] xIndex: 7]];
-    [yValues addObject:[[BarChartDataEntry alloc] initWithValues:@[ @-10, @11 ] xIndex: 8]];
-    [yValues addObject:[[BarChartDataEntry alloc] initWithValues:@[ @-5, @6 ] xIndex: 9]];
-    [yValues addObject:[[BarChartDataEntry alloc] initWithValues:@[ @-1, @2 ] xIndex: 10]];
-    [yValues addObject:[[BarChartDataEntry alloc] initWithValues:@[ @-1, @2 ] xIndex: 11]];
     
     BarChartDataSet *set = [[BarChartDataSet alloc] initWithYVals:yValues label:@"Wallet Distribution"];
     set.valueFormatter = customFormatter;
@@ -225,11 +251,14 @@
                         @"Total Exepenses", @"Totla Incomings"
                         ];
     
-    NSArray *xVals = @[ @"January\nPSAMA",@"February",@"March",@"April",@"May",@"June",@"July",@"August",@"September",@"October",@"November",@"December" ];
+    
+    
     
     BarChartData *data = [[BarChartData alloc] initWithXVals:xVals dataSet:set];
     _chartView.data = data;
     [_chartView animateWithYAxisDuration:3.0];
+    
+    //[_chartView zoomIn];
 
 }
 
@@ -244,11 +273,32 @@
 - (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry dataSetIndex:(NSInteger)dataSetIndex highlight:(ChartHighlight * __nonnull)highlight
 {
     NSLog(@"chartValueSelected, dataSetIndex %ld, stack-index %ld",(long)dataSetIndex, (long)highlight.stackIndex);
+    UIActionSheet* sheet = [[UIActionSheet alloc]initWithTitle:@"Options" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Expenses report",@"Incomes report", nil];
+    sheet.tag = 1;
+    [sheet showInView:self.view];
 }
 
 - (void)chartValueNothingSelected:(ChartViewBase * __nonnull)chartView
 {
     NSLog(@"chartValueNothingSelected");
+}
+
+#pragma mark UIActionSheetDelegate Methods
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(actionSheet.tag == 1)
+    {
+        ChartHighlight* highlightedIndex = [_chartView.highlighted lastObject];
+
+        if(buttonIndex == 0)
+        {
+            
+            // Expenses report
+        }else if(buttonIndex == 1)
+        {
+            // Incomes report
+        }
+    }
 }
 
 
