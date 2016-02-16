@@ -10,7 +10,8 @@
 #import <MagicalRecord/MagicalRecord.h>
 #import "Constants.h"
 #import "ManageTransactionsViewController.h"
-
+#import "Transaction.h"
+#import "MonthReportViewController.h"
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -22,6 +23,9 @@
     __weak IBOutlet UILabel *currentBankAccountAmountLabel;
     __weak IBOutlet UITableView *tableVieww;
     NSArray* optionsDataSource;
+    __weak IBOutlet UIView *datePickerView;
+    __weak IBOutlet UIDatePicker *datePicker;
+    NSMutableDictionary* monthSummary;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -36,11 +40,24 @@
         ManageTransactionsViewController* dst = (ManageTransactionsViewController*)[segue destinationViewController];
         [dst setTransactionType:@"Incomes"];
         
+    }else if([[segue identifier]isEqualToString:@"monthReportSeg"])
+    {
+        MonthReportViewController* dst = (MonthReportViewController*)[segue destinationViewController];
+        if(tableVieww.indexPathForSelectedRow.row == 1)
+        {
+            [dst setReportType:@"Expenses"];
+        }else
+        {
+            [dst setReportType:@"Incomes"];
+        }
+        [dst setMonthData:monthSummary];
     }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [datePickerView setAlpha:0.0];
     [self initVariables];
     [self initialiseTheBankAccount];
 }
@@ -71,6 +88,14 @@
 -(void)initVariables
 {
     userDefaults = [NSUserDefaults standardUserDefaults];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    [datePicker setMinimumDate:[NSDate date]];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *currentDate = [NSDate date];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    [comps setYear:1];
+    NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+    [datePicker setMaximumDate:maxDate];
     
     // Those are the list of different options that the user can play with.
     NSDictionary* manageOptions = [[NSDictionary alloc]initWithObjects:@[@"Manage your wallet",@[@"Manage your account amount",@"Manage your currency symbol",@"Manage your expenses",@"Manage your income"]] forKeys:@[@"title",@"options"]];
@@ -149,10 +174,54 @@
         if(indexPath.row == 0)
         {
             [self performSegueWithIdentifier:@"walletReportSeg" sender:self];
+        }else
+        {
+            [UIView animateWithDuration:1.0f animations:^{
+                
+                [datePickerView setAlpha:1.0f];
+            } completion:^(BOOL finished) {
+            }];
+
         }
     }
 }
 
+- (IBAction)cancelButtonClicked:(id)sender {
+    [UIView animateWithDuration:1.0f animations:^{
+        
+        [datePickerView setAlpha:0.0f];
+    } completion:^(BOOL finished) {
+    }];
+    
+}
+- (IBAction)generateMonthReportClicked:(id)sender
+{
+    NSDate *currentDate = [NSDate date];
+    NSCalendar *calendar1 = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+    unsigned unitFlags1 = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSDateComponents *components1 = [calendar1 components: unitFlags1 fromDate: currentDate];
+    int minMonth = [[NSNumber numberWithInteger:[components1 month]] intValue];
+    int minYear  = [[NSNumber numberWithInteger:[components1 year]] intValue];
+
+    
+    
+    NSDate *dateFromPicker = [datePicker date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSDateComponents *components = [calendar components: unitFlags fromDate: dateFromPicker];
+    
+    int maxMonth = [[NSNumber numberWithInteger:[components month]] intValue];
+    int maxYear = [[NSNumber numberWithInteger:[components year]] intValue];
+    
+    NSMutableArray* monthsSummary = [Transaction loadTransactions:minMonth minYear:minYear maxMonth:maxMonth maxYear:maxYear];
+    monthSummary = [monthsSummary lastObject];
+    [UIView animateWithDuration:1.0f animations:^{
+        
+        [datePickerView setAlpha:0.0f];
+    } completion:^(BOOL finished) {
+        [self performSegueWithIdentifier:@"monthReportSeg" sender:self];
+    }];
+}
 
 
 @end

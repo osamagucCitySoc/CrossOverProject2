@@ -15,20 +15,19 @@
 // Insert code here to add functionality to your managed object subclass
 
 
-+(NSMutableArray*)loadTransactions
++(NSMutableArray*)loadTransactions:(int)minMonth minYear:(int)minYear maxMonth:(int)maxMonth maxYear:(int)maxYear
 {
     NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
-    // We need to display the total expenses and incomes for each month Then the query will get all entries for all months and then they will be grouped.
-    NSDate *currentDate = [NSDate date];
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
-    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-    NSDateComponents *components = [calendar components: unitFlags fromDate: currentDate];
-    int minMonth = [[NSNumber numberWithInteger:[components month]] intValue];
-    int minYear  = [[NSNumber numberWithInteger:[components year]] intValue];
-    int maxYear  = minYear+1;
     
-    NSPredicate *transactionFilter = [NSPredicate predicateWithFormat:@"(month >= %i AND year = %i) OR (month <= %i AND year = %i)", minMonth,minYear,minMonth,maxYear];
-    
+    NSPredicate *transactionFilter;
+    if(minYear < maxYear)
+    {
+       transactionFilter = [NSPredicate predicateWithFormat:@"(month >= %i AND year = %i) OR (month <= %i AND year = %i)", minMonth,minYear,maxMonth,maxYear];
+    }else
+    {
+        transactionFilter = [NSPredicate predicateWithFormat:@"month >= %i AND month <= %i AND year = %i", minMonth,maxMonth,minYear];
+
+    }
     // Now we get all the saved transactions between a period of one year starting from the current month.
     NSArray* allTransactions = [Transaction MR_findAllSortedBy:@"year,month" ascending:YES withPredicate:transactionFilter inContext:[NSManagedObjectContext MR_defaultContext]];
     
@@ -36,20 +35,30 @@
     // Assumption is, the current bank account amount is the current amount the user has at this moment. So it will be the initial starting point value.
     float startingAmount = [[userDefaults objectForKey:consBankAccountUserDefaultsKey] floatValue];
     
-    // We then need to have a data source that will have the name of each month in the coming year, total expenses in this month, total incomes in this month, the estimated balance by end of this month and the related categories.
+    // We then need to have a data source that will have the name of each month, total expenses in this month, total incomes in this month, the estimated balance by end of this month and the related categories.
     // First, we initialise this data source
     NSMutableArray* mainDataSource = [[NSMutableArray alloc]init];
     NSMutableDictionary* mainDataSourceHelper = [[NSMutableDictionary alloc]init];
-    // Second, we fill it with dictionaries only having the name of the 12 period months with expenses, incomes and balance are set to 0
-    for(int i = minMonth ; i <= 12 ; i++)
+    // Second, we fill it with dictionaries only having the name of the required period months with expenses, incomes and balance are set to 0
+    if(minYear < maxYear)
     {
-        NSMutableDictionary* monthSummary = [[NSMutableDictionary alloc]initWithObjects:@[[NSString stringWithFormat:@"%i-%i",i,minYear],@(0),@(0),@(0),@(mainDataSourceHelper.count),[[NSMutableDictionary alloc] initWithObjects:@[[NSMutableDictionary dictionary],[NSMutableDictionary dictionary]] forKeys:@[@"expensesCategories",@"incomesCategories"]]] forKeys:@[@"title",@"expenses",@"incomes",@"endBalance",@"orderingKey",@"tags"]];
-        [mainDataSourceHelper setValue:monthSummary forKey:[NSString stringWithFormat:@"%i-%i",i,minYear]];
-    }
-    for(int i = 1 ; i < minMonth ; i++)
+        for(int i = minMonth ; i <= 12 ; i++)
+        {
+            NSMutableDictionary* monthSummary = [[NSMutableDictionary alloc]initWithObjects:@[[NSString stringWithFormat:@"%i-%i",i,minYear],@(0),@(0),@(0),@(mainDataSourceHelper.count),[[NSMutableDictionary alloc] initWithObjects:@[[NSMutableDictionary dictionary],[NSMutableDictionary dictionary]] forKeys:@[@"expensesCategories",@"incomesCategories"]]] forKeys:@[@"title",@"expenses",@"incomes",@"endBalance",@"orderingKey",@"tags"]];
+            [mainDataSourceHelper setValue:monthSummary forKey:[NSString stringWithFormat:@"%i-%i",i,minYear]];
+        }
+        for(int i = 1 ; i <= maxMonth ; i++)
+        {
+            NSMutableDictionary* monthSummary = [[NSMutableDictionary alloc]initWithObjects:@[[NSString stringWithFormat:@"%i-%i",i,maxYear],@(0),@(0),@(0),@(mainDataSourceHelper.count),[[NSMutableDictionary alloc] initWithObjects:@[[NSMutableDictionary dictionary],[NSMutableDictionary dictionary]] forKeys:@[@"expensesCategories",@"incomesCategories"]]] forKeys:@[@"title",@"expenses",@"incomes",@"endBalance",@"orderingKey",@"tags"]];
+            [mainDataSourceHelper setValue:monthSummary forKey:[NSString stringWithFormat:@"%i-%i",i,maxYear]];
+        }
+    }else
     {
-        NSMutableDictionary* monthSummary = [[NSMutableDictionary alloc]initWithObjects:@[[NSString stringWithFormat:@"%i-%i",i,maxYear],@(0),@(0),@(0),@(mainDataSourceHelper.count),[[NSMutableDictionary alloc] initWithObjects:@[[NSMutableDictionary dictionary],[NSMutableDictionary dictionary]] forKeys:@[@"expensesCategories",@"incomesCategories"]]] forKeys:@[@"title",@"expenses",@"incomes",@"endBalance",@"orderingKey",@"tags"]];
-        [mainDataSourceHelper setValue:monthSummary forKey:[NSString stringWithFormat:@"%i-%i",i,maxYear]];
+        for(int i = minMonth ; i <= maxMonth ; i++)
+        {
+            NSMutableDictionary* monthSummary = [[NSMutableDictionary alloc]initWithObjects:@[[NSString stringWithFormat:@"%i-%i",i,minYear],@(0),@(0),@(0),@(mainDataSourceHelper.count),[[NSMutableDictionary alloc] initWithObjects:@[[NSMutableDictionary dictionary],[NSMutableDictionary dictionary]] forKeys:@[@"expensesCategories",@"incomesCategories"]]] forKeys:@[@"title",@"expenses",@"incomes",@"endBalance",@"orderingKey",@"tags"]];
+            [mainDataSourceHelper setValue:monthSummary forKey:[NSString stringWithFormat:@"%i-%i",i,minYear]];
+        }
     }
     
     

@@ -37,6 +37,12 @@
         [dst setReportType:@"Expenses"];
         ChartHighlight* highlighted = [[_chartView highlighted] lastObject];
         [dst setMonthData:[mainDataSource objectAtIndex:highlighted.xIndex]];
+    }else if([[segue identifier]isEqualToString:@"incomesReportSeg"])
+    {
+        MonthReportViewController* dst = (MonthReportViewController*)[segue destinationViewController];
+        [dst setReportType:@"Incomes"];
+        ChartHighlight* highlighted = [[_chartView highlighted] lastObject];
+        [dst setMonthData:[mainDataSource objectAtIndex:highlighted.xIndex]];
     }
 }
 - (void)viewDidLoad {
@@ -63,7 +69,17 @@
 
 -(void)loadTransactions
 {
-    mainDataSource = [Transaction loadTransactions];
+    // We need to display the total expenses and incomes for each month Then the query will get all entries for all months and then they will be grouped.
+    NSDate *currentDate = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSDateComponents *components = [calendar components: unitFlags fromDate: currentDate];
+    int minMonth = [[NSNumber numberWithInteger:[components month]] intValue];
+    int minYear  = [[NSNumber numberWithInteger:[components year]] intValue];
+    int maxYear  = minYear+1;
+    
+    mainDataSource = [Transaction loadTransactions:minMonth minYear:minYear maxMonth:(minMonth-1) maxYear:maxYear];
+    
     for(int i = 0 ;i < mainDataSource.count ; i++)
     {
         if([[[mainDataSource objectAtIndex:i] objectForKey:@"expenses"] floatValue]<maxExpense)

@@ -17,9 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- This method is used to generate the report detailing for an upcoming year. Where each NSMutableDicrionary entry will include : The name of the month, the total expenses by this month, the total incomes by this month, the end balance for this month and the categories where the expenses and the incomes are falling into.
+ This method is used to generate the report detailing for an a given period. Where each NSMutableDicrionary entry will include : The name of the month, the total expenses by this month, the total incomes by this month, the end balance for this month and the categories where the expenses and the incomes are falling into.
+ @param minMonth the starting month of the period.
+ @param minYear the starting year of the period.
+ @param maxMonth the ending month of the period.
+ @param maxYear the ending year of the period.
+ @return sorted Array of NSMutableDictionaries, where each dictionary contains the information about a month in the selected period
  */
-+(NSMutableArray*)loadTransactions;
++(NSMutableArray*)loadTransactions:(int)minMonth minYear:(int)minYear maxMonth:(int)maxMonth maxYear:(int)maxYear;
 
 
 @end
