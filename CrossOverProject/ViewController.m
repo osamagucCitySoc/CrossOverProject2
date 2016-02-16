@@ -148,7 +148,7 @@
         // The user chose a reporting option
         if(indexPath.row == 0)
         {
-            
+            [self performSegueWithIdentifier:@"walletReportSeg" sender:self];
         }
     }
 }

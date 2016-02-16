@@ -1,5 +1,5 @@
 //
-//  BarTestViewController.h
+//  WalletReportViewController.h
 //  CrossOverProject
 //
 //  Created by Osama Rabie on 2/16/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@import Charts;
-
-@interface BarTestViewController : UIViewController
+@interface WalletReportViewController : UIViewController
 
 @end

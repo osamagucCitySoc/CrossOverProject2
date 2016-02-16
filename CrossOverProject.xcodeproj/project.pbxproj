@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7CC1B072DDD9E5B2279A72B2 /* libPods-CrossOverProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C61D8079F183095BBA07AC8 /* libPods-CrossOverProject.a */; };
+		E84D52781C7312DC00A35D21 /* WalletReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D52771C7312DC00A35D21 /* WalletReportViewController.m */; };
 		E85D1E391C72502300297209 /* ManageTransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85D1E381C72502300297209 /* ManageTransactionsViewController.m */; };
 		E85D1E3C1C727B8800297209 /* CategoryChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85D1E3B1C727B8800297209 /* CategoryChooserViewController.m */; };
-		E85D20A21C728BA200297209 /* BarTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85D20A11C728BA200297209 /* BarTestViewController.m */; };
 		E87362FA1C729A39003762C5 /* ChartAnimationEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87362841C729A39003762C5 /* ChartAnimationEasing.swift */; };
 		E87362FB1C729A39003762C5 /* ChartAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87362851C729A39003762C5 /* ChartAnimator.swift */; };
 		E87362FC1C729A39003762C5 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87362871C729A39003762C5 /* BarChartView.swift */; };
@@ -138,12 +138,12 @@
 		8C61D8079F183095BBA07AC8 /* libPods-CrossOverProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CrossOverProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFFE722C56FF54658D258AB9 /* Pods-CrossOverProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrossOverProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrossOverProject/Pods-CrossOverProject.debug.xcconfig"; sourceTree = "<group>"; };
 		E1DDC3643EF176F17A674BDB /* Pods-CrossOverProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrossOverProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrossOverProject/Pods-CrossOverProject.release.xcconfig"; sourceTree = "<group>"; };
+		E84D52761C7312DC00A35D21 /* WalletReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletReportViewController.h; sourceTree = "<group>"; };
+		E84D52771C7312DC00A35D21 /* WalletReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletReportViewController.m; sourceTree = "<group>"; };
 		E85D1E371C72502300297209 /* ManageTransactionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageTransactionsViewController.h; sourceTree = "<group>"; };
 		E85D1E381C72502300297209 /* ManageTransactionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageTransactionsViewController.m; sourceTree = "<group>"; };
 		E85D1E3A1C727B8800297209 /* CategoryChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryChooserViewController.h; sourceTree = "<group>"; };
 		E85D1E3B1C727B8800297209 /* CategoryChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryChooserViewController.m; sourceTree = "<group>"; };
-		E85D20A01C728BA200297209 /* BarTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarTestViewController.h; sourceTree = "<group>"; };
-		E85D20A11C728BA200297209 /* BarTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarTestViewController.m; sourceTree = "<group>"; };
 		E87362841C729A39003762C5 /* ChartAnimationEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartAnimationEasing.swift; sourceTree = "<group>"; };
 		E87362851C729A39003762C5 /* ChartAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartAnimator.swift; sourceTree = "<group>"; };
 		E87362871C729A39003762C5 /* BarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
@@ -308,6 +308,21 @@
 				8C61D8079F183095BBA07AC8 /* libPods-CrossOverProject.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E84D52791C73131700A35D21 /* ManagingWalletFiles */ = {
+			isa = PBXGroup;
+			children = (
+				E8D60D3D1C7217940014ED1F /* BankAccountAmountViewController.h */,
+				E8D60D3E1C7217940014ED1F /* BankAccountAmountViewController.m */,
+				E8D60D691C7234E40014ED1F /* CurrencyViewController.h */,
+				E8D60D6A1C7234E40014ED1F /* CurrencyViewController.m */,
+				E85D1E371C72502300297209 /* ManageTransactionsViewController.h */,
+				E85D1E381C72502300297209 /* ManageTransactionsViewController.m */,
+				E85D1E3A1C727B8800297209 /* CategoryChooserViewController.h */,
+				E85D1E3B1C727B8800297209 /* CategoryChooserViewController.m */,
+			);
+			name = ManagingWalletFiles;
 			sourceTree = "<group>";
 		};
 		E87362831C729A39003762C5 /* Animation */ = {
@@ -555,14 +570,9 @@
 				E8EB26011C720F1D0015C634 /* AppDelegate.m */,
 				E8EB26031C720F1D0015C634 /* ViewController.h */,
 				E8EB26041C720F1D0015C634 /* ViewController.m */,
-				E8D60D3D1C7217940014ED1F /* BankAccountAmountViewController.h */,
-				E8D60D3E1C7217940014ED1F /* BankAccountAmountViewController.m */,
-				E8D60D691C7234E40014ED1F /* CurrencyViewController.h */,
-				E8D60D6A1C7234E40014ED1F /* CurrencyViewController.m */,
-				E85D1E371C72502300297209 /* ManageTransactionsViewController.h */,
-				E85D1E381C72502300297209 /* ManageTransactionsViewController.m */,
-				E85D1E3A1C727B8800297209 /* CategoryChooserViewController.h */,
-				E85D1E3B1C727B8800297209 /* CategoryChooserViewController.m */,
+				E84D52791C73131700A35D21 /* ManagingWalletFiles */,
+				E84D52761C7312DC00A35D21 /* WalletReportViewController.h */,
+				E84D52771C7312DC00A35D21 /* WalletReportViewController.m */,
 				E8EB26061C720F1D0015C634 /* Main.storyboard */,
 				E8EB260C1C720F1D0015C634 /* Assets.xcassets */,
 				E8EB260E1C720F1D0015C634 /* LaunchScreen.storyboard */,
@@ -570,8 +580,6 @@
 				E8EB26091C720F1D0015C634 /* CrossOverProject.xcdatamodeld */,
 				E8EB25FD1C720F1C0015C634 /* Supporting Files */,
 				E8D60D3C1C72170B0014ED1F /* Helpers */,
-				E85D20A01C728BA200297209 /* BarTestViewController.h */,
-				E85D20A11C728BA200297209 /* BarTestViewController.m */,
 				E877AA911C728E12003A43AF /* CrossOverProject-Bridging-Header.h */,
 			);
 			path = CrossOverProject;
@@ -733,6 +741,7 @@
 				E8D60D831C7248920014ED1F /* Transaction.m in Sources */,
 				E87363541C729A39003762C5 /* ChartYAxisRendererRadarChart.swift in Sources */,
 				E87363191C729A39003762C5 /* CandleChartDataEntry.swift in Sources */,
+				E84D52781C7312DC00A35D21 /* WalletReportViewController.m in Sources */,
 				E87363411C729A39003762C5 /* BarLineScatterCandleBubbleChartDataProvider.swift in Sources */,
 				E87363261C729A39003762C5 /* RadarChartDataSet.swift in Sources */,
 				E87363351C729A39003762C5 /* ChartDataBaseFilter.swift in Sources */,
@@ -812,7 +821,6 @@
 				E87363011C729A39003762C5 /* CombinedChartView.swift in Sources */,
 				E87363441C729A39003762C5 /* ChartDataProvider.swift in Sources */,
 				E87363401C729A39003762C5 /* BarChartDataProvider.swift in Sources */,
-				E85D20A21C728BA200297209 /* BarTestViewController.m in Sources */,
 				E873632E1C729A39003762C5 /* ILineChartDataSet.swift in Sources */,
 				E87363481C729A39003762C5 /* BubbleChartRenderer.swift in Sources */,
 				E87363631C729A39003762C5 /* ChartViewPortHandler.swift in Sources */,

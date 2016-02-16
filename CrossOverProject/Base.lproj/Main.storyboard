@@ -304,15 +304,16 @@
             </objects>
             <point key="canvasLocation" x="1206" y="367.5"/>
         </scene>
-        <!--Bar Test View Controller-->
+        <!--Wallet Report View Controller-->
         <scene sceneID="OZ3-Og-izZ">
             <objects>
-                <viewController id="Ijv-KF-hEb" customClass="BarTestViewController" sceneMemberID="viewController">
+                <viewController id="Ijv-KF-hEb" customClass="WalletReportViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="C2X-oA-tLf"/>
                         <viewControllerLayoutGuide type="bottom" id="oSl-U4-2Lq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CCV-3y-6Rg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d7M-c4-iH6" customClass="HorizontalBarChartView" customModule="Charts">
@@ -328,7 +329,7 @@
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="PNb-p0-0ka"/>
+                                        <exclude reference="PNb-p0-0ka"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -338,6 +339,8 @@
                             <constraint firstItem="d7M-c4-iH6" firstAttribute="centerY" secondItem="CCV-3y-6Rg" secondAttribute="centerY" id="6ma-iP-FOJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="d7M-c4-iH6" secondAttribute="trailing" constant="-20" id="ESy-Wr-CDE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="d7M-c4-iH6" secondAttribute="trailing" constant="1" id="ReW-po-rY2"/>
+                            <constraint firstItem="d7M-c4-iH6" firstAttribute="top" secondItem="C2X-oA-tLf" secondAttribute="bottom" constant="8" id="SsC-tT-eJ9"/>
+                            <constraint firstItem="oSl-U4-2Lq" firstAttribute="top" secondItem="d7M-c4-iH6" secondAttribute="bottom" constant="8" id="gbB-g5-WBz"/>
                             <constraint firstItem="d7M-c4-iH6" firstAttribute="centerX" secondItem="CCV-3y-6Rg" secondAttribute="centerX" id="kr7-BA-KN2"/>
                             <constraint firstItem="d7M-c4-iH6" firstAttribute="leading" secondItem="CCV-3y-6Rg" secondAttribute="leadingMargin" constant="1" id="tnd-q9-8IO"/>
                             <constraint firstItem="d7M-c4-iH6" firstAttribute="leading" secondItem="CCV-3y-6Rg" secondAttribute="leadingMargin" constant="-20" id="wY3-NE-S3i"/>
@@ -347,9 +350,11 @@
                                 <exclude reference="d7M-c4-iH6"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="gbB-g5-WBz"/>
                                 <exclude reference="6ma-iP-FOJ"/>
                                 <exclude reference="ESy-Wr-CDE"/>
                                 <exclude reference="ReW-po-rY2"/>
+                                <exclude reference="SsC-tT-eJ9"/>
                                 <exclude reference="kr7-BA-KN2"/>
                                 <exclude reference="tnd-q9-8IO"/>
                                 <exclude reference="wY3-NE-S3i"/>
@@ -360,17 +365,19 @@
                                 <include reference="d7M-c4-iH6"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="6ma-iP-FOJ"/>
+                                <include reference="gbB-g5-WBz"/>
+                                <exclude reference="6ma-iP-FOJ"/>
                                 <include reference="ESy-Wr-CDE"/>
                                 <exclude reference="ReW-po-rY2"/>
-                                <include reference="kr7-BA-KN2"/>
+                                <include reference="SsC-tT-eJ9"/>
+                                <exclude reference="kr7-BA-KN2"/>
                                 <exclude reference="tnd-q9-8IO"/>
                                 <include reference="wY3-NE-S3i"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="_chartView" destination="d7M-c4-iH6" id="agA-wE-bGy"/>
+                        <outlet property="_chartView" destination="d7M-c4-iH6" id="vRA-dG-AEV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="khA-JI-Qkr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -501,6 +508,7 @@
                         <segue destination="DbH-0F-pTU" kind="presentation" identifier="enterCurrencySeg" id="ONe-kd-e3k"/>
                         <segue destination="C3G-XO-Sye" kind="show" identifier="expensesSeg" id="pBN-Ho-f8M"/>
                         <segue destination="C3G-XO-Sye" kind="show" identifier="incomeSeg" id="scc-Ky-RaM"/>
+                        <segue destination="Ijv-KF-hEb" kind="show" identifier="walletReportSeg" id="T0k-Bg-F29"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
