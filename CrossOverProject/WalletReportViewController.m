@@ -12,15 +12,15 @@
 #import "Constants.h"
 #import "MonthReportViewController.h"
 
-@import Charts;
 
-@interface WalletReportViewController ()<ChartViewDelegate,UIActionSheetDelegate>
+@interface WalletReportViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 
 @end
 
 @implementation WalletReportViewController
 {
-    __weak IBOutlet HorizontalBarChartView *_chartView;
+
+    __weak IBOutlet UITableView *tableVieww;
     NSUserDefaults* userDefaults/** @param Instance of the NSUserDefaults.*/;
     NSArray* monthNames;
     NSMutableArray* mainDataSource;
@@ -35,14 +35,12 @@
     {
         MonthReportViewController* dst = (MonthReportViewController*)[segue destinationViewController];
         [dst setReportType:@"Expenses"];
-        ChartHighlight* highlighted = [[_chartView highlighted] lastObject];
-        [dst setMonthData:[mainDataSource objectAtIndex:highlighted.xIndex]];
+        [dst setMonthData:[mainDataSource objectAtIndex:tableVieww.indexPathForSelectedRow.section]];
     }else if([[segue identifier]isEqualToString:@"incomesReportSeg"])
     {
         MonthReportViewController* dst = (MonthReportViewController*)[segue destinationViewController];
         [dst setReportType:@"Incomes"];
-        ChartHighlight* highlighted = [[_chartView highlighted] lastObject];
-        [dst setMonthData:[mainDataSource objectAtIndex:highlighted.xIndex]];
+        [dst setMonthData:[mainDataSource objectAtIndex:tableVieww.indexPathForSelectedRow.section]];
     }
 }
 - (void)viewDidLoad {
@@ -64,9 +62,6 @@
     
     // We get all the saved transactions (whether exepenses or incomes grouped by the month).
     [self loadTransactions];
-    
-    // We adjust the bar chart based on the values we got from above
-    [self adjustBarChart];
 }
 
 /**
@@ -96,98 +91,48 @@
             maxIncome = [[[mainDataSource objectAtIndex:i] objectForKey:@"incomes"] floatValue];
         }
     }
+    
+    [tableVieww setDataSource:self];
+    [tableVieww setDelegate:self];
 }
-
-/**
- This method is used to setup the bar chart with the given months summary details.
- */
-
--(void)adjustBarChart
-{
-    NSNumberFormatter *customFormatter = [[NSNumberFormatter alloc] init];
-    customFormatter.negativePrefix = @"-";
-    customFormatter.positivePrefix = @"+";
-    
-    customFormatter.minimumSignificantDigits = 1;
-    customFormatter.minimumFractionDigits = 1;
-    
-    _chartView.delegate = self;
-    
-    _chartView.descriptionText = @"";
-    _chartView.noDataTextDescription = @"You need to provide data for the chart.";
-    
-    _chartView.drawBarShadowEnabled = NO;
-    _chartView.drawValueAboveBarEnabled = YES;
-    
-    // scaling can now only be done on x- and y-axis separately
-    _chartView.pinchZoomEnabled = YES;
-    
-    _chartView.drawBarShadowEnabled = NO;
-    _chartView.drawValueAboveBarEnabled = YES;
-    
-    _chartView.leftAxis.enabled = NO;
-    _chartView.rightAxis.startAtZeroEnabled = NO;
-    _chartView.rightAxis.customAxisMax = maxIncome+20;
-    _chartView.rightAxis.customAxisMin = maxExpense-20;
-    _chartView.rightAxis.drawGridLinesEnabled = NO;
-    _chartView.rightAxis.drawZeroLineEnabled = YES;
-    _chartView.rightAxis.labelCount = 10;
-    _chartView.rightAxis.valueFormatter = customFormatter;
-    _chartView.rightAxis.labelFont = [UIFont systemFontOfSize:9.f];
-    
-    ChartXAxis *xAxis = _chartView.xAxis;
-    xAxis.labelPosition = XAxisLabelPositionBottom;
-    xAxis.drawGridLinesEnabled = NO;
-    xAxis.drawAxisLineEnabled = NO;
-    _chartView.rightAxis.labelFont = [UIFont systemFontOfSize:9.f];
-    
-    ChartLegend *l = _chartView.legend;
-    l.position = ChartLegendPositionBelowChartRight;
-    l.formSize = 8.f;
-    l.formToTextSpace = 4.f;
-    l.xEntrySpace = 6.f;
-    
-    NSMutableArray *yValues = [NSMutableArray array];
-    NSMutableArray *xVals = [NSMutableArray array];
-    for(int i = 0 ; i < mainDataSource.count ; i++)
-    {
-        [yValues addObject:[[BarChartDataEntry alloc] initWithValues:@[ [[mainDataSource objectAtIndex:i] objectForKey:@"expenses"], [[mainDataSource objectAtIndex:i] objectForKey:@"incomes"]] xIndex:i]];
-        [xVals addObject:[[[mainDataSource objectAtIndex:i] objectForKey:@"title"] stringByAppendingFormat:@"\n%0.2f",[[[mainDataSource objectAtIndex:i] objectForKey:@"endBalance"] floatValue]]];
-    }
-    
-    BarChartDataSet *set = [[BarChartDataSet alloc] initWithYVals:yValues label:@"Wallet Distribution"];
-    set.valueFormatter = customFormatter;
-    set.valueFont = [UIFont systemFontOfSize:7.f];
-    set.axisDependency = AxisDependencyRight;
-    set.barSpace = 0.4f;
-    set.colors = @[
-                   [UIColor colorWithRed:67/255.f green:67/255.f blue:72/255.f alpha:1.f],
-                   [UIColor colorWithRed:124/255.f green:181/255.f blue:236/255.f alpha:1.f]
-                   ];
-    set.stackLabels = @[
-                        @"Total Exepenses", @"Totla Incomings"
-                        ];
-    
-    
-    
-    
-    BarChartData *data = [[BarChartData alloc] initWithXVals:xVals dataSet:set];
-    _chartView.data = data;
-    [_chartView animateWithYAxisDuration:3.0];
-    
-    //[_chartView zoomIn];
-
-}
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - ChartViewDelegate
+#pragma mark UITableViewDelegate methods
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return mainDataSource.count;
+}
 
-- (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry dataSetIndex:(NSInteger)dataSetIndex highlight:(ChartHighlight * __nonnull)highlight
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+
+    return 1;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString* cellID = @"walletCell";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath
+                             ];
+    NSDictionary* monthSummary = [mainDataSource objectAtIndex:indexPath.section];
+    
+    [[(UILabel*)cell viewWithTag:1]setText:[NSString stringWithFormat:@"%0.2f %@",[[monthSummary objectForKey:@"expenses"] floatValue],[userDefaults objectForKey:consCurrencyUserDefaultsKey]]];
+    
+    [[(UILabel*)cell viewWithTag:2]setText:[NSString stringWithFormat:@"+%0.2f %@",[[monthSummary objectForKey:@"incomes"] floatValue],[userDefaults objectForKey:consCurrencyUserDefaultsKey]]];
+    
+    [[(UILabel*)cell viewWithTag:3]setText:[NSString stringWithFormat:@"End balance : %0.2f %@",[[monthSummary objectForKey:@"endBalance"] floatValue],[userDefaults objectForKey:consCurrencyUserDefaultsKey]]];
+    
+    return cell;
+}
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSDictionary* monthSummary = [mainDataSource objectAtIndex:section];
+    return [NSString stringWithFormat:@"Summary for : %@",[monthSummary objectForKey:@"title"]];
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UIActionSheet* sheet = [[UIActionSheet alloc]initWithTitle:@"Options" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Expenses report",@"Incomes report", nil];
     sheet.tag = 1;
