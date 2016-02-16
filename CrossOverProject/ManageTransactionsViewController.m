@@ -179,7 +179,7 @@
     [newTransactionAmountTextField setText:@""];
     [newTransactionDatePicker setDate:[NSDate date]];
     
-    [UIView animateWithDuration:2.0f animations:^{
+    [UIView animateWithDuration:1.0f animations:^{
         
         [addTransactionView setAlpha:1.0f];
         [self.navigationItem setRightBarButtonItem:cancelButton animated:YES];
@@ -192,7 +192,7 @@
 
 - (IBAction)cancelButtonClicked:(id)sender {
     
-    [UIView animateWithDuration:2.0f animations:^{
+    [UIView animateWithDuration:1.0f animations:^{
         
         [addTransactionView setAlpha:0.0f];
         [self.navigationItem setRightBarButtonItem:addButton animated:YES];
