@@ -117,7 +117,7 @@
                             }
                         }else
                         {
-                            [[mainDataSourceHelper objectForKey:key] setValue:@([[[mainDataSourceHelper objectForKey:key] objectForKey:@"incomes"] floatValue]+transaction.amount.floatValue) forKey:@"expenses"];
+                            [[mainDataSourceHelper objectForKey:key] setValue:@([[[mainDataSourceHelper objectForKey:key] objectForKey:@"incomes"] floatValue]+transaction.amount.floatValue) forKey:@"incomes"];
                             // Update the categories for the expense
                             float expensesForThatTag = [[[[[mainDataSourceHelper objectForKey:key] objectForKey:@"tags"] objectForKey:@"incomesCategories"] objectForKey:transaction.tag] floatValue];
                             if(expensesForThatTag)

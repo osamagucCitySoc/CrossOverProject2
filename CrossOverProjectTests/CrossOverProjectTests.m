@@ -99,6 +99,38 @@
 }
 
 
+/**
+ This method tends to test the functionality used in reporting the expenses and incomes to the user for a certain month. It concentrates only in checking if the balance by end of the month is adjusted properly when affected by adding a one time transaction and a recurring transaction.
+ */
+- (void)testMonthEndBalance{
+    //We will first calculate the end balance at March 2016.
+    //Then we will add an expense of -100 on March 2016.
+    //Then we will add a recurring income of 200 on February 2016.
+    
+    float endBalanceBeforeAnyEdits = [[[[Transaction loadTransactions:1 minYear:2016 maxMonth:3 maxYear:2016] lastObject] objectForKey:@"endBalance"] floatValue];
+    
+    
+    [Transaction storeTransaction:-100 day:1 month:3 year:2016 recurring:NO category:@""];
+    
+    float endBalanceAfterOneTimeExpenss = [[[[Transaction loadTransactions:1 minYear:2016 maxMonth:3 maxYear:2016] lastObject] objectForKey:@"endBalance"] floatValue];
+    
+    float diff = endBalanceBeforeAnyEdits-endBalanceAfterOneTimeExpenss;
+    
+    XCTAssertEqual(diff,100.0f,@"Error in reporting for a certain month");
+    
+    
+    
+    [Transaction storeTransaction:200 day:6 month:2 year:2016 recurring:YES category:@"Salary"];
+    
+    float endBalanceAfterOneTimeExpenssAndRecurringIncome = [[[[Transaction loadTransactions:1 minYear:2016 maxMonth:3 maxYear:2016] lastObject] objectForKey:@"endBalance"] floatValue];
+    
+    diff = endBalanceAfterOneTimeExpenssAndRecurringIncome-endBalanceAfterOneTimeExpenss;
+    
+    //diff should be 400 as 200 has been added to the endBalance by end of Feb then also by end of March as it is a recurring event.
+    XCTAssertEqual(diff,400,@"Error in reporting for a certain month");
+    
+}
+
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
