@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7CC1B072DDD9E5B2279A72B2 /* libPods-CrossOverProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C61D8079F183095BBA07AC8 /* libPods-CrossOverProject.a */; };
 		E84D52781C7312DC00A35D21 /* WalletReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D52771C7312DC00A35D21 /* WalletReportViewController.m */; };
+		E84D527C1C732F3D00A35D21 /* MonthReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D527B1C732F3D00A35D21 /* MonthReportViewController.m */; };
 		E85D1E391C72502300297209 /* ManageTransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85D1E381C72502300297209 /* ManageTransactionsViewController.m */; };
 		E85D1E3C1C727B8800297209 /* CategoryChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85D1E3B1C727B8800297209 /* CategoryChooserViewController.m */; };
 		E87362FA1C729A39003762C5 /* ChartAnimationEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87362841C729A39003762C5 /* ChartAnimationEasing.swift */; };
@@ -140,6 +141,8 @@
 		E1DDC3643EF176F17A674BDB /* Pods-CrossOverProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrossOverProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrossOverProject/Pods-CrossOverProject.release.xcconfig"; sourceTree = "<group>"; };
 		E84D52761C7312DC00A35D21 /* WalletReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletReportViewController.h; sourceTree = "<group>"; };
 		E84D52771C7312DC00A35D21 /* WalletReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletReportViewController.m; sourceTree = "<group>"; };
+		E84D527A1C732F3D00A35D21 /* MonthReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthReportViewController.h; sourceTree = "<group>"; };
+		E84D527B1C732F3D00A35D21 /* MonthReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthReportViewController.m; sourceTree = "<group>"; };
 		E85D1E371C72502300297209 /* ManageTransactionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageTransactionsViewController.h; sourceTree = "<group>"; };
 		E85D1E381C72502300297209 /* ManageTransactionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageTransactionsViewController.m; sourceTree = "<group>"; };
 		E85D1E3A1C727B8800297209 /* CategoryChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryChooserViewController.h; sourceTree = "<group>"; };
@@ -323,6 +326,17 @@
 				E85D1E3B1C727B8800297209 /* CategoryChooserViewController.m */,
 			);
 			name = ManagingWalletFiles;
+			sourceTree = "<group>";
+		};
+		E84D527D1C732F8000A35D21 /* ReportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				E84D52761C7312DC00A35D21 /* WalletReportViewController.h */,
+				E84D52771C7312DC00A35D21 /* WalletReportViewController.m */,
+				E84D527A1C732F3D00A35D21 /* MonthReportViewController.h */,
+				E84D527B1C732F3D00A35D21 /* MonthReportViewController.m */,
+			);
+			name = ReportingFiles;
 			sourceTree = "<group>";
 		};
 		E87362831C729A39003762C5 /* Animation */ = {
@@ -571,8 +585,7 @@
 				E8EB26031C720F1D0015C634 /* ViewController.h */,
 				E8EB26041C720F1D0015C634 /* ViewController.m */,
 				E84D52791C73131700A35D21 /* ManagingWalletFiles */,
-				E84D52761C7312DC00A35D21 /* WalletReportViewController.h */,
-				E84D52771C7312DC00A35D21 /* WalletReportViewController.m */,
+				E84D527D1C732F8000A35D21 /* ReportingFiles */,
 				E8EB26061C720F1D0015C634 /* Main.storyboard */,
 				E8EB260C1C720F1D0015C634 /* Assets.xcassets */,
 				E8EB260E1C720F1D0015C634 /* LaunchScreen.storyboard */,
@@ -753,6 +766,7 @@
 				E8EB26021C720F1D0015C634 /* AppDelegate.m in Sources */,
 				E87363151C729A39003762C5 /* BubbleChartData.swift in Sources */,
 				E87363161C729A39003762C5 /* BubbleChartDataEntry.swift in Sources */,
+				E84D527C1C732F3D00A35D21 /* MonthReportViewController.m in Sources */,
 				E87363461C729A39003762C5 /* ScatterChartDataProvider.swift in Sources */,
 				E873630D1C729A39003762C5 /* ChartXAxis.swift in Sources */,
 				E873635F1C729A39003762C5 /* ChartSelectionDetail.swift in Sources */,

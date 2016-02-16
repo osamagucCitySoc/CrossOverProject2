@@ -15,6 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Insert code here to declare functionality of your managed object subclass
 
+
+/**
+ This method is used to generate the report detailing for an upcoming year. Where each NSMutableDicrionary entry will include : The name of the month, the total expenses by this month, the total incomes by this month, the end balance for this month and the categories where the expenses and the incomes are falling into.
+ */
++(NSMutableArray*)loadTransactions;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
