@@ -9,7 +9,7 @@
 #import "BankAccountAmountViewController.h"
 #import "Constants.h"
 
-@interface BankAccountAmountViewController ()
+@interface BankAccountAmountViewController ()<UITextFieldDelegate>
 
 @end
 
@@ -57,6 +57,8 @@
                                        selector:@selector(focusNow:)
                                        userInfo: nil repeats:NO];
     }
+    
+    [amountTextField setDelegate:self];
 }
 
 -(void)focusNow:(NSTimer *)timer {
@@ -110,6 +112,16 @@
                                CGPointMake([amountTextField center].x + 20.0f, [amountTextField center].y)]];
         [[amountTextField layer] addAnimation:animation forKey:@"position"];
     }
+}
+
+
+#pragma mark UITextField delegate methods
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString* newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
+    BOOL isDecimal = [nf numberFromString:newText] != nil;
+    return isDecimal;
 }
 
 /*

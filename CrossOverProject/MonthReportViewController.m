@@ -67,6 +67,7 @@
     {
         [noView setHidden:NO];
         [noViewLabel setText:[NSString stringWithFormat:@"No %@ recorded for this month",reportType]];
+        [totalAmountLabel setHidden:YES];
     }
     else
     {

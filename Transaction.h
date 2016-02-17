@@ -56,6 +56,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(long)countAll;
 
+/**
+ This method is used only for testing purposes.
+ */
++(void)deleteAll;
+
 @end
 
 NS_ASSUME_NONNULL_END

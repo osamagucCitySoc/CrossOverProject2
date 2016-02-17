@@ -147,6 +147,8 @@
     }else
     {
         // This means, we have no transactions stored and hence, all the values can be filled by default value with expenses = 0, incomes = 0 and total balance for each month is the starting amount.
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"orderingKey"  ascending:YES];
+        mainDataSource = [[NSMutableArray alloc]initWithArray:[[mainDataSourceHelper allValues] sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]]];
         for(int i = 0 ;i < mainDataSource.count ; i++)
         {
             [[mainDataSource objectAtIndex:i] setValue:@(startingAmount) forKey:@"endBalance"];
@@ -228,6 +230,11 @@
 +(long)countAll
 {
     return [Transaction MR_countOfEntities];
+}
+
++(void)deleteAll
+{
+    [Transaction MR_truncateAll];
 }
 
 @end

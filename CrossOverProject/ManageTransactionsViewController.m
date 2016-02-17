@@ -12,7 +12,7 @@
 #import "JTMaterialSwitch.h"
 #import "CategoryChooserViewController.h"
 
-@interface ManageTransactionsViewController ()<UITableViewDataSource,UITableViewDelegate,AddRecurringTransactionDelegate>
+@interface ManageTransactionsViewController ()<UITableViewDataSource,UITableViewDelegate,AddRecurringTransactionDelegate,UITextFieldDelegate>
 
 @end
 
@@ -81,6 +81,7 @@
     
     [tableVieww setDelegate:self];
     [tableVieww setDataSource:self];
+    [newTransactionAmountTextField setDelegate:self];
 }
 
 /**
@@ -337,6 +338,15 @@
 -(void)addRecurringTransaction:(NSString*)category
 {
     [self addTransaction:1 category:category];
+}
+
+#pragma mark UItextField delegate methods
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString* newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
+    BOOL isDecimal = [nf numberFromString:newText] != nil;
+    return isDecimal;
 }
 
 @end
