@@ -24,6 +24,8 @@
     __weak IBOutlet UITableView *tableVieww /** @param table view used to show the details about the transactions.*/;
     __weak IBOutlet UIView *addTransactionView /** @param The UIView contains the needed fields and UI to enter a new transaction*/;
     IBOutlet UIBarButtonItem *cancelButton/** @param button used to hide the adding new transaction uiview.*/;
+    __weak IBOutlet UIView *noView;/** @param this view is the view that holds the default view when there are no transactions to manage */
+    __weak IBOutlet UILabel *noLabel;/** @param this outlet holds that label that appears when there is no transactions to manage */
     __weak IBOutlet UITextField *newTransactionAmountTextField;
     __weak IBOutlet UIDatePicker *newTransactionDatePicker;
     __weak IBOutlet UISegmentedControl *newTransactionTypeSegment;
@@ -68,14 +70,37 @@
     
     [self setTitle:transactionType];
     
+    if ([transactionType hasPrefix:@"Ex"])
+    {
+        noLabel.text = @"No Expenses!";
+    }
+    else
+    {
+        noLabel.text = @"No Income!";
+    }
+    
     [tableVieww setDelegate:self];
     [tableVieww setDataSource:self];
 }
+
+/**
+ This method is used to interact with the Model (Transactions) to get the list of transactions of the type of transactionType (i.e expenses or incomes).
+ */
 
 -(void)loadTransactions
 {
     // We first get all the transactions exepnses or incomes depending on the type ordered by the month and then the day.
     dataSource = [Transaction loadTransactions:transactionType];
+    
+    if (dataSource.count == 0)
+    {
+        [noView setHidden:NO];
+    }
+    else
+    {
+        [noView setHidden:YES];
+    }
+    
     [tableVieww reloadData];
 }
 -(void)viewDidAppear:(BOOL)animated
@@ -83,7 +108,10 @@
     [super viewDidAppear:animated];
     // Adding the add button on the top right
     [self.navigationItem setRightBarButtonItem:addButton animated:YES];
+    
+    [tableVieww deselectRowAtIndexPath:tableVieww.indexPathForSelectedRow animated:YES];
 }
+
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [[self view] endEditing:YES];
@@ -117,8 +145,23 @@
     
     Transaction* transaction = [[[dataSource objectAtIndex:indexPath.section] objectForKey:@"transactions"] objectAtIndex:indexPath.row];
     
+    if ([transactionType hasPrefix:@"Ex"])
+    {
+        [cell viewWithTag:1].backgroundColor = [UIColor colorWithRed:199.0/255.0 green:38.0/255.0 blue:32.0/255.0 alpha:1.0];
+    }
+    else
+    {
+        [cell viewWithTag:1].backgroundColor = [UIColor colorWithRed:54.0/255.0 green:169.0/255.0 blue:53.0/255.0 alpha:1.0];
+    }
     
-    [[(UILabel*)cell viewWithTag:1]setText:[NSString stringWithFormat:@"%0.3f %@",transaction.amount.doubleValue,[userDefaults objectForKey:consCurrencyUserDefaultsKey]]];
+    UIView *backView = [[UIView alloc] init];
+    
+    backView.backgroundColor = [UIColor colorWithRed:52.0/255.0 green:168.0/255.0 blue:194.0/255.0 alpha:1.0];
+    
+    cell.selectedBackgroundView = backView;
+    
+    
+    [(UILabel*)[cell viewWithTag:1]setText:[NSString stringWithFormat:@"%0.3f %@",transaction.amount.doubleValue,[userDefaults objectForKey:consCurrencyUserDefaultsKey]]];
 
     JTMaterialSwitch* recurringSwitch;
     
@@ -135,13 +178,13 @@
     
     if(transaction.recurring.intValue == 0)
     {
-        [[(UILabel*)cell viewWithTag:2]setText:[NSString stringWithFormat:@"Occuring on : %i/%@/%i",transaction.day.intValue,[monthNames objectAtIndex:(transaction.month.intValue-1)],transaction.year.intValue]];
-        [[(UILabel*)cell viewWithTag:3]setText:@"No assigned category"];
+        [(UILabel*)[cell viewWithTag:2]setText:[NSString stringWithFormat:@"Occuring on : %i/%@/%i",transaction.day.intValue,[monthNames objectAtIndex:(transaction.month.intValue-1)],transaction.year.intValue]];
+        [(UILabel*)[cell viewWithTag:3]setText:@"No assigned category"];
         [recurringSwitch setOn:NO animated:YES];
     }else
     {
-        [[(UILabel*)cell viewWithTag:2]setText:[NSString stringWithFormat:@"Starting from : %i/%@/%i",transaction.day.intValue,[monthNames objectAtIndex:(transaction.month.intValue-1)],transaction.year.intValue]];
-        [[(UILabel*)cell viewWithTag:3]setText:transaction.tag];
+        [(UILabel*)[cell viewWithTag:2]setText:[NSString stringWithFormat:@"Starting from : %i/%@/%i",transaction.day.intValue,[monthNames objectAtIndex:(transaction.month.intValue-1)],transaction.year.intValue]];
+        [(UILabel*)[cell viewWithTag:3]setText:transaction.tag];
         [recurringSwitch setOn:YES animated:YES];
     }
     
@@ -176,8 +219,9 @@
     [newTransactionSubmitButton setTitle:@"Submit" forState:UIControlStateNormal];
     [newTransactionAmountTextField setText:@""];
     [newTransactionDatePicker setDate:[NSDate date]];
+    [newTransactionTypeSegment setSelectedSegmentIndex:0];
     
-    [UIView animateWithDuration:1.0f animations:^{
+    [UIView animateWithDuration:0.3f animations:^{
         
         [addTransactionView setAlpha:1.0f];
         [self.navigationItem setRightBarButtonItem:cancelButton animated:YES];
@@ -190,7 +234,7 @@
 
 - (IBAction)cancelButtonClicked:(id)sender {
     
-    [UIView animateWithDuration:1.0f animations:^{
+    [UIView animateWithDuration:0.3f animations:^{
         
         [addTransactionView setAlpha:0.0f];
         [self.navigationItem setRightBarButtonItem:addButton animated:YES];
@@ -255,6 +299,11 @@
 }
 
 
+/**
+ This method is used to inform the Model (Transactions) to add a new transaction.
+ @param type is an int telling whether this transaction is recurring or no.
+ @param category is the assigned category if it is recurring or empty if it is a one time transaction.
+ */
 
 -(void)addTransaction:(int)type category:(NSString*)category
 {
@@ -283,6 +332,7 @@
 
 /**
  This method listens to the delegate when the user finishes typing the category of a recurring transaction.
+ @param category the assigned category from the user on the caller view.
  */
 -(void)addRecurringTransaction:(NSString*)category
 {

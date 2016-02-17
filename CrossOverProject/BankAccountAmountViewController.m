@@ -15,6 +15,7 @@
 
 @implementation BankAccountAmountViewController
 {
+    __weak IBOutlet UIButton *submitButton; /** @param outlet that referes to the submit button in order to adjust its animations */
     __weak IBOutlet UISegmentedControl *minusPlusSegmentController /** @param outlet of a segment controller used by the user to indicate whether added amount is negative or positive.*/;
     __weak IBOutlet UITextField *amountTextField /** @param outlet of a text field that the user enters the amount in it.*/;
     NSUserDefaults* userDefaults /** @param Instance of the NSUserDefaults.*/;
@@ -26,6 +27,12 @@
     [self initVariables];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.view endEditing:YES];
+}
 /**
  This method is used to initialise the inner variables and views used by this controller.
  */
@@ -39,11 +46,28 @@
     {
         // Then the user did store before some values.
         [amountTextField setText:[userDefaults objectForKey:consBankAccountUserDefaultsKey]];
+        [amountTextField becomeFirstResponder];
     }else
     {
         // User didn't enter anything before.
-        [amountTextField setText:@"0.0"];
+        [amountTextField setText:@""];
+        [submitButton setFrame:CGRectMake(submitButton.frame.origin.x, submitButton.frame.origin.y+[[UIScreen mainScreen] bounds].size.height/2, submitButton.frame.size.width, submitButton.frame.size.height)];
+        [NSTimer scheduledTimerWithTimeInterval: 0.5
+                                         target: self
+                                       selector:@selector(focusNow:)
+                                       userInfo: nil repeats:NO];
     }
+}
+
+-(void)focusNow:(NSTimer *)timer {
+    [amountTextField becomeFirstResponder];
+    [UIView animateWithDuration:0.3 delay:0.5 options:0
+                     animations:^{
+                         [submitButton setFrame:CGRectMake(submitButton.frame.origin.x, submitButton.frame.origin.y-[[UIScreen mainScreen] bounds].size.height/2, submitButton.frame.size.width, submitButton.frame.size.height)];
+                     }
+                     completion:^(BOOL finished) {
+                     }];
+    [UIView commitAnimations];
 }
 
 - (void)didReceiveMemoryWarning {

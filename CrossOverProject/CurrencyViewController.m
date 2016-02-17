@@ -21,7 +21,6 @@
     __weak IBOutlet UISearchBar *searchBar /** @param outlet of a search bar used to filter the currency codes list*/;
     __weak IBOutlet UITableView *tableVieww /** @param the table that shows the currency codes*/;
     NSUserDefaults* userDefaults/** @param Instance of the NSUserDefaults.*/;
-    __weak IBOutlet UILabel *currentlySelectedLabel;
 }
 
 - (void)viewDidLoad {
@@ -29,6 +28,16 @@
     [self initVariables];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [tableVieww deselectRowAtIndexPath:tableVieww.indexPathForSelectedRow animated:YES];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 /**
  This method is used to initialise the inner variables and views used by this controller.
  */
@@ -37,13 +46,7 @@
 {
     userDefaults = [NSUserDefaults standardUserDefaults];
     currentlySelectedCurrencyCode = [userDefaults objectForKey:consCurrencyUserDefaultsKey];
-    // Preload the value that the use chose before, and if not then the $ is the default currency.
-    if(!currentlySelectedCurrencyCode)
-    {
-        currentlySelectedCurrencyCode = @"$";
-    }
-    [currentlySelectedLabel setText:currentlySelectedCurrencyCode];
-    
+
     
     // Get the list of currency codes and associated countries to be displayed for the user to choose from.
     NSLocale *locale = [NSLocale currentLocale];
@@ -80,6 +83,11 @@
 
 #pragma mark UITableViewDelegate methods
 
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [@"Current Symbol: " stringByAppendingString:currentlySelectedCurrencyCode];
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [filteredCurrencyCodesDataSource count];
@@ -92,6 +100,11 @@
     static NSString* cellID = @"currencyCell";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     
+    UIView *backView = [[UIView alloc] init];
+    
+    backView.backgroundColor = [UIColor colorWithRed:52.0/255.0 green:168.0/255.0 blue:194.0/255.0 alpha:1.0];
+    
+    cell.selectedBackgroundView = backView;
     
     [[cell textLabel]setText:[[filteredCurrencyCodesDataSource objectAtIndex:indexPath.row] objectForKey:@"code"]];
     [[cell detailTextLabel]setText:[[filteredCurrencyCodesDataSource objectAtIndex:indexPath.row] objectForKey:@"country"]];
@@ -115,10 +128,6 @@
     NSRange range = NSMakeRange(0, 1);
     NSIndexSet *section = [NSIndexSet indexSetWithIndexesInRange:range];
     [tableView reloadSections:section withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-    [UIView transitionWithView:currentlySelectedLabel duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-        [currentlySelectedLabel setText:currentlySelectedCurrencyCode];
-    } completion:nil];
 
 }
 

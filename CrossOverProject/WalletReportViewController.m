@@ -7,6 +7,7 @@
 //
 
 #import "WalletReportViewController.h"
+#import <MagicalRecord/MagicalRecord.h>
 #import "Transaction.h"
 #import "Constants.h"
 #import "MonthReportViewController.h"
@@ -19,14 +20,21 @@
 @implementation WalletReportViewController
 {
 
+    __weak IBOutlet UIView *novIew;/** @param this is a no UIView will appear if there are no added expenses and incomes, hence no reports can be shown*/
     __weak IBOutlet UITableView *tableVieww;
     NSUserDefaults* userDefaults/** @param Instance of the NSUserDefaults.*/;
-    NSArray* monthNames;
+    NSArray* monthNames;/**@param holds the English names of the months*/
     NSMutableArray* mainDataSource;
     float maxExpense/** @param used to propoerly and dynamically set the minimum X value on the chart.*/;
     float maxIncome/** @param used to propoerly and dynamically set the maximum X value on the chart.*/;;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [tableVieww deselectRowAtIndexPath:tableVieww.indexPathForSelectedRow animated:YES];
+}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -64,7 +72,7 @@
 }
 
 /**
- This method is used to load the monthly summary for a period of a one year.
+ This method is used to load the monthly summary for a period of a one year by calling the Model (Transactions).
  */
 -(void)loadTransactions
 {
@@ -90,6 +98,16 @@
             maxIncome = [[[mainDataSource objectAtIndex:i] objectForKey:@"incomes"] floatValue];
         }
     }
+    
+    if (mainDataSource.count == 0)
+    {
+        [novIew setHidden:NO];
+    }
+    else
+    {
+        [novIew setHidden:YES];
+    }
+    
     
     [tableVieww setDataSource:self];
     [tableVieww setDelegate:self];
@@ -118,11 +136,17 @@
                              ];
     NSDictionary* monthSummary = [mainDataSource objectAtIndex:indexPath.section];
     
-    [[(UILabel*)cell viewWithTag:1]setText:[NSString stringWithFormat:@"%0.2f %@",[[monthSummary objectForKey:@"expenses"] floatValue],[userDefaults objectForKey:consCurrencyUserDefaultsKey]]];
+    [(UILabel*)[cell viewWithTag:1]setText:[NSString stringWithFormat:@"%0.2f %@",[[monthSummary objectForKey:@"expenses"] floatValue],[userDefaults objectForKey:consCurrencyUserDefaultsKey]]];
     
-    [[(UILabel*)cell viewWithTag:2]setText:[NSString stringWithFormat:@"+%0.2f %@",[[monthSummary objectForKey:@"incomes"] floatValue],[userDefaults objectForKey:consCurrencyUserDefaultsKey]]];
+    [(UILabel*)[cell viewWithTag:2]setText:[NSString stringWithFormat:@"+%0.2f %@",[[monthSummary objectForKey:@"incomes"] floatValue],[userDefaults objectForKey:consCurrencyUserDefaultsKey]]];
     
-    [[(UILabel*)cell viewWithTag:3]setText:[NSString stringWithFormat:@"End balance : %0.2f %@",[[monthSummary objectForKey:@"endBalance"] floatValue],[userDefaults objectForKey:consCurrencyUserDefaultsKey]]];
+    [(UILabel*)[cell viewWithTag:3]setText:[NSString stringWithFormat:@"End balance : %0.2f %@",[[monthSummary objectForKey:@"endBalance"] floatValue],[userDefaults objectForKey:consCurrencyUserDefaultsKey]]];
+    
+    UIView *backView = [[UIView alloc] init];
+    
+    backView.backgroundColor = [UIColor colorWithRed:52.0/255.0 green:168.0/255.0 blue:194.0/255.0 alpha:1.0];
+    
+    cell.selectedBackgroundView = backView;
     
     return cell;
 }
@@ -142,6 +166,8 @@
 #pragma mark UIActionSheetDelegate Methods
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    [tableVieww deselectRowAtIndexPath:tableVieww.indexPathForSelectedRow animated:YES];
+    
     if(actionSheet.tag == 1)
     {
         if(buttonIndex == 0)

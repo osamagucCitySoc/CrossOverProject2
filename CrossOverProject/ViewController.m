@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <MagicalRecord/MagicalRecord.h>
 #import "Constants.h"
 #import "ManageTransactionsViewController.h"
 #import "Transaction.h"
@@ -24,7 +25,16 @@
     NSArray* optionsDataSource /** @param array that contains all options a user can choose from.*/;
     __weak IBOutlet UIView *datePickerView /** @param UIView to be used when a user wants to see a report for a certain month.*/;
     __weak IBOutlet UIDatePicker *datePicker/** @param date picker to be used when a user wants to see a report for a certain month.*/;
+    /** The coming outlets all of them are there to make the associated animations. They are composing the View that asks the user to enter which month he wants to get a report about */
+    __weak IBOutlet UIView *theWalletView;
+    __weak IBOutlet UIButton *wSubBtn;
+    __weak IBOutlet UIButton *wCancelBtn;
+    __weak IBOutlet UILabel *dateBackLabel;
+    __weak IBOutlet UILabel *genRepLabel;
     NSMutableDictionary* monthSummary/** @param Dictionary contains the whole summary for a certain month the user wants to see the reports about it.*/;
+    NSTimeInterval startTime;
+    NSNumber *fromVal1,*toVal1;/** @param thos values are used to make the first animation when the app starts to animate the value of the bank Account*/
+    BOOL doneFirstAnm;/** @param this bool value tells whether the animation had already been displayed or yet*/
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -53,33 +63,95 @@
     }
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [tableVieww deselectRowAtIndexPath:tableVieww.indexPathForSelectedRow animated:YES];
+    
+    NSString* currentAmount = [userDefaults objectForKey:consBankAccountUserDefaultsKey];
+    NSString* currentCurrencySymbol = [userDefaults objectForKey:consCurrencyUserDefaultsKey];
+    
+    if(!currentAmount)
+    {
+        currentAmount = @"0.000";
+        [theWalletView setHidden:YES];
+        [NSTimer scheduledTimerWithTimeInterval: 1.0
+                                         target: self
+                                       selector:@selector(walletHiddenOff:)
+                                       userInfo: nil repeats:NO];
+    }
+    
+    if (!doneFirstAnm)
+    {
+        doneFirstAnm = YES;
+        [self animate1From:0 toNumber:[NSNumber numberWithInteger:currentAmount.integerValue] withSymbol:currentCurrencySymbol];
+    }
+    else
+    {
+        currentBankAccountAmountLabel.text = [@"" stringByAppendingFormat:@"%@ %@",currentCurrencySymbol,currentAmount];
+    }
+}
+
+- (void)animate1From:(NSNumber *)aFrom toNumber:(NSNumber *)aTo withSymbol:(NSString *)theSymbol{
+    fromVal1 = aFrom;
+    toVal1 = aTo;
+    
+    currentBankAccountAmountLabel.text = [@"" stringByAppendingFormat:@"%@ %@",theSymbol,[fromVal1 stringValue]];
+    
+    CADisplayLink *link = [CADisplayLink displayLinkWithTarget:self selector:@selector(animate1Number:)];
+    
+    startTime = CACurrentMediaTime();
+    [link addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+}
+
+- (void)animate1Number:(CADisplayLink *)link {
+    NSString* currentCurrencySymbol = [userDefaults objectForKey:consCurrencyUserDefaultsKey];
+
+    static float DURATION = 1.0;
+    float dt = ([link timestamp] - startTime) / DURATION;
+    if (dt >= 1.0) {
+        NSString* currentAmount = [userDefaults objectForKey:consBankAccountUserDefaultsKey];
+        
+        currentBankAccountAmountLabel.text = [@"" stringByAppendingFormat:@"%@ %@",currentCurrencySymbol,currentAmount];
+        [link removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+        return;
+    }
+    
+    float current = ([toVal1 floatValue] - [fromVal1 floatValue]) * dt + [fromVal1 floatValue];
+    
+    currentBankAccountAmountLabel.text = [@"" stringByAppendingFormat:@"%@ %.3f",currentCurrencySymbol, current];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [datePickerView setAlpha:0.0];
     [self initVariables];
     [self initialiseTheBankAccount];
+    
+    NSString* currentAmount = [userDefaults objectForKey:consBankAccountUserDefaultsKey];
+    NSString* currentCurrencySymbol = [userDefaults objectForKey:consCurrencyUserDefaultsKey];
+    
+    if(!currentAmount)
+    {
+        [theWalletView setHidden:YES];
+    }
+    if(!currentCurrencySymbol)
+    {
+        [theWalletView setHidden:YES];
+    }
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
+-(void)walletHiddenOff:(NSTimer *)timer {
+    [theWalletView setHidden:NO];
+}
 
-    [super viewDidAppear:animated];
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     // Each time the homepage appears, we need to update the current bank amount and preferred currency. // Default is 0.000 $
-    [UIView transitionWithView:currentBankAccountAmountLabel duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-        NSString* currentAmount = [userDefaults objectForKey:consBankAccountUserDefaultsKey];
-        NSString* currentCurrencySymbol = [userDefaults objectForKey:consCurrencyUserDefaultsKey];
-        
-        if(!currentAmount)
-        {
-            currentAmount = @"0.000";
-        }
-        if(!currentCurrencySymbol)
-        {
-            currentCurrencySymbol = @"$";
-        }
-        currentBankAccountAmountLabel.text = [NSString stringWithFormat:@"%@ %@",currentAmount,currentCurrencySymbol];
-    } completion:nil];
+    
 }
 
 /**
@@ -100,7 +172,7 @@
     
     // Those are the list of different options that the user can play with.
     NSDictionary* manageOptions = [[NSDictionary alloc]initWithObjects:@[@"Manage your wallet",@[@"Manage your account amount",@"Manage your currency symbol",@"Manage your expenses",@"Manage your income"]] forKeys:@[@"title",@"options"]];
-     NSDictionary* reportOptions = [[NSDictionary alloc]initWithObjects:@[@"Analyse your wallet",@[@"Balance per month",@"Expenses per month",@"Income per month"]] forKeys:@[@"title",@"options"]];
+    NSDictionary* reportOptions = [[NSDictionary alloc]initWithObjects:@[@"Analyse your wallet",@[@"Wallet per month report",@"Expenses per month",@"Income per month"]] forKeys:@[@"title",@"options"]];
     optionsDataSource = [[NSArray alloc]initWithObjects:manageOptions,reportOptions, nil];
     [tableVieww setDelegate:self];
     [tableVieww setDataSource:self];
@@ -145,10 +217,17 @@
     static NSString* cellID = @"optionsCell";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     
+    UIView *backView = [[UIView alloc] init];
+    
+    backView.backgroundColor = [UIColor colorWithRed:52.0/255.0 green:168.0/255.0 blue:194.0/255.0 alpha:1.0];
+    
+    cell.selectedBackgroundView = backView;
+    
     [[cell textLabel]setText:[[[optionsDataSource objectAtIndex:indexPath.section] objectForKey:@"options"] objectAtIndex:indexPath.row]];
     
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // The user selected a certain option, and we need to deal accordingly.
@@ -172,7 +251,7 @@
             // The user wants to manage his expenses.
             [self performSegueWithIdentifier:@"incomeSeg" sender:self];
         }
-
+        
     }else if(indexPath.section == 1)
     {
         // The user chose a reporting option
@@ -181,12 +260,41 @@
             [self performSegueWithIdentifier:@"walletReportSeg" sender:self];
         }else
         {
-            [UIView animateWithDuration:1.0f animations:^{
-                
+            [genRepLabel setFrame:CGRectMake(genRepLabel.frame.origin.x, genRepLabel.frame.origin.y-[[UIScreen mainScreen] bounds].size.height, genRepLabel.frame.size.width, genRepLabel.frame.size.height)];
+            
+            [datePicker setFrame:CGRectMake(datePicker.frame.origin.x, datePicker.frame.origin.y+[[UIScreen mainScreen] bounds].size.height, datePicker.frame.size.width, datePicker.frame.size.height)];
+            
+            [dateBackLabel setFrame:CGRectMake(dateBackLabel.frame.origin.x, dateBackLabel.frame.origin.y+[[UIScreen mainScreen] bounds].size.height, dateBackLabel.frame.size.width, dateBackLabel.frame.size.height)];
+            
+            [wSubBtn setFrame:CGRectMake(wSubBtn.frame.origin.x, wSubBtn.frame.origin.y+[[UIScreen mainScreen] bounds].size.height/2, wSubBtn.frame.size.width, wSubBtn.frame.size.height)];
+            
+            [wCancelBtn setFrame:CGRectMake(wCancelBtn.frame.origin.x, wCancelBtn.frame.origin.y+[[UIScreen mainScreen] bounds].size.height/2, wCancelBtn.frame.size.width, wCancelBtn.frame.size.height)];
+            
+            [UIView animateWithDuration:0.3f animations:^{
                 [datePickerView setAlpha:1.0f];
+                
             } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.3f animations:^{
+                    [genRepLabel setFrame:CGRectMake(genRepLabel.frame.origin.x, genRepLabel.frame.origin.y+[[UIScreen mainScreen] bounds].size.height, genRepLabel.frame.size.width, genRepLabel.frame.size.height)];
+                    
+                    [datePicker setFrame:CGRectMake(datePicker.frame.origin.x, datePicker.frame.origin.y-[[UIScreen mainScreen] bounds].size.height, datePicker.frame.size.width, datePicker.frame.size.height)];
+                    
+                    [dateBackLabel setFrame:CGRectMake(dateBackLabel.frame.origin.x, dateBackLabel.frame.origin.y-[[UIScreen mainScreen] bounds].size.height, dateBackLabel.frame.size.width, dateBackLabel.frame.size.height)];
+                    
+                } completion:^(BOOL finished) {
+                    [UIView animateWithDuration:0.2f animations:^{
+                        
+                        [wSubBtn setFrame:CGRectMake(wSubBtn.frame.origin.x, wSubBtn.frame.origin.y-[[UIScreen mainScreen] bounds].size.height/2, wSubBtn.frame.size.width, wSubBtn.frame.size.height)];
+                        
+                        [wCancelBtn setFrame:CGRectMake(wCancelBtn.frame.origin.x, wCancelBtn.frame.origin.y-[[UIScreen mainScreen] bounds].size.height/2, wCancelBtn.frame.size.width, wCancelBtn.frame.size.height)];
+                    } completion:^(BOOL finished) {
+                        
+                    }];
+                    
+                    [UIView commitAnimations];
+                }];
             }];
-
+            
         }
     }
 }
@@ -196,10 +304,34 @@
  This method is used to hide the month/year date picker. This picker is shown whenever the user wants to see the reports (expenses or incomes) for a certain month.
  */
 - (IBAction)cancelButtonClicked:(id)sender {
-    [UIView animateWithDuration:1.0f animations:^{
+    [UIView animateWithDuration:0.3f animations:^{
         
-        [datePickerView setAlpha:0.0f];
+        [datePicker setFrame:CGRectMake(datePicker.frame.origin.x, datePicker.frame.origin.y+[[UIScreen mainScreen] bounds].size.height, datePicker.frame.size.width, datePicker.frame.size.height)];
+        
+        [dateBackLabel setFrame:CGRectMake(dateBackLabel.frame.origin.x, dateBackLabel.frame.origin.y+[[UIScreen mainScreen] bounds].size.height, dateBackLabel.frame.size.width, dateBackLabel.frame.size.height)];
+        
+        [wSubBtn setFrame:CGRectMake(wSubBtn.frame.origin.x, wSubBtn.frame.origin.y+[[UIScreen mainScreen] bounds].size.height/2, wSubBtn.frame.size.width, wSubBtn.frame.size.height)];
+        
+        [wCancelBtn setFrame:CGRectMake(wCancelBtn.frame.origin.x, wCancelBtn.frame.origin.y+[[UIScreen mainScreen] bounds].size.height/2, wCancelBtn.frame.size.width, wCancelBtn.frame.size.height)];
+        
     } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:0.3 delay:0.0 options:0
+                         animations:^{
+                             [datePickerView setAlpha:0.0];
+                         }
+                         completion:^(BOOL finished) {
+                             [datePicker setFrame:CGRectMake(datePicker.frame.origin.x, datePicker.frame.origin.y-[[UIScreen mainScreen] bounds].size.height, datePicker.frame.size.width, datePicker.frame.size.height)];
+                             
+                             [dateBackLabel setFrame:CGRectMake(dateBackLabel.frame.origin.x, dateBackLabel.frame.origin.y-[[UIScreen mainScreen] bounds].size.height, dateBackLabel.frame.size.width, dateBackLabel.frame.size.height)];
+                             
+                             [wSubBtn setFrame:CGRectMake(wSubBtn.frame.origin.x, wSubBtn.frame.origin.y-[[UIScreen mainScreen] bounds].size.height/2, wSubBtn.frame.size.width, wSubBtn.frame.size.height)];
+                             
+                             [wCancelBtn setFrame:CGRectMake(wCancelBtn.frame.origin.x, wCancelBtn.frame.origin.y-[[UIScreen mainScreen] bounds].size.height/2, wCancelBtn.frame.size.width, wCancelBtn.frame.size.height)];
+                             
+                             [tableVieww deselectRowAtIndexPath:tableVieww.indexPathForSelectedRow animated:YES];
+                         }];
+        [UIView commitAnimations];
     }];
     
 }
@@ -215,7 +347,7 @@
     NSDateComponents *components1 = [calendar1 components: unitFlags1 fromDate: currentDate];
     int minMonth = [[NSNumber numberWithInteger:[components1 month]] intValue];
     int minYear  = [[NSNumber numberWithInteger:[components1 year]] intValue];
-
+    
     
     
     NSDate *dateFromPicker = [datePicker date];
@@ -228,10 +360,34 @@
     
     NSMutableArray* monthsSummary = [Transaction loadTransactions:minMonth minYear:minYear maxMonth:maxMonth maxYear:maxYear];
     monthSummary = [monthsSummary lastObject];
-    [UIView animateWithDuration:1.0f animations:^{
+    [UIView animateWithDuration:0.3f animations:^{
         
-        [datePickerView setAlpha:0.0f];
+        [datePicker setFrame:CGRectMake(datePicker.frame.origin.x, datePicker.frame.origin.y+[[UIScreen mainScreen] bounds].size.height, datePicker.frame.size.width, datePicker.frame.size.height)];
+        
+        [dateBackLabel setFrame:CGRectMake(dateBackLabel.frame.origin.x, dateBackLabel.frame.origin.y+[[UIScreen mainScreen] bounds].size.height, dateBackLabel.frame.size.width, dateBackLabel.frame.size.height)];
+        
+        [wSubBtn setFrame:CGRectMake(wSubBtn.frame.origin.x, wSubBtn.frame.origin.y+[[UIScreen mainScreen] bounds].size.height/2, wSubBtn.frame.size.width, wSubBtn.frame.size.height)];
+        
+        [wCancelBtn setFrame:CGRectMake(wCancelBtn.frame.origin.x, wCancelBtn.frame.origin.y+[[UIScreen mainScreen] bounds].size.height/2, wCancelBtn.frame.size.width, wCancelBtn.frame.size.height)];
+        
     } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:0.3 delay:0.0 options:0
+                         animations:^{
+                             [datePickerView setAlpha:0.0];
+                         }
+                         completion:^(BOOL finished) {
+                             [datePicker setFrame:CGRectMake(datePicker.frame.origin.x, datePicker.frame.origin.y-[[UIScreen mainScreen] bounds].size.height, datePicker.frame.size.width, datePicker.frame.size.height)];
+                             
+                             [dateBackLabel setFrame:CGRectMake(dateBackLabel.frame.origin.x, dateBackLabel.frame.origin.y-[[UIScreen mainScreen] bounds].size.height, dateBackLabel.frame.size.width, dateBackLabel.frame.size.height)];
+                             
+                             [wSubBtn setFrame:CGRectMake(wSubBtn.frame.origin.x, wSubBtn.frame.origin.y-[[UIScreen mainScreen] bounds].size.height/2, wSubBtn.frame.size.width, wSubBtn.frame.size.height)];
+                             
+                             [wCancelBtn setFrame:CGRectMake(wCancelBtn.frame.origin.x, wCancelBtn.frame.origin.y-[[UIScreen mainScreen] bounds].size.height/2, wCancelBtn.frame.size.width, wCancelBtn.frame.size.height)];
+                             [tableVieww deselectRowAtIndexPath:tableVieww.indexPathForSelectedRow animated:YES];
+                         }];
+        [UIView commitAnimations];
+        
         [self performSegueWithIdentifier:@"monthReportSeg" sender:self];
     }];
 }

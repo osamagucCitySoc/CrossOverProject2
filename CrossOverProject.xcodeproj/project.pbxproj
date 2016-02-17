@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E22E4D31C73C3F000F392E8 /* lns-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D01C73C3F000F392E8 /* lns-right.png */; settings = {ASSET_TAGS = (); }; };
+		1E22E4D41C73C3F000F392E8 /* lns-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D11C73C3F000F392E8 /* lns-right@2x.png */; settings = {ASSET_TAGS = (); }; };
+		1E22E4D51C73C3F000F392E8 /* lns-right@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D21C73C3F000F392E8 /* lns-right@3x.png */; settings = {ASSET_TAGS = (); }; };
+		1E22E4D91C73C45300F392E8 /* lns-center.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D61C73C45300F392E8 /* lns-center.png */; settings = {ASSET_TAGS = (); }; };
+		1E22E4DA1C73C45300F392E8 /* lns-center@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D71C73C45300F392E8 /* lns-center@2x.png */; settings = {ASSET_TAGS = (); }; };
+		1E22E4DB1C73C45300F392E8 /* lns-center@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D81C73C45300F392E8 /* lns-center@3x.png */; settings = {ASSET_TAGS = (); }; };
+		1E22E4DF1C73D5B000F392E8 /* money-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4DC1C73D5B000F392E8 /* money-icon.png */; settings = {ASSET_TAGS = (); }; };
+		1E22E4E01C73D5B000F392E8 /* money-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4DD1C73D5B000F392E8 /* money-icon@2x.png */; settings = {ASSET_TAGS = (); }; };
+		1E22E4E11C73D5B000F392E8 /* money-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4DE1C73D5B000F392E8 /* money-icon@3x.png */; settings = {ASSET_TAGS = (); }; };
 		7CC1B072DDD9E5B2279A72B2 /* libPods-CrossOverProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C61D8079F183095BBA07AC8 /* libPods-CrossOverProject.a */; };
 		E84D52781C7312DC00A35D21 /* WalletReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D52771C7312DC00A35D21 /* WalletReportViewController.m */; };
 		E84D527C1C732F3D00A35D21 /* MonthReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D527B1C732F3D00A35D21 /* MonthReportViewController.m */; };
@@ -41,6 +50,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E22E4D01C73C3F000F392E8 /* lns-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lns-right.png"; sourceTree = "<group>"; };
+		1E22E4D11C73C3F000F392E8 /* lns-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lns-right@2x.png"; sourceTree = "<group>"; };
+		1E22E4D21C73C3F000F392E8 /* lns-right@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lns-right@3x.png"; sourceTree = "<group>"; };
+		1E22E4D61C73C45300F392E8 /* lns-center.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lns-center.png"; sourceTree = "<group>"; };
+		1E22E4D71C73C45300F392E8 /* lns-center@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lns-center@2x.png"; sourceTree = "<group>"; };
+		1E22E4D81C73C45300F392E8 /* lns-center@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lns-center@3x.png"; sourceTree = "<group>"; };
+		1E22E4DC1C73D5B000F392E8 /* money-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money-icon.png"; sourceTree = "<group>"; };
+		1E22E4DD1C73D5B000F392E8 /* money-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money-icon@2x.png"; sourceTree = "<group>"; };
+		1E22E4DE1C73D5B000F392E8 /* money-icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "money-icon@3x.png"; sourceTree = "<group>"; };
 		8C61D8079F183095BBA07AC8 /* libPods-CrossOverProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CrossOverProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFFE722C56FF54658D258AB9 /* Pods-CrossOverProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrossOverProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrossOverProject/Pods-CrossOverProject.debug.xcconfig"; sourceTree = "<group>"; };
 		E1DDC3643EF176F17A674BDB /* Pods-CrossOverProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrossOverProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrossOverProject/Pods-CrossOverProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +129,22 @@
 				E1DDC3643EF176F17A674BDB /* Pods-CrossOverProject.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		1E22E4CF1C73C3E000F392E8 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				1E22E4DC1C73D5B000F392E8 /* money-icon.png */,
+				1E22E4DD1C73D5B000F392E8 /* money-icon@2x.png */,
+				1E22E4DE1C73D5B000F392E8 /* money-icon@3x.png */,
+				1E22E4D61C73C45300F392E8 /* lns-center.png */,
+				1E22E4D71C73C45300F392E8 /* lns-center@2x.png */,
+				1E22E4D81C73C45300F392E8 /* lns-center@3x.png */,
+				1E22E4D01C73C3F000F392E8 /* lns-right.png */,
+				1E22E4D11C73C3F000F392E8 /* lns-right@2x.png */,
+				1E22E4D21C73C3F000F392E8 /* lns-right@3x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		49F802FCFA6AE3BDB729DFD9 /* Frameworks */ = {
@@ -193,6 +227,7 @@
 				E8EB26011C720F1D0015C634 /* AppDelegate.m */,
 				E8EB26031C720F1D0015C634 /* ViewController.h */,
 				E8EB26041C720F1D0015C634 /* ViewController.m */,
+				1E22E4CF1C73C3E000F392E8 /* Images */,
 				E84D52791C73131700A35D21 /* ManagingWalletFiles */,
 				E84D527D1C732F8000A35D21 /* ReportingFiles */,
 				E8EB26231C72106C0015C634 /* CoreData */,
@@ -322,9 +357,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E22E4D31C73C3F000F392E8 /* lns-right.png in Resources */,
+				1E22E4DA1C73C45300F392E8 /* lns-center@2x.png in Resources */,
 				E8EB26101C720F1D0015C634 /* LaunchScreen.storyboard in Resources */,
+				1E22E4D91C73C45300F392E8 /* lns-center.png in Resources */,
+				1E22E4DB1C73C45300F392E8 /* lns-center@3x.png in Resources */,
+				1E22E4E11C73D5B000F392E8 /* money-icon@3x.png in Resources */,
+				1E22E4DF1C73D5B000F392E8 /* money-icon.png in Resources */,
+				1E22E4D51C73C3F000F392E8 /* lns-right@3x.png in Resources */,
 				E8EB260D1C720F1D0015C634 /* Assets.xcassets in Resources */,
+				1E22E4D41C73C3F000F392E8 /* lns-right@2x.png in Resources */,
 				E8EB26081C720F1D0015C634 /* Main.storyboard in Resources */,
+				1E22E4E01C73D5B000F392E8 /* money-icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -103,6 +103,19 @@
     return [dataSource count];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [tableVieww deselectRowAtIndexPath:tableVieww.indexPathForSelectedRow animated:YES];
+}
+
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (dataSource.count == 0)return @"No Gatagories:";
+    return @"Choose a Gatagory:";
+}
+
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -112,7 +125,13 @@
     
     Tags* tag = [dataSource objectAtIndex:indexPath.row];
     
-    [[cell textLabel]setText:tag.tag];
+    UIView *backView = [[UIView alloc] init];
+    
+    backView.backgroundColor = [UIColor colorWithRed:52.0/255.0 green:168.0/255.0 blue:194.0/255.0 alpha:1.0];
+    
+    cell.selectedBackgroundView = backView;
+    
+    [(UILabel*)[cell viewWithTag:1]setText:tag.tag];
     
     return cell;
 }
@@ -122,6 +141,12 @@
     Tags* tag = [dataSource objectAtIndex:indexPath.row];
     [categoryTextField setText:tag.tag];
     [categoryTextField resignFirstResponder];
+    
+    [self submitButtonClicked:nil];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleDefault;
 }
 
 #pragma mark UITextFieldDelegate methods

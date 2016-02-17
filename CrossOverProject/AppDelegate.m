@@ -22,7 +22,7 @@
     [MagicalRecord setupCoreDataStack];
     if(![[NSUserDefaults standardUserDefaults] objectForKey:consCurrencyUserDefaultsKey])
     {
-        [[NSUserDefaults standardUserDefaults]setObject:@"$" forKey:consCurrencyUserDefaultsKey];
+        [[NSUserDefaults standardUserDefaults]setObject:@"USD" forKey:consCurrencyUserDefaultsKey];
         [[NSUserDefaults standardUserDefaults]synchronize];
     }
     return YES;
