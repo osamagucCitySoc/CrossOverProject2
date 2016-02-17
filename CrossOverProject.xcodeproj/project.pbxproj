@@ -22,6 +22,8 @@
 		E84D52861C734F5000A35D21 /* CrossOverProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D52851C734F5000A35D21 /* CrossOverProjectTests.m */; };
 		E85D1E391C72502300297209 /* ManageTransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85D1E381C72502300297209 /* ManageTransactionsViewController.m */; };
 		E85D1E3C1C727B8800297209 /* CategoryChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85D1E3B1C727B8800297209 /* CategoryChooserViewController.m */; };
+		E8C9A5711C74831700E4C54A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8C9A5701C74831700E4C54A /* Images.xcassets */; };
+		E8C9A5731C74833600E4C54A /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8C9A5721C74833600E4C54A /* Images-2.xcassets */; };
 		E8D60D3B1C7217040014ED1F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D3A1C7217040014ED1F /* Constants.m */; };
 		E8D60D3F1C7217940014ED1F /* BankAccountAmountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D60D3E1C7217940014ED1F /* BankAccountAmountViewController.m */; };
 		E8D60D681C722FB70014ED1F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D60D671C722FB70014ED1F /* Foundation.framework */; };
@@ -74,6 +76,8 @@
 		E85D1E3A1C727B8800297209 /* CategoryChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryChooserViewController.h; sourceTree = "<group>"; };
 		E85D1E3B1C727B8800297209 /* CategoryChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryChooserViewController.m; sourceTree = "<group>"; };
 		E877AA911C728E12003A43AF /* CrossOverProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CrossOverProject-Bridging-Header.h"; sourceTree = "<group>"; };
+		E8C9A5701C74831700E4C54A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E8C9A5721C74833600E4C54A /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-2.xcassets"; sourceTree = "<group>"; };
 		E8D60D391C7217040014ED1F /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E8D60D3A1C7217040014ED1F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		E8D60D3D1C7217940014ED1F /* BankAccountAmountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BankAccountAmountViewController.h; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 				E8EB25FD1C720F1C0015C634 /* Supporting Files */,
 				E8D60D3C1C72170B0014ED1F /* Helpers */,
 				E877AA911C728E12003A43AF /* CrossOverProject-Bridging-Header.h */,
+				E8C9A5701C74831700E4C54A /* Images.xcassets */,
+				E8C9A5721C74833600E4C54A /* Images-2.xcassets */,
 			);
 			path = CrossOverProject;
 			sourceTree = "<group>";
@@ -359,7 +365,9 @@
 			files = (
 				1E22E4D31C73C3F000F392E8 /* lns-right.png in Resources */,
 				1E22E4DA1C73C45300F392E8 /* lns-center@2x.png in Resources */,
+				E8C9A5731C74833600E4C54A /* Images-2.xcassets in Resources */,
 				E8EB26101C720F1D0015C634 /* LaunchScreen.storyboard in Resources */,
+				E8C9A5711C74831700E4C54A /* Images.xcassets in Resources */,
 				1E22E4D91C73C45300F392E8 /* lns-center.png in Resources */,
 				1E22E4DB1C73C45300F392E8 /* lns-center@3x.png in Resources */,
 				1E22E4E11C73D5B000F392E8 /* money-icon@3x.png in Resources */,
@@ -594,6 +602,7 @@
 			baseConfigurationReference = BFFE722C56FF54658D258AB9 /* Pods-CrossOverProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = CrossOverProject/Info.plist;
@@ -611,6 +620,7 @@
 			baseConfigurationReference = E1DDC3643EF176F17A674BDB /* Pods-CrossOverProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = CrossOverProject/Info.plist;
