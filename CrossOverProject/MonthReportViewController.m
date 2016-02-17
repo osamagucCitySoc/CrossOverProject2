@@ -15,6 +15,7 @@
 
 @implementation MonthReportViewController
 {
+    __weak IBOutlet UILabel *totalAmountLabel;
     __weak IBOutlet UILabel *noViewLabel;;/** @param this is a no UIView will appear if there are no added expenses and incomes, hence no reports can be shown*/
     __weak IBOutlet UIView *noView;
     __weak IBOutlet UIView *chartViewContainer; /** @param an outlet for the view that holds the pie chart inside it. It is used to know the Frame where to add the pie chart*/
@@ -59,6 +60,9 @@
         totalValue = [[monthData objectForKey:@"incomes"] floatValue];
     }
     
+    
+    [totalAmountLabel setText:[NSString stringWithFormat:@"Total %@ for %@ is %0.2f",reportType,[monthData objectForKey:@"title"],totalValue]];
+    
     if (totalValue == 0)
     {
         [noView setHidden:NO];
@@ -79,18 +83,20 @@
             totalValue -= [[categories objectForKey:[categories.allKeys objectAtIndex:i]] floatValue];
         }
         
-        UIColor *color;
-        if (isExpenses)
+        if(totalValue>0)
         {
-            color = [UIColor colorWithRed:199.0/255.0 green:38.0/255.0 blue:32.0/255.0 alpha:1.0];
-        }
-        else
-        {
-            color = [UIColor colorWithRed:54.0/255.0 green:169.0/255.0 blue:53.0/255.0 alpha:1.0];
-        }
+            UIColor *color;
+            if (isExpenses)
+            {
+                color = [UIColor colorWithRed:199.0/255.0 green:38.0/255.0 blue:32.0/255.0 alpha:1.0];
+            }
+            else
+            {
+                color = [UIColor colorWithRed:54.0/255.0 green:169.0/255.0 blue:53.0/255.0 alpha:1.0];
+            }
         
-        [yVals addObject:[PNPieChartDataItem dataItemWithValue:totalValue color:color description:@"One Time"]];
-        
+            [yVals addObject:[PNPieChartDataItem dataItemWithValue:totalValue color:color description:@"One Time"]];
+        }
         _chartView = [[PNPieChart alloc] initWithFrame:backLabel.frame items:yVals];
         _chartView.descriptionTextColor = [UIColor whiteColor];
         _chartView.descriptionTextFont  = [UIFont fontWithName:@"Avenir-Medium" size:15.0];

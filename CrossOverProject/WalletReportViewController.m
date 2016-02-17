@@ -43,11 +43,13 @@
         MonthReportViewController* dst = (MonthReportViewController*)[segue destinationViewController];
         [dst setReportType:@"Expenses"];
         [dst setMonthData:[mainDataSource objectAtIndex:tableVieww.indexPathForSelectedRow.section]];
+        [tableVieww deselectRowAtIndexPath:tableVieww.indexPathForSelectedRow animated:YES];
     }else if([[segue identifier]isEqualToString:@"incomesReportSeg"])
     {
         MonthReportViewController* dst = (MonthReportViewController*)[segue destinationViewController];
         [dst setReportType:@"Incomes"];
         [dst setMonthData:[mainDataSource objectAtIndex:tableVieww.indexPathForSelectedRow.section]];
+        [tableVieww deselectRowAtIndexPath:tableVieww.indexPathForSelectedRow animated:YES];
     }
 }
 - (void)viewDidLoad {
@@ -166,8 +168,6 @@
 #pragma mark UIActionSheetDelegate Methods
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [tableVieww deselectRowAtIndexPath:tableVieww.indexPathForSelectedRow animated:YES];
-    
     if(actionSheet.tag == 1)
     {
         if(buttonIndex == 0)

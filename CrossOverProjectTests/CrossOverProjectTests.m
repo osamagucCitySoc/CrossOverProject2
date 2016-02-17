@@ -51,7 +51,9 @@
  This method tends to test the functionality used in managing the expenses and incomes by the user. It tests the ability to retrive the transactions of a certain type grouped by the month of their occurence.
  */
 - (void)testTransactionRetrival{
-    //By doing the previous test cases, we have at least one transaction (in the category of Incomes as it is inserted with positive amounts) stored successfully. Now we test retriving transactions and deleting them. The month we will test on is 1 for 2017
+    //By doing the previous test cases, we add at least one transaction (in the category of Incomes as it is inserted with positive amounts) stored successfully. Now we test retriving transactions and deleting them. The month we will test on is 1 for 2017
+    
+    [Transaction storeTransaction:220 day:1 month:1 year:2017 recurring:NO category:@""];
     
     NSMutableArray* incomesTransactionsBeforeNewInsertions = [Transaction loadTransactions:@"Incomes"];
     
@@ -103,16 +105,16 @@
  This method tends to test the functionality used in reporting the expenses and incomes to the user for a certain month. It concentrates only in checking if the balance by end of the month is adjusted properly when affected by adding a one time transaction and a recurring transaction.
  */
 - (void)testMonthEndBalance{
-    //We will first calculate the end balance at March 2016.
-    //Then we will add an expense of -100 on March 2016.
-    //Then we will add a recurring income of 200 on February 2016.
+    //We will first calculate the end balance at April 2016.
+    //Then we will add an expense of -100 on April 2016.
+    //Then we will add a recurring income of 200 on March 2016.
     
-    float endBalanceBeforeAnyEdits = [[[[Transaction loadTransactions:1 minYear:2016 maxMonth:3 maxYear:2016] lastObject] objectForKey:@"endBalance"] floatValue];
+    float endBalanceBeforeAnyEdits = [[[[Transaction loadTransactions:1 minYear:2016 maxMonth:4 maxYear:2016] lastObject] objectForKey:@"endBalance"] floatValue];
     
     
-    [Transaction storeTransaction:-100 day:1 month:3 year:2016 recurring:NO category:@""];
+    [Transaction storeTransaction:-100 day:1 month:4 year:2016 recurring:NO category:@""];
     
-    float endBalanceAfterOneTimeExpenss = [[[[Transaction loadTransactions:1 minYear:2016 maxMonth:3 maxYear:2016] lastObject] objectForKey:@"endBalance"] floatValue];
+    float endBalanceAfterOneTimeExpenss = [[[[Transaction loadTransactions:1 minYear:2016 maxMonth:4 maxYear:2016] lastObject] objectForKey:@"endBalance"] floatValue];
     
     float diff = endBalanceBeforeAnyEdits-endBalanceAfterOneTimeExpenss;
     
@@ -120,9 +122,9 @@
     
     
     
-    [Transaction storeTransaction:200 day:6 month:2 year:2016 recurring:YES category:@"Salary"];
+    [Transaction storeTransaction:200 day:6 month:3 year:2016 recurring:YES category:@"Salary"];
     
-    float endBalanceAfterOneTimeExpenssAndRecurringIncome = [[[[Transaction loadTransactions:1 minYear:2016 maxMonth:3 maxYear:2016] lastObject] objectForKey:@"endBalance"] floatValue];
+    float endBalanceAfterOneTimeExpenssAndRecurringIncome = [[[[Transaction loadTransactions:1 minYear:2016 maxMonth:4 maxYear:2016] lastObject] objectForKey:@"endBalance"] floatValue];
     
     diff = endBalanceAfterOneTimeExpenssAndRecurringIncome-endBalanceAfterOneTimeExpenss;
     
