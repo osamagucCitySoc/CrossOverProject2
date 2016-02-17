@@ -80,16 +80,18 @@
                                          target: self
                                        selector:@selector(walletHiddenOff:)
                                        userInfo: nil repeats:NO];
-    }
+    }else
+    {
     
     if (!doneFirstAnm)
     {
         doneFirstAnm = YES;
-        [self animate1From:0 toNumber:[NSNumber numberWithInteger:currentAmount.integerValue] withSymbol:currentCurrencySymbol];
+        [self animate1From:@(0) toNumber:[NSNumber numberWithInteger:currentAmount.integerValue] withSymbol:currentCurrencySymbol];
     }
     else
     {
         currentBankAccountAmountLabel.text = [@"" stringByAppendingFormat:@"%@ %@",currentCurrencySymbol,currentAmount];
+    }
     }
 }
 
@@ -147,12 +149,6 @@
     [theWalletView setHidden:NO];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    // Each time the homepage appears, we need to update the current bank amount and preferred currency. // Default is 0.000 $
-    
-}
 
 /**
  This method is used to initialise the inner variables and views used by this controller.
