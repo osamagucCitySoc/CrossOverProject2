@@ -344,6 +344,10 @@
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSString* newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if(newText.length == 0)
+    {
+        return YES;
+    }
     NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
     BOOL isDecimal = [nf numberFromString:newText] != nil;
     return isDecimal;
