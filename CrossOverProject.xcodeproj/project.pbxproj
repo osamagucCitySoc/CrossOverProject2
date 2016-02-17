@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E22E4D31C73C3F000F392E8 /* lns-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D01C73C3F000F392E8 /* lns-right.png */; settings = {ASSET_TAGS = (); }; };
-		1E22E4D41C73C3F000F392E8 /* lns-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D11C73C3F000F392E8 /* lns-right@2x.png */; settings = {ASSET_TAGS = (); }; };
-		1E22E4D51C73C3F000F392E8 /* lns-right@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D21C73C3F000F392E8 /* lns-right@3x.png */; settings = {ASSET_TAGS = (); }; };
-		1E22E4D91C73C45300F392E8 /* lns-center.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D61C73C45300F392E8 /* lns-center.png */; settings = {ASSET_TAGS = (); }; };
-		1E22E4DA1C73C45300F392E8 /* lns-center@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D71C73C45300F392E8 /* lns-center@2x.png */; settings = {ASSET_TAGS = (); }; };
-		1E22E4DB1C73C45300F392E8 /* lns-center@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D81C73C45300F392E8 /* lns-center@3x.png */; settings = {ASSET_TAGS = (); }; };
-		1E22E4DF1C73D5B000F392E8 /* money-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4DC1C73D5B000F392E8 /* money-icon.png */; settings = {ASSET_TAGS = (); }; };
-		1E22E4E01C73D5B000F392E8 /* money-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4DD1C73D5B000F392E8 /* money-icon@2x.png */; settings = {ASSET_TAGS = (); }; };
-		1E22E4E11C73D5B000F392E8 /* money-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4DE1C73D5B000F392E8 /* money-icon@3x.png */; settings = {ASSET_TAGS = (); }; };
+		1E22E4D31C73C3F000F392E8 /* lns-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D01C73C3F000F392E8 /* lns-right.png */; };
+		1E22E4D41C73C3F000F392E8 /* lns-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D11C73C3F000F392E8 /* lns-right@2x.png */; };
+		1E22E4D51C73C3F000F392E8 /* lns-right@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D21C73C3F000F392E8 /* lns-right@3x.png */; };
+		1E22E4D91C73C45300F392E8 /* lns-center.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D61C73C45300F392E8 /* lns-center.png */; };
+		1E22E4DA1C73C45300F392E8 /* lns-center@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D71C73C45300F392E8 /* lns-center@2x.png */; };
+		1E22E4DB1C73C45300F392E8 /* lns-center@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4D81C73C45300F392E8 /* lns-center@3x.png */; };
+		1E22E4DF1C73D5B000F392E8 /* money-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4DC1C73D5B000F392E8 /* money-icon.png */; };
+		1E22E4E01C73D5B000F392E8 /* money-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4DD1C73D5B000F392E8 /* money-icon@2x.png */; };
+		1E22E4E11C73D5B000F392E8 /* money-icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E22E4DE1C73D5B000F392E8 /* money-icon@3x.png */; };
 		7CC1B072DDD9E5B2279A72B2 /* libPods-CrossOverProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C61D8079F183095BBA07AC8 /* libPods-CrossOverProject.a */; };
 		E84D52781C7312DC00A35D21 /* WalletReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D52771C7312DC00A35D21 /* WalletReportViewController.m */; };
 		E84D527C1C732F3D00A35D21 /* MonthReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E84D527B1C732F3D00A35D21 /* MonthReportViewController.m */; };
